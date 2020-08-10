@@ -1,1 +1,0 @@
-Thank you for choosing to use OKAB
