@@ -1,0 +1,267 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SmartBill</title>
+  <style>
+		.nestedsidemenu {
+		    font: bold 16px 'Bitter', sans-serif;
+				position: relative;
+		    width: 220px;
+		}
+
+
+		/* Top Level Menu */
+		.nestedsidemenu ul {
+		    z-index: 100;
+		    margin: 0;
+		    padding: 0;
+		    position: relative;
+		    list-style: none;
+		}
+
+		/* Top level list items */
+		.nestedsidemenu ul li {
+		    position: relative;
+		}
+
+		/* Top level menu items link style */
+		.nestedsidemenu ul li a, .nestedsidemenu ul li span {
+		    display: block;
+		    position: relative;
+		    /* background of menu items (default state) */
+		    background: #4ea1d3;
+		    color: white;
+		    padding: 14px 10px;
+		    color: #2d2b2b;
+		    text-decoration: none;
+		}
+
+
+		.nestedsidemenu ul li a:link, .nestedsidemenu ul li a:visited {
+		    color: white;
+		}
+
+		/* Top level menu items link style on hover and when active */
+		.nestedsidemenu ul li:hover > a {
+		    background: #005f6b;
+		}
+
+		/* Sub ULs style */
+		.nestedsidemenu ul li ul {
+		    position: absolute;
+		    left: -5000px;
+				top: 0;
+		    opacity: 0;
+		    width: 230px;
+		    visibility: hidden;
+		    box-shadow: 2px 2px 5px gray;
+		    -webkit-transition: opacity .3s, visibility 0s .3s, left 0s .3s;
+		    transition: opacity .3s, visibility 0s .3s, left 0s .3s;
+		}
+
+		/* First Sub Levels UL style on hover */
+		.nestedsidemenu ul li:hover > ul {
+		    visibility: visible;
+		    left: 100%;
+		    opacity: 1;
+		    -webkit-transition: opacity .5s;
+		    transition: opacity .5s;
+		}
+
+		/* Sub level Menu list items (alters style from Top level List Items) */
+		.nestedsidemenu ul li ul li {
+		    display: list-item;
+		    float: none;
+		}
+
+		/* 2nd and beyond Sub Levels vertical offset after 1st level sub menu */
+		.nestedsidemenu ul li ul li ul {
+		    top: 0;
+		    left: 100%;
+		}
+
+		/* Sub Levels link style on hover and when active */
+		.nestedsidemenu ul ul li:hover > a {
+		    background: #52616a;
+		}
+
+		/* Sub Levels UL style on hover */
+		.nestedsidemenu ul ul li:hover > ul {
+		    left: 100%;
+		}
+
+		/* Sub level menu links style */
+		.nestedsidemenu ul li ul li a {
+		    font: normal 14px 'Bitter', sans-serif;
+		    padding: 10px;
+		    margin: 0;
+		    background: #4ea1d3;
+		    border-right: none;
+		    border-top-width: 0;
+		}
+
+		/* LIs with a sub UL style */
+		.nestedsidemenu ul li > a {
+		    /* add padding to accomodate arrow inside LIs */
+		    padding-right: 25px;
+		}
+
+		/* LIs with NO sub UL style */
+		.nestedsidemenu ul li > a:only-child {
+		    /* undo padding for non submenu LIs */
+		    padding-right: 10px;
+		}
+
+		/* LIs with a sub UL pseudo class */
+		.nestedsidemenu ul li > a:after {
+		    /* add arrow inside LIs */
+		    content: "";
+		    position: absolute;
+		    height: 0;
+		    width: 0;
+		    border: 5px solid transparent;
+		    border-left-color: #FFFFFF;
+		    top: 40%;
+		    right: 8px;
+		}
+
+		/* LIs with NO sub UL pseudo class */
+		.nestedsidemenu ul li > a:only-child:after {
+		    /* undo arrow for non submenu LIs */
+		    display: none;
+		}
+
+
+		/* ####### responsive layout CSS ####### */
+
+		@media (max-width: 923px) {
+		    /* FIRST breaking point
+					Last top menu items' sub ULs should drop to the left (instead of right)
+					Change 1 to a different number to exclude/include more top menu items based on menu and max-width setting above
+				*/
+
+				.nestedsidemenu ul li:nth-last-of-type(-n+1) ul li:hover > ul {
+		        left: -100%;
+		    }
+		}
+
+		@media (max-width: 500px) {
+		    /* SECOND breaking point 
+					For mobile and screen browser windows
+					Get Sub ULs to expand entire width of document and drop down
+					Changes menu reveal type from "visibility" to "display" to overcome bug. See comments below
+				*/
+		    .nestedsidemenu{
+		        width: 100%;
+		    }
+		    
+		    .nestedsidemenu ul li > a:after {
+		        /* add arrow inside LIs */
+		        content: "";
+		        position: absolute;
+		        height: 0;
+		        width: 0;
+		        border: 5px solid transparent;
+		        border-left-color: transparent;
+		        border-top-color: #fff;
+		        top: 40%;
+		        right: 8px;
+		    }
+
+			.nestedsidemenu ul li {
+		        position: static;
+		    }
+
+		    .nestedsidemenu ul li ul {
+		        width: 100%;
+		        border-top: 2px solid rgba(0,0,0,.6);
+				/* change menu reveal type from "visibility" to "display". Former seems to cause browser to jump to top of page sometimes when menu header is tapped on */
+				display: none;
+		    }
+
+		    .nestedsidemenu ul li:hover > ul {
+				display: block;
+		        left: 0 !important;
+		        top: auto;
+		        box-shadow: 0 0 12px gray;
+		    }
+
+
+		}
+  </style>
+</head>
+<body>
+	<div class="nestedsidemenu">
+        <ul>
+			<li><a href="javascript:void(0);">Facturi</a>
+				<ul>
+					<li><a href="facturi/010_factura_simpla.php" target="_blank">Emitere factura simpla</a></li>
+					<li><a href="facturi/011_factura_pe_baza_de_proforma.php" target="_blank">Emitere de factura pe baza de proforma</a></li>
+					<li><a href="facturi/012_factura_neplatitoare_tva.php" target="_blank">Emitere factura neplatitoare de TVA</a></li>
+					<li><a href="facturi/013_aplicate_discount_factura.php" target="_blank">Aplicarea unui discount</a></li>
+					<li><a href="facturi/014_incasarea_facturii_la_emitere.php" target="_blank">Incasarea facturii la emitere</a></li>
+					<li><a href="facturi/014_factura_cu_chitanta.php" target="_blank">Emitere factura cu chitanta</a></li>
+					<li><a href="facturi/015_factura_in_valuta.php" target="_blank">Emitere factura in valuta</a></li>
+					<li><a href="facturi/017_factura_cu_descarcarea_gestiunii.php" target="_blank">Emitere factura cu descarcarea gestiunii</a></li>
+					<li><a href="facturi/018_folosire_cote_tva.php" target="_blank">Folosirea cotelor TVA</a></li>
+					<li><a href="facturi/019_factura_alta_limba.php" target="_blank">Emiterea de facturi in alte limbi</a></li>
+					<li><a href="facturi/019_factura_pentru_servicii.php" target="_blank">Emitere de facturi pentru servicii</a></li>
+					<li><a href="facturi/019_factura_ciorna.php" target="_blank">Emiterea unei facturi Ciorna</a></li>
+					<li><a href="facturi/019_factura_salvare_client_in_cont.php" target="_blank">Emitere factura cu salvare client in cont</a></li>
+					<li><a href="facturi/019_factura_salvare_produs_in_cont.php" target="_blank">Emitere factura cu salvare produs in cont</a></li>
+					<li><a href="facturi/019_folosire_cod_produs.php" target="_blank">Folosirea cod produs</a></li>
+					<li><a href="facturi/019_folosire_tva_la_incasare.php" target="_blank">Folosirea TVA la incasare</a></li>
+					<li><a href="facturi/020_vizualizare_factura.php" target="_blank">Vizualizare factura</a></li>
+					<li><a href="facturi/040_sterge_factura.php" target="_blank">Stergere factura</a></li>
+					<li><a href="facturi/050_anulareaza_factura.php" target="_blank">Anulare factura</a></li>
+					<li><a href="facturi/060_restaureaza_factura.php" target="_blank">Restaurare factura</a></li>
+					<li><a href="facturi/070_factura_prin_email.php" target="_blank">Trimitere documente prin e-mail</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:void(0);">Proforme</a>
+				<ul class="sub-menu collapse">
+					<li><a href="proforme/110_proforma_simpla.php" target="_blank">Emitere proforma simpla</a></li>
+					<li><a href="proforme/111_factura_pe_baza_de_proforma.php" target="_blank">Emitere de factura pe baza de proforma</a></li>
+					<li><a href="proforme/112_proforma_neplatitoare_tva.php" target="_blank">Emitere proforma neplatitoare de TVA</a></li>
+					<li><a href="proforme/113_aplicate_discount_proforma.php" target="_blank">Aplicarea unui discount</a></li>
+					<li><a href="proforme/120_vizualizare_proforma.php" target="_blank">Vizualizare proforma</a></li>
+					<li><a href="proforme/140_sterge_proforma.php" target="_blank">Stergere proforma</a></li>
+					<li><a href="proforme/150_anulareaza_proforma.php" target="_blank">Anulare proforma</a></li>
+					<li><a href="proforme/160_restaureaza_proforma.php" target="_blank">Restaurare proforma</a></li>
+					<li><a href="proforme/170_proforma_prin_email.php" target="_blank">Trimitere documente prin e-mail</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:void(0);">Incasari</a>
+				<ul>
+					<li><a href="incasari/210_incasare.php" target="_blank">Emitere incasare</a></li>
+					<li><a href="incasari/211_incasare_chitanta.php" target="_blank">Emitere chitanta</a></li>
+					<li><a href="incasari/212_incasare_date_factura.php" target="_blank">Emitere incasare cu datele din factura</a></li>
+					<li><a href="incasari/213_incasare_bon.php" target="_blank">Emitere bon fiscal</a></li>
+					<li><a href="incasari/214_incasare_bon_discount.php" target="_blank">Emitere bon fiscal cu discount</a></li>
+					<li><a href="incasari/215_chitanta_fara_factura.php" target="_blank">Emitere chitanta fara factura</a></li>
+					<li><a href="incasari/220_stare_incasare_facturi.php" target="_blank">Starea incasarii unei facturi</a></li>
+					<li><a href="incasari/230_stergere_chitanta.php" target="_blank">Stergere chitanta</a></li>
+					<li><a href="incasari/240_stergere_incasare_factura.php" target="_blank">Stergere incasare cu datele din factura</a></li>
+					<li><a href="incasari/250_stergere_incasare_parametri.php" target="_blank">Stergere incasare dupa parametri incasarii</a></li>
+					<li><a href="incasari/260_continut_bon_fiscal.php" target="_blank">Obtinerea continutului unui bon fiscal</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:void(0);">Configurari</a>
+				<ul>
+						<li><a href="configurari/310_interogare_cote_tva.php" target="_blank">Interogare cote TVA</a></li>
+						<li><a href="configurari/320_interogare_serii_documente.php" target="_blank">Interogare serii documente</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:void(0);">Gestiuni</a>
+				<ul>
+						<li><a href="gestiuni/410_interogare_stoc_produs.php" target="_blank">Interogare stoc pentru un produs</a></li>
+						<li><a href="gestiuni/411_interogare_stoc_gestiune.php" target="_blank">Interogare stoc pentru o gestiune</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+<body>
+</body>
+</html>

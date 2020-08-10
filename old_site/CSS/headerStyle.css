@@ -1,0 +1,44 @@
+
+.read_more{
+background: blue;
+border-radius: 10px;
+color: white;
+text-decoration: none;
+}
+#hrstar{
+
+height: 20px;
+background: url(../../Resources/Bank/horizontal-rule-blue-stars.png);
+border: none;
+}
+
+#facebook{
+    float: right;
+    background: url("../Resources/Header/buton-facebook-40x40.png");
+    width: 40px;
+    padding: 0;
+    border: 0;
+    height: 40px;
+}
+
+#login{
+    float: right;
+    height: 40px;
+    width: 124px;
+    padding-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    background: url("../Resources/Header/BUTON---log-in.png");
+    padding: 0;
+    border: 0;
+    font-size: 20px;
+    color: white;
+}
+
+
+#header{
+   position: fixed !important;
+   width: 100%;
+   z-index: 10000;
+
+}

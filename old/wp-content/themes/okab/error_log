@@ -1,0 +1,16 @@
+[03-Dec-2018 07:34:35 Europe/Bucharest] PHP Fatal error:  Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/index.php on line 5
+[31-Jan-2019 19:13:39 Europe/Bucharest] PHP Fatal error:  Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/index.php on line 5
+[16-Mar-2019 16:00:03 Europe/Bucharest] PHP Fatal error:  Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/index.php on line 5
+[01-Jun-2019 08:43:58 Europe/Bucharest] PHP Fatal error:  Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/index.php on line 5
+[16-Aug-2019 20:23:33 Europe/Bucharest] PHP Fatal error:  Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/index.php on line 5
+[29-Aug-2019 08:45:00 Europe/Bucharest] PHP Fatal error:  Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/index.php on line 5
+[16-Nov-2019 12:46:09 Europe/Bucharest] PHP Fatal error:  Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/404.php on line 1
+[18-Nov-2019 08:47:26 Europe/Bucharest] PHP Fatal error:  Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/404.php on line 1
+[17-Apr-2020 14:48:45 Europe/Bucharest] PHP Fatal error:  Uncaught Error: Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/404.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/academia/public_html/wp-content/themes/okab/404.php on line 1
+[25-Apr-2020 10:10:12 Europe/Bucharest] PHP Fatal error:  Uncaught Error: Class 'dima_helper' not found in /home/academia/public_html/wp-content/themes/okab/404.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/academia/public_html/wp-content/themes/okab/404.php on line 1

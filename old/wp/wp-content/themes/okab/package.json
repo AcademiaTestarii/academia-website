@@ -1,0 +1,58 @@
+{
+  "name": "noor",
+  "version": "1.0.0",
+  "description": "noor.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ok",
+    "grids",
+    "okab"
+  ],
+  "author": "Tahri Adel",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel ": "^6.1.2",
+    "gulp-cache": "^0.2.8",
+    "gulp-clean": "^0.3.1",
+    "gulp-combine-mq": "^0.4.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-decompress": "^2.0.1",
+    "gulp-filter": "^5.0.0",
+    "gulp-ignore": "^2.0.2",
+    "gulp-imagemin": "^0.6.2",
+    "gulp-jshint": "^1.11.2",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-load-plugins": "^0.6.0",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-newer": "^1.3.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.1.0",
+    "gulp-run-sequence": "^0.3.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-svgmin": "^1.2.3",
+    "gulp-svgstore": "^6.1.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-uglifycss": "^1.0.4",
+    "gulp-uncss": "1.0.0",
+    "gulp-util": "^3.0.4",
+    "gulp-zip": "^2.0.3",
+    "imagemin-gifsicle": "^5.1.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-optipng": "^5.2.1",
+    "imagemin-pngquant": "^5.0.0",
+    "tiny-lr": "0.0.7",
+    "uint8": "^1.0.0"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
+}
