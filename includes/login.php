@@ -11,13 +11,14 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 		if ( $botcheck == '' ) {
 
-			$sql_select="SELECT * FROM `cursanti` WHERE `email`='".$email."' AND `parola`='".md5($parola)."' AND `activ`=1";
+			$sql_select="SELECT * FROM `students` 
+WHERE `email`='".$email."' AND `password`='".md5($parola)."' AND `is_active`=1";
 			$query_select=mysqli_query($link,$sql_select);
 			if (mysqli_num_rows($query_select)==1) {
 				$row=mysqli_fetch_assoc($query_select);
 				
 				$today=date("Y-m-d H:i:s");
-				$sql="UPDATE `cursanti` SET `activitate`='".$today."' WHERE `id`=".$row['id'];
+				$sql="UPDATE `students` SET `activity`='".$today."' WHERE `id`=".$row['id'];
 				
 				if ( $query=(mysqli_query($link,$sql)) ):
 					$message = 'Bine ai revenit. Vei fi redirecționat către contul tău.';

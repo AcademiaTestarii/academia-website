@@ -4,9 +4,9 @@ if (isset($_GET['id']) && strlen($_GET['id'])==12 && ctype_alnum($_GET['id'])) {
 $id=mysqli_real_escape_string($link,$_GET['id']);
 $sql="
 SELECT * FROM `feedback` 
-LEFT JOIN `cursanti` ON `feedback`.`id_cursant`=`cursanti`.`id`
-LEFT JOIN `cursuri` ON `feedback`.`id_curs`=`cursuri`.`id`
-LEFT JOIN `curs_main` ON `cursuri`.`parent`=`curs_main`.`id_curs_main`
+LEFT JOIN `students` ON `feedback`.`student_id`=`students`.`id`
+LEFT JOIN `classes` ON `feedback`.`class_id`=`classes`.`id`
+LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 WHERE `link`='".$id."'";
 $query=mysqli_query($link,$sql);
 if (mysqli_num_rows($query)>0) {
@@ -19,7 +19,7 @@ $row=mysqli_fetch_assoc($query);
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Certificat de absolvire: <?php echo $row['nume'];?> <?php echo $row['prenume'];?></title>
+<title>Certificat de absolvire: <?php echo $row['last_name'];?> <?php echo $row['first_name'];?></title>
 <base href="https://www.academiatestarii.ro">
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
@@ -77,13 +77,13 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 
 <div class="wrapper-certificat" class="container">
 	<div class="numecert">
-		<?php echo $row['nume'];?> <?php echo $row['prenume'];?>
+		<?php echo $row['last_name'];?> <?php echo $row['first_name'];?>
 	</div>
 	<div class="curscert">
-		<?php echo $row['titlu_main'];?>
+		<?php echo $row['main_classes.title'];?>
 	</div>	
 	<div class="datacert">
-		<?php echo strftime("%e %B %Y", strtotime($row['acordat']));?>
+		<?php echo strftime("%e %B %Y", strtotime($row['granted_on']));?>
 	</div>
 </div>
 

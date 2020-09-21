@@ -19,7 +19,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			$botcheck = $_POST['form_botcheck'];
 
 			if ( $botcheck == '' ) {
-				$sql="UPDATE `cursanti` SET `nume`='".$nume."', `prenume`='".$prenume."', `adresa`='".$adresa."', `localitate`='".$localitate."', `data_nastere`='".$data_nastere."', `judet`='".$judet."', `companie`='".$companie."', `pozitie`='".$pozitie."', `telefon`='".$telefon."' WHERE `id`=".$id;
+				$sql="UPDATE `students` SET `last_name`='".$nume."', `first_name`='".$prenume."', `address`='".$adresa."', `city`='".$localitate."', `date_of_birth`='".$data_nastere."', `county`='".$judet."', `company`='".$companie."', `job_title`='".$pozitie."', `phone`='".$telefon."' WHERE `id`=".$id;
 				if ($query=mysqli_query($link,$sql)) {
 					$message = 'Datele tale personale au fost modificate.';
 					$status = "true";
@@ -41,7 +41,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			$botcheck = $_POST['form_botcheck'];
 
 			if ( $botcheck == '' ) {
-					$sql="INSERT INTO `cursant_curs` (`id_cursant`,`id_curs`) VALUES (".$id_cursant.",".$id_curs.")";
+					$sql="INSERT INTO `class_students` (`student_id`,`class_id`) VALUES (".$id_cursant.",".$id_curs.")";
 					
 				if ($query=mysqli_query($link,$sql)) {
 					$message = 'Te-ai înregistrat la acest curs.';
@@ -66,7 +66,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				if (isset($_POST['promotii'])) {$promotii=1;} else {$promotii=0;}
 				if (isset($_POST['newsletter'])) {$newsletter=1;} else {$newsletter=0;}
 				
-					$sql="UPDATE `cursanti` SET `promotii`='".$promotii."', `newsletter`='".$newsletter."' WHERE `id`=".$id_cursant;
+					$sql="UPDATE `students` SET `promotions`='".$promotii."', `newsletter`='".$newsletter."' WHERE `id`=".$id_cursant;
 					
 				if ($query=mysqli_query($link,$sql)) {
 					$message = 'Ai schimbat setările notificărilor.';
@@ -89,7 +89,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 			if ( $botcheck == '' ) {
 					$parola = md5(trim(mysqli_real_escape_string($link,$_POST['parola'])));
-					$sql="UPDATE `cursanti` SET `parola`='".$parola."' WHERE `id`=".$id_cursant;
+					$sql="UPDATE `students` SET `password`='".$parola."' WHERE `id`=".$id_cursant;
 					
 				if ($query=mysqli_query($link,$sql)) {
 					$message = 'Parola a fost modificată.';

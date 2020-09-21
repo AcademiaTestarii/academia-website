@@ -18,17 +18,17 @@
 $sql_cursuri="
 SELECT `selectie`.* FROM 
 (
-SELECT * FROM `cursuri` 
-LEFT JOIN `curs_main` 
-ON `cursuri`.`parent`=`curs_main`.`id_curs_main` 
-ORDER BY `cursuri`.`start_inscriere` ASC
+SELECT * FROM `classes` 
+LEFT JOIN `main_classes` 
+ON `classes`.`main_class_id`=`main_classes`.`id` 
+ORDER BY `classes`.`registration_start_date` ASC
 LIMIT 18446744073709551615
 )
 AS `selectie` 
-WHERE `selectie`.`start_inscriere`>NOW()
-AND `selectie`.`activ`=1
-GROUP BY `parent`
-ORDER BY `selectie`.`start_inscriere` ASC
+WHERE `selectie`.`registration_start_date`>NOW()
+AND `selectie`.`is_active`=1
+GROUP BY `main_class_id`
+ORDER BY `selectie`.`registration_start_date` ASC
 ";
 $query_cursuri=mysqli_query($link,$sql_cursuri);
 while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) {
@@ -37,18 +37,18 @@ while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) {
                   <article class="post clearfix mb-30">
                     <div class="entry-header">
                       <div class="post-thumb thumb"> 
-                        <img src="images/cursuri/<?php echo $row_cursuri['imagine'];?>" alt="" class="img-responsive img-fullwidth"> 
+                        <img src="images/cursuri/<?php echo $row_cursuri['image'];?>" alt="" class="img-responsive img-fullwidth">
                       </div>                    
                       <div class="entry-date media-left text-center flip bg-theme-colored border-top-theme-colored2-3px pt-5 pr-15 pb-5 pl-15">
-					<?php if ($row_cursuri['planificat']==1) { ?>
+					<?php if ($row_cursuri['is_planned']==1) { ?>
                         <ul>
 							<li class="font-16 text-white font-weight-600">în</li>
 							<li class="font-12 text-white text-uppercase">curând</li>
                         </ul>
 					<?php } else { ?>
 						<ul>
-							<li class="font-16 text-white font-weight-600"><?php echo strftime("%e", strtotime($row_cursuri['start_inscriere']));?></li>
-							<li class="font-12 text-white text-uppercase"><?php echo strftime("%B", strtotime($row_cursuri['start_inscriere']));?></li>
+							<li class="font-16 text-white font-weight-600"><?php echo strftime("%e", strtotime($row_cursuri['registration_start_date']));?></li>
+							<li class="font-12 text-white text-uppercase"><?php echo strftime("%B", strtotime($row_cursuri['registration_start_date']));?></li>
                         </ul>
 					<?php } ?>
                       </div>
@@ -57,32 +57,32 @@ while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) {
                       <div class="entry-meta media mt-0 mb-10">
                         <div class="media-body pl-0">
                           <div class="event-content pull-left flip">
-                            <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5"><a href="curs.php?id=<?php echo $row_cursuri['id_curs_main'];?>"><?php echo $row_cursuri['titlu_main'];?></a></h4>
-							<?php if (strlen($row_cursuri['titlu'])<32) {echo "<br />";} ?>
-							<p><?php echo $row_cursuri['descriere_scurta'];?></p>
+                            <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5"><a href="curs.php?id=<?php echo $row_cursuri['main_classes.id'];?>"><?php echo $row_cursuri['main_classes.title'];?></a></h4>
+							<?php if (strlen($row_cursuri['classes.title'])<32) {echo "<br />";} ?>
+							<p><?php echo $row_cursuri['short_description'];?></p>
 							
-							<? if ($row_cursuri['pret_redus']!="" && $row_cursuri['pret_redus']!=0) { ?>
-							<div class="price">Taxa de înscriere: <del><span class="amount"><?php echo $row_cursuri['pret'];?> Lei</span></del> <strong><span class="amount"><?php echo $row_cursuri['pret_redus'];?> Lei</span></strong> </div>
+							<? if ($row_cursuri['discount_price']!="" && $row_cursuri['discount_price']!=0) { ?>
+							<div class="price">Taxa de înscriere: <del><span class="amount"><?php echo $row_cursuri['price'];?> Lei</span></del> <strong><span class="amount"><?php echo $row_cursuri['discount_price'];?> Lei</span></strong> </div>
 							<?php } else { ?>
-							<div class="price">Taxa de înscriere: <strong><span class="amount"><?php echo $row_cursuri['pret'];?> Lei</span></strong> </div>
+							<div class="price">Taxa de înscriere: <strong><span class="amount"><?php echo $row_cursuri['price'];?> Lei</span></strong> </div>
 							<?php } ?>
 							
-							<?php if ($row_cursuri['planificat']==1) { ?>
+							<?php if ($row_cursuri['is_planned']==1) { ?>
 							<span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-calendar mr-5 text-theme-colored"></i>Data va fi anunţata ulterior</span>
 							<?php } else { ?>
 							
-                            <span class="mb-0 text-gray-darkgray mr-10 font-13">Următorul curs: <br /><i class="fa fa-calendar mr-5 text-theme-colored"></i><?php if ($row_cursuri['start_inscriere']!="0000-00-00") { echo strftime("%e %B", strtotime($row_cursuri['start_inscriere']))." - ".strftime("%e %B %Y", strtotime($row_cursuri['end_inscriere']));} else {echo "Data va fi anunţata ulterior";}?></span>
+                            <span class="mb-0 text-gray-darkgray mr-10 font-13">Următorul curs: <br /><i class="fa fa-calendar mr-5 text-theme-colored"></i><?php if ($row_cursuri['registration_start_date']!="0000-00-00") { echo strftime("%e %B", strtotime($row_cursuri['registration_start_date']))." - ".strftime("%e %B %Y", strtotime($row_cursuri['registration_end_date']));} else {echo "Data va fi anunţata ulterior";}?></span>
 							<?php } ?><br />
-							<?php 	$sqlInscrisi=mysqli_query($link,"SELECT * FROM `cursant_curs` WHERE `id_curs`=".$row_cursuri['id']);
+							<?php 	$sqlInscrisi=mysqli_query($link,"SELECT * FROM `class_students` WHERE `class_id`=".$row_cursuri['id']);
 									$cati=mysqli_num_rows($sqlInscrisi);
 							?>
-							<span class="mb-10 text-gray-darkgray mr-10 font-13">Locuri disponibile: <?php echo $row_cursuri['cursanti']-$cati;?></span>
+							<span class="mb-10 text-gray-darkgray mr-10 font-13">Locuri disponibile: <?php echo $row_cursuri['students']-$cati;?></span>
 							
 							<?php
-							$datesSql2=mysqli_query($link,"SELECT `id` AS `urmatorul`,`weekend` FROM `cursuri` WHERE `parent`=".$row_cursuri['id_curs_main']." AND  `start_inscriere` > NOW() AND `id` != ".$row_cursuri['id']." ORDER BY `start_inscriere` ASC LIMIT 1");
+							$datesSql2=mysqli_query($link,"SELECT `id` AS `urmatorul`,`weekend` FROM `classes` WHERE `main_class_id`=".$row_cursuri['main_classes.id']." AND  `registration_start_date` > NOW() AND `id` != ".$row_cursuri['id']." ORDER BY `registration_start_date` ASC LIMIT 1");
 							if (mysqli_num_rows($datesSql2)>0) {
 							$datesRow2=mysqli_fetch_assoc($datesSql2);
-							$datesSql3=mysqli_query($link,"SELECT MIN(`data`) AS `start`, MAX(`data`) AS `end` FROM `date_cursuri` WHERE `id_curs`=".$datesRow2['urmatorul']);
+							$datesSql3=mysqli_query($link,"SELECT MIN(`date`) AS `start`, MAX(`date`) AS `end` FROM `class_dates` WHERE `class_id`=".$datesRow2['urmatorul']);
 							$datesRow3=mysqli_fetch_assoc($datesSql3);
 							?> 
 							<hr class="mb-0" />

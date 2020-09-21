@@ -7,12 +7,12 @@ $page="blog";
 if (isset($_GET['id']) && is_numeric($_GET['id'])) { 
 $id=trim(mysqli_real_escape_string($link,$_GET['id']));
 $sql="
-SELECT * FROM `noutati` 
-LEFT JOIN `imagini_noutati` ON `noutati`.`id_noutate`=`imagini_noutati`.`id_noutate`
-WHERE `noutati`.`id_noutate`=".$id;
+SELECT * FROM `news` 
+LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
+WHERE `news`.`id`=".$id;
 $query=mysqli_query($link,$sql);
 $row=mysqli_fetch_assoc($query);
-mysqli_query($link,"UPDATE `noutati` SET `vizualizari`=`vizualizari`+1 WHERE `id_noutate`=".$id);
+mysqli_query($link,"UPDATE `news` SET `views`=`views`+1 WHERE `id`=".$id);
 } else {
 header("Location:blog.php");	
 }
@@ -21,7 +21,7 @@ header("Location:blog.php");
 <html dir="ltr" lang="ro">
 <head>
 <!-- Page Title -->
-<title>Academia Testarii:: <?php echo $row['titlu'];?></title>
+<title>Academia Testarii:: <?php echo $row['title'];?></title>
 <base href="https://www.academiatestarii.ro">
 <!-- Meta Tags -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -49,13 +49,13 @@ header("Location:blog.php");
 <meta name="theme-color" content="#ffffff">
 
 <!-- Open Graph data -->
-<meta property="og:title" content="<?php echo $row['titlu'];?>" />
+<meta property="og:title" content="<?php echo $row['title'];?>" />
 <meta property="og:author" content="@academiatestarii" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];?>" />
 <meta property="og:image:alt" content="Cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." />
-<meta property="og:image" content="https://www.academiatestarii.ro/images/blog/<?php echo $row['imagine'];?>" />
-<meta property="og:image" content="<?php echo "https://".$_SERVER['HTTP_HOST']."/academiatestarii/images/blog/".$row['imagine'];?>" />
+<meta property="og:image" content="https://www.academiatestarii.ro/images/blog/<?php echo $row['image'];?>" />
+<meta property="og:image" content="<?php echo "https://".$_SERVER['HTTP_HOST']."/academiatestarii/images/blog/".$row['image'];?>" />
 <meta property="og:image:width" content="1195" />
 <meta property="og:image:height" content="963" />
 <meta property="og:image:type" content="image/jpeg" />
@@ -151,7 +151,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="title text-white"><?php echo $row['titlu'];?></h2>
+              <h2 class="title text-white"><?php echo $row['title'];?></h2>
             </div>
           </div>
         </div>
@@ -165,25 +165,25 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
           <div class="col-md-9">
             <div class="blog-posts single-post">
               <article class="post clearfix mb-0">
-<?php if ($row['imagine']!="") { ?>
+<?php if ($row['image']!="") { ?>
                 <div class="entry-header">
-                  <div class="post-thumb thumb"> <img src="images/blog/<?php echo $row['imagine'];?>" alt="<?php echo $row['titlu'];?>" class="img-responsive img-fullwidth"> </div>
+                  <div class="post-thumb thumb"> <img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive img-fullwidth"> </div>
                 </div>
 <?php } ?>
                 <div class="entry-content">
                   <div class="entry-meta media no-bg no-border mt-15 pb-20">
                     <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
                       <ul>
-                        <li class="font-16 text-white font-weight-600"><?php echo strftime("%e", strtotime($row['data_articol']));?></li>
-                            <li class="font-12 text-white text-uppercase"><?php echo strftime("%B", strtotime($row['data_articol']));?></li>
-							<li class="font-16 text-white font-weight-600"><?php echo strftime("%Y", strtotime($row['data_articol']));?></li>
+                        <li class="font-16 text-white font-weight-600"><?php echo strftime("%e", strtotime($row['date']));?></li>
+                            <li class="font-12 text-white text-uppercase"><?php echo strftime("%B", strtotime($row['date']));?></li>
+							<li class="font-16 text-white font-weight-600"><?php echo strftime("%Y", strtotime($row['date']));?></li>
                       </ul>
                     </div>
                     <div class="media-body pl-15">
                       <div class="event-content pull-left flip">
-                        <h4 class="entry-title text-white text-uppercase m-0"><a href="#"><?php echo $row['titlu'];?></a></h4>
+                        <h4 class="entry-title text-white text-uppercase m-0"><a href="#"><?php echo $row['title'];?></a></h4>
                         <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> --- </span>
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-eye mr-5 text-theme-colored"></i> <?php echo $row['vizualizari'];?> </span>
+                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-eye mr-5 text-theme-colored"></i> <?php echo $row['views'];?> </span>
                       </div>
                     </div>
                   </div>
@@ -206,10 +206,10 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 <?php 
 /* metatags */
 $metakeyList="";
-$sql_meta="SELECT * FROM `noutati` WHERE `cuvinte_cheie`<>'' AND `id_noutate`=".$id;
+$sql_meta="SELECT * FROM `news` WHERE `keywords`<>'' AND `id`=".$id;
 $query_meta=mysqli_query($link,$sql_meta);
 while($rowmeta = mysqli_fetch_array($query_meta)) {
-	$metakeysParts = explode(",", $rowmeta['cuvinte_cheie']);
+	$metakeysParts = explode(",", $rowmeta['keywords']);
 		foreach($metakeysParts as $metakey) {
 			if (trim($metakey!="")) {
 				$metakey = trim($metakey);
@@ -236,7 +236,7 @@ $metakeyList=rtrim($metakeyList,', '); // remove the last comma
 				<hr />
                 <ul class="comment-list">
 <?php
-$sql_comentarii="SELECT * FROM `comentarii` WHERE `activ`=1 AND `id_articol`=".$id;
+$sql_comentarii="SELECT * FROM `comments` WHERE `is_active`=1 AND `article_id`=".$id;
 $query_comentarii=mysqli_query($link,$sql_comentarii);
 if (mysqli_num_rows($query_comentarii)>0) {
 	while ($row_comentarii=mysqli_fetch_assoc($query_comentarii)) {
@@ -244,9 +244,9 @@ if (mysqli_num_rows($query_comentarii)>0) {
                   <li>
                     <div class="media comment-author">
 						<div class="media-body">
-                        <h5 class="media-heading comment-heading"><?php echo $row_comentarii['nume'];?>:</h5>
-                        <div class="comment-date"><?php echo strftime("%e %B %Y", strtotime($row_comentarii['adaugat'])) ?></div>
-                        <?php echo $row_comentarii['comentariu'];?>
+                        <h5 class="media-heading comment-heading"><?php echo $row_comentarii['name'];?>:</h5>
+                        <div class="comment-date"><?php echo strftime("%e %B %Y", strtotime($row_comentarii['added_on'])) ?></div>
+                        <?php echo $row_comentarii['comment'];?>
 						</div>
                     </div>
                   </li>
@@ -302,21 +302,21 @@ if (mysqli_num_rows($query_comentarii)>0) {
                 <div class="latest-posts">
 <?php 
 $sql="
-SELECT * FROM `noutati` 
-LEFT JOIN `imagini_noutati` ON `noutati`.`id_noutate`=`imagini_noutati`.`id_noutate`
-WHERE `noutati`.`active`=1 AND `noutati`.`id_noutate`!=".$id."
-ORDER BY `noutati`.`data_articol` DESC LIMIT 3";
+SELECT * FROM `news` 
+LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
+WHERE `news`.`is_activ`=1 AND `news`.`id`!=".$id."
+ORDER BY `news`.`date` DESC LIMIT 3";
 $query=mysqli_query($link,$sql);
 while ($row=mysqli_fetch_assoc($query)) { 
 $scurta=removeTags($row['text'], array("p","ul","li","div","hr","h1","h2","h3","span","table","tr","td","img","strong","br","ol","dl")); // remove html
 $descrierescurta=truncate($scurta,100,"..."); 
 ?>	
                   <article class="post media-post clearfix pb-0 mb-10">
-<?php if ($row['imagine']!="") { ?>
-                    <a class="post-thumb" href="articol.php?id=<?php echo $row['id_noutate'];?>"><img src="images/blog/<?php echo $row['imagine'];?>" alt="<?php echo $row['titlu'];?>"></a>
+<?php if ($row['image']!="") { ?>
+                    <a class="post-thumb" href="articol.php?id=<?php echo $row['news.id'];?>"><img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>"></a>
 <? } ?>
                     <div class="post-right">
-                      <h4 class="post-title mt-0"><a href="articol.php?id=<?php echo $row['id_noutate'];?>"><?php echo $row['titlu'];?></a></h4>
+                      <h4 class="post-title mt-0"><a href="articol.php?id=<?php echo $row['news.id'];?>"><?php echo $row['title'];?></a></h4>
                       <p class="post_sub"><?php echo $descrierescurta;?></p>
                     </div>
                   </article>
@@ -330,10 +330,10 @@ $descrierescurta=truncate($scurta,100,"...");
 <?php 
 /* metatags */
 $metakeyList="";
-$sql_meta="SELECT * FROM `noutati` WHERE `cuvinte_cheie`<>''";
+$sql_meta="SELECT * FROM `news` WHERE `keywords`<>''";
 $query_meta=mysqli_query($link,$sql_meta);
 while($rowmeta = mysqli_fetch_array($query_meta)) {
-	$metakeysParts = explode(",", $rowmeta['cuvinte_cheie']);
+	$metakeysParts = explode(",", $rowmeta['keywords']);
 		foreach($metakeysParts as $metakey) {
 			if (trim($metakey!="")) {
 				$metakey = trim($metakey);

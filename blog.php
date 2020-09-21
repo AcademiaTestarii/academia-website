@@ -161,14 +161,14 @@ if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
 }
 
 $sql="
-SELECT * FROM `noutati` 
-LEFT JOIN `imagini_noutati` ON `noutati`.`id_noutate`=`imagini_noutati`.`id_noutate`
-WHERE `noutati`.`active`=1 ";
+SELECT * FROM `news` 
+LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
+WHERE `news`.`is_active`=1 ";
 $query=mysqli_query($link,$sql);
 
 if (isset($_GET['tag'])) {
 	$taguri = mysqli_real_escape_string($link,$_GET['tag']);
-	$tag = " AND `noutati`.`cuvinte_cheie` LIKE '%".$taguri."%' ";
+	$tag = " AND `news`.`keywords` LIKE '%".$taguri."%' ";
 } else {
 	$taguri="";
 	$tag = "";
@@ -176,7 +176,7 @@ if (isset($_GET['tag'])) {
 
 $sql .=$tag;
 
-$order="ORDER BY `noutati`.`data_articol` DESC";
+$order="ORDER BY `news`.`date` DESC";
 $sql .=$order;
 
 $items_count = mysqli_num_rows($query);
@@ -191,10 +191,10 @@ $scurta=removeTags($row['text'], array("p","ul","li","div","hr","h1","h2","h3","
 $descriere=truncate($scurta,300,"...");
 ?>				
                   <article class="post clearfix mb-30 pb-30">
-<?php if ($row['imagine']!="") { ?>
+<?php if ($row['image']!="") { ?>
                     <div class="entry-header">
                       <div class="post-thumb thumb"> 
-                        <img src="images/blog/<?php echo $row['imagine'];?>" alt="<?php echo $row['titlu'];?>" class="img-responsive img-fullwidth"> 
+                        <img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive img-fullwidth">
                       </div>
                     </div>
 <?php } ?>
@@ -202,21 +202,21 @@ $descriere=truncate($scurta,300,"...");
                       <div class="entry-meta media mt-0 no-bg no-border">
                         <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
                           <ul>
-                            <li class="font-16 text-white font-weight-600"><?php echo strftime("%e", strtotime($row['data_articol']));?></li>
-                            <li class="font-12 text-white text-uppercase"><?php echo strftime("%B", strtotime($row['data_articol']));?></li>
-							<li class="font-16 text-white font-weight-600"><?php echo strftime("%Y", strtotime($row['data_articol']));?></li>
+                            <li class="font-16 text-white font-weight-600"><?php echo strftime("%e", strtotime($row['date']));?></li>
+                            <li class="font-12 text-white text-uppercase"><?php echo strftime("%B", strtotime($row['date']));?></li>
+							<li class="font-16 text-white font-weight-600"><?php echo strftime("%Y", strtotime($row['date']));?></li>
                           </ul>
                         </div>
                         <div class="media-body pl-15">
                           <div class="event-content pull-left flip">
-                            <h3 class="entry-title text-white text-uppercase m-0 mt-5"><a href="articol.php?id=<?php echo $row['id_noutate'];?>"><?php echo $row['titlu'];?></a></h3>
+                            <h3 class="entry-title text-white text-uppercase m-0 mt-5"><a href="articol.php?id=<?php echo $row['news.id'];?>"><?php echo $row['title'];?></a></h3>
                             <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> -- </span>                       
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-eye mr-5 text-theme-colored"></i> <?php echo $row['vizualizari'];?> </span>
+                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-eye mr-5 text-theme-colored"></i> <?php echo $row['views'];?> </span>
                           </div>
                         </div>
                       </div>
                       <p class="mt-10"><?php echo $descriere;?></p>
-                      <a href="articol.php?id=<?php echo $row['id_noutate'];?>" class="btn-read-more">Citeste articolul</a>
+                      <a href="articol.php?id=<?php echo $row['news.id'];?>" class="btn-read-more">Citeste articolul</a>
                       <div class="clearfix"></div>
                     </div>
                   </article>
@@ -268,21 +268,21 @@ $descriere=truncate($scurta,300,"...");
                 <div class="latest-posts">
 <?php 
 $sql="
-SELECT * FROM `noutati` 
-LEFT JOIN `imagini_noutati` ON `noutati`.`id_noutate`=`imagini_noutati`.`id_noutate`
-WHERE `noutati`.`active`=1
-ORDER BY `noutati`.`data_articol` DESC LIMIT 3";
+SELECT * FROM `news` 
+LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
+WHERE `news`.`is_active`=1
+ORDER BY `news_images`.`date` DESC LIMIT 3";
 $query=mysqli_query($link,$sql);
 while ($row=mysqli_fetch_assoc($query)) { 
 $scurta=removeTags($row['text'], array("p","ul","li","div","hr","h1","h2","h3","span","table","tr","td","img","strong","br","ol","dl")); // remove html
 $descrierescurta=truncate($scurta,100,"..."); 
 ?>	
                   <article class="post media-post clearfix pb-0 mb-10">
-<?php if ($row['imagine']!="") { ?>
-                    <a class="post-thumb" href="articol.php?id=<?php echo $row['id_noutate'];?>"><img src="images/blog/<?php echo $row['imagine'];?>" alt="<?php echo $row['titlu'];?>"></a>
+<?php if ($row['image']!="") { ?>
+                    <a class="post-thumb" href="articol.php?id=<?php echo $row['news.id'];?>"><img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>"></a>
 <? } ?>
                     <div class="post-right">
-                      <h4 class="post-title mt-0"><a href="articol.php?id=<?php echo $row['id_noutate'];?>"><?php echo $row['titlu'];?></a></h4>
+                      <h4 class="post-title mt-0"><a href="articol.php?id=<?php echo $row['news.id'];?>"><?php echo $row['title'];?></a></h4>
                       <p class="post_sub"><?php echo $descrierescurta;?></p>
                     </div>
                   </article>
@@ -296,10 +296,10 @@ $descrierescurta=truncate($scurta,100,"...");
 <?php 
 /* metatags */
 $metakeyList="";
-$sql_meta="SELECT * FROM `noutati` WHERE `cuvinte_cheie`<>''";
+$sql_meta="SELECT * FROM `news` WHERE `keywords`<>''";
 $query_meta=mysqli_query($link,$sql_meta);
 while($rowmeta = mysqli_fetch_array($query_meta)) {
-	$metakeysParts = explode(",", $rowmeta['cuvinte_cheie']);
+	$metakeysParts = explode(",", $rowmeta['keywords']);
 		foreach($metakeysParts as $metakey) {
 			if (trim($metakey!="")) {
 				$metakey = trim($metakey);

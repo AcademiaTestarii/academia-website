@@ -151,8 +151,8 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
           <div class="row features-style1">
             <div class="col-md-12">
-			<?php $sql="SELECT * FROM `continut` WHERE `id`=4"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
-              <h2 class="mt-0 text-theme-colored"><?php echo $row['titlu'];?></h2>
+			<?php $sql="SELECT * FROM `content` WHERE `id`=4"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
+              <h2 class="mt-0 text-theme-colored"><?php echo $row['title'];?></h2>
 			<?php echo $row['text'];?>
 			<br />
 		</div>
@@ -163,22 +163,22 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
 <?php 	
-	$sub=mysqli_query($link,"SELECT * FROM `subcontinut` WHERE `id_continut`=4");
+	$sub=mysqli_query($link,"SELECT * FROM `subcontent` WHERE `content_id`=4");
 	$i=1;
 	while ($rowsub=mysqli_fetch_assoc($sub)) {
 ?>
-                    <li role="presentation" <?php if ($i==1) { echo'class="active"';}?>><a href="#Section<?php echo $i;?>" aria-controls="home" role="tab" data-toggle="tab"><?php echo $rowsub['titlu'];?></a></li>
+                    <li role="presentation" <?php if ($i==1) { echo'class="active"';}?>><a href="#Section<?php echo $i;?>" aria-controls="home" role="tab" data-toggle="tab"><?php echo $rowsub['title'];?></a></li>
 <?php $i++; }?>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content tabs">
 <?php 	
-	$sub=mysqli_query($link,"SELECT * FROM `subcontinut` WHERE `id_continut`=4");
+	$sub=mysqli_query($link,"SELECT * FROM `subcontent` WHERE `content_id`=4");
 	$i=1;
 	while ($rowsub=mysqli_fetch_assoc($sub)) {
 ?>
                     <div role="tabpanel" class="tab-pane fade <?php if ($i==1) { echo'in active';}?>" id="Section<?php echo $i;?>">
-                        <h3><?php echo $rowsub['titlu'];?></h3>
+                        <h3><?php echo $rowsub['title'];?></h3>
                         <?php echo $rowsub['text'];?>
                     </div>
 <?php $i++; }?>

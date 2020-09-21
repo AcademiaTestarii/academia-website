@@ -10,13 +10,13 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 		if ( $botcheck == '' ) {
 
-			$sql_select="SELECT * FROM `cursanti` WHERE `email`='".$email."' AND `activ`=1";
+			$sql_select="SELECT * FROM `students` WHERE `email`='".$email."' AND `is_active`=1";
 			$query_select=mysqli_query($link,$sql_select);
 			if (mysqli_num_rows($query_select)==1) {
 				$row=mysqli_fetch_assoc($query_select);
 				$cod_resetare=generatePassword();
 				$today=date("Y-m-d H:i:s");
-				$sql="UPDATE `cursanti` SET `resetare`='".$today."',`cod_resetare`='".$cod_resetare."'  WHERE `id`=".$row['id'];
+				$sql="UPDATE `students` SET `reset`='".$today."',`reset_code`='".$cod_resetare."'  WHERE `id`=".$row['id'];
 				
 				if ( $query=(mysqli_query($link,$sql)) ):
 

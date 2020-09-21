@@ -139,8 +139,8 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
           <div class="row">
             <div class="col-md-10 col-md-offset-1 text-center">
-			<?php $sql="SELECT * FROM `continut` WHERE `id`=1"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
-              <h2 class="title line-bottom-double-line-centered text-theme-colored"><?php echo $row['titlu'];?></h2>
+			<?php $sql="SELECT * FROM `content` WHERE `id`=1"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
+              <h2 class="title line-bottom-double-line-centered text-theme-colored"><?php echo $row['title'];?></h2>
 			  <div class="mb-50"><?php echo $row['text'];?></div>
             </div>
           </div>
@@ -159,35 +159,35 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
             </div>
           </div>
         </div>
-		<?php 	$sql_activitate="SELECT * FROM `activitate` WHERE `id`=1";
+		<?php 	$sql_activitate="SELECT * FROM `activities` WHERE `id`=1";
 				$row_activitate=mysqli_fetch_assoc(mysqli_query($link,$sql_activitate));?>
 		
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
             <div class="funfact text-center">
               <i class="pe-7s-smile mt-5 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="<?php echo $row_activitate['folowers'];?>" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+              <h2 data-animation-duration="2000" data-value="<?php echo $row_activitate['followers'];?>" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
               <h5 class="text-white text-uppercase mb-0">NE URMĂRESC</h5>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
             <div class="funfact text-center">
               <i class="pe-7s-note2 mt-5 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="<?php echo $row_activitate['cursuri'];?>" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+              <h2 data-animation-duration="2000" data-value="<?php echo $row_activitate['classes'];?>" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
               <h5 class="text-white text-uppercase mb-0">Cursuri active</h5>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
             <div class="funfact text-center">
               <i class="pe-7s-users mt-5 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="<?php echo $row_activitate['absolventi'];?>" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+              <h2 data-animation-duration="2000" data-value="<?php echo $row_activitate['graduates'];?>" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
               <h5 class="text-white text-uppercase mb-0">ABSOLVENȚI</h5>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
             <div class="funfact text-center">
               <i class="pe-7s-cup mt-5 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="<?php echo $row_activitate['recomandari'];?>" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+              <h2 data-animation-duration="2000" data-value="<?php echo $row_activitate['recommandations'];?>" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
               <h5 class="text-white text-uppercase mb-0">RECOMANDĂRI </h5>
             </div>
           </div>
@@ -202,13 +202,13 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
           <div class="row">
             <div class="col-md-12 text-center">
-			<?php $sql="SELECT * FROM `continut` WHERE `id`=3"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
-              <h2 class="title line-bottom-double-line-centered text-theme-colored"><?php echo $row['titlu'];?></h2>
+			<?php $sql="SELECT * FROM `content` WHERE `id`=3"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
+              <h2 class="title line-bottom-double-line-centered text-theme-colored"><?php echo $row['title'];?></h2>
 			  <div class="mb-50"><?php echo $row['text'];?></div>
             </div>
           </div>
 		  
-			<?php 	$sql_sub="SELECT * FROM `subcontinut` WHERE `id_continut`=".$row['id'];
+			<?php 	$sql_sub="SELECT * FROM `subcontent` WHERE `content_id`=".$row['id'];
 					$query_sub=mysqli_query($link,$sql_sub);
 					if (mysqli_num_rows($query_sub)>0) {
 					echo '<div class="row">';	
@@ -220,7 +220,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
                 <a href="cursuri.php" class="icon icon-gray icon-bordered bg-hover-theme-colored icon-circled icon-xl">
                   <i class="fa fa-cubes text-theme-colored font-48"></i>
                 </a>
-                <h4 class="icon-box-title text-uppercase"><a class="" href="#"><?php echo $row_sub['titlu'];?></a></h4>
+                <h4 class="icon-box-title text-uppercase"><a class="" href="#"><?php echo $row_sub['title'];?></a></h4>
                 <?php echo $row_sub['text'];?>
                 <!--a class="btn btn-dark btn-default btn-theme-colored2 btn-sm mt-10" href="cursuri.php">Vezi calendarul de cursuri</a-->
               </div>
@@ -243,8 +243,8 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
           <div class="row">
             <div class="col-md-12 text-center">
-			<?php $sql="SELECT * FROM `continut` WHERE `id`=4"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
-              <h2 class="title line-bottom-double-line-centered text-theme-colored"><?php echo $row['titlu'];?></h2>
+			<?php $sql="SELECT * FROM `content` WHERE `id`=4"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
+              <h2 class="title line-bottom-double-line-centered text-theme-colored"><?php echo $row['title'];?></h2>
 			  <div class="mb-50"><?php echo $row['text'];?></div>
             </div>
 			<div class="col-md-12 text-center">

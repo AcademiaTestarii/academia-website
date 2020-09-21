@@ -152,11 +152,11 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
           <div class="row features-style1">
             <div class="col-md-12">
-			<?php $sql="SELECT * FROM `continut` WHERE `id`=2"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
-              <h2 class="mt-0 text-theme-colored"><?php echo $row['titlu'];?></h2>
+			<?php $sql="SELECT * FROM `content` WHERE `id`=2"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
+              <h2 class="mt-0 text-theme-colored"><?php echo $row['title'];?></h2>
               <?php echo $row['text'];?>
 		
-			<?php 	$sql_sub="SELECT * FROM `subcontinut` WHERE `id_continut`=".$row['id'];
+			<?php 	$sql_sub="SELECT * FROM `subcontent` WHERE `content_id`=".$row['id'];
 					$query_sub=mysqli_query($link,$sql_sub);
 					if (mysqli_num_rows($query_sub)>0) {
 					while ($row_sub=mysqli_fetch_assoc($query_sub)) {
@@ -168,13 +168,13 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
               <div class="box-hover-effect play-button">
                 <div class="effect-wrapper">
                   <div class="thumb">
-                    <img class="img-fullwidth" src="images/<?php echo $row_sub['imagine'];?>" alt="<?php echo $row_sub['titlu'];?>">
+                    <img class="img-fullwidth" src="images/<?php echo $row_sub['image'];?>" alt="<?php echo $row_sub['title'];?>">
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-8">
-              <h3 class="text-uppercase mt-0 mt-sm-30 text-theme-colored"><?php echo $row_sub['titlu'];?></h3>
+              <h3 class="text-uppercase mt-0 mt-sm-30 text-theme-colored"><?php echo $row_sub['title'];?></h3>
 				<?php echo $row_sub['text'];?>
             </div>
           </div>
@@ -202,24 +202,24 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
         <div class="row mtli-row-clearfix">
 		
-		<?php 	$sql_team="SELECT * FROM `trainer` WHERE `staff`=1";
+		<?php 	$sql_team="SELECT * FROM `trainer` WHERE `is_staff`=1";
 				$query_team=mysqli_query($link,$sql_team);
 				while ($row_team=mysqli_fetch_assoc($query_team)) { ?>
 		
           <div class="col-xs-12 col-sm-6 col-md-4 sm-text-center mb-30 mb-sm-30">
             <div class="team-block service-box maxwidth400">
               <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="images/<?php echo $row_team['poza'];?>">
+                <img class="img-fullwidth" alt="" src="images/<?php echo $row_team['picture'];?>">
                 <div class="team-overlay">
-				<h3 class="text-white"><?php echo $row_team['titlu'];?></h3>
+				<h3 class="text-white"><?php echo $row_team['title'];?></h3>
                   <ul class="list-inline text-white font-16 mb-10">
-                    <li><i class="fa fa-phone text-theme-colored2 mr-10" aria-hidden="true"></i>Tel: <?php echo $row_team['telefon'];?></li>
+                    <li><i class="fa fa-phone text-theme-colored2 mr-10" aria-hidden="true"></i>Tel: <?php echo $row_team['phone'];?></li>
                     <li><i class="fa fa-envelope-o text-theme-colored2 mr-10" aria-hidden="true"></i>Email: <?php echo $row_team['email'];?></li>
                   </ul>
                 </div>
               </div>
               <div class="team-bottom-part text-center">
-                <h4 class="text-uppercase text-theme-colored2"><?php echo $row_team['nume'];?></h4>
+                <h4 class="text-uppercase text-theme-colored2"><?php echo $row_team['name'];?></h4>
                 <ul class="styled-icons icon-dark icon-theme-colored icon-circled icon-sm">
                   <li><a href="<?php echo $row_team['linkedin'];?>" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                 </ul>

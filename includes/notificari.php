@@ -20,9 +20,9 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 			if ( $botcheck == '' ) {
 				if ($_POST['parola']!="") { 
-					$sql="UPDATE `cursanti` SET `nume`='".$nume."', `prenume`='".$prenume."', `adresa`='".$adresa."', `localitate`='".$localitate."', `companie`='".$companie."', `pozitie`='".$pozitie."', `telefon`='".$telefon."', `parola`='".$parola."' WHERE `id`=".$id;
+					$sql="UPDATE `students` SET `last_name`='".$nume."', `first_name`='".$prenume."', `address`='".$adresa."', `city`='".$localitate."', `company`='".$companie."', `job_title`='".$pozitie."', `phone`='".$telefon."', `password`='".$parola."' WHERE `id`=".$id;
 				} else {
-					$sql="UPDATE `cursanti` SET `nume`='".$nume."', `prenume`='".$prenume."', `adresa`='".$adresa."', `localitate`='".$localitate."', `companie`='".$companie."', `pozitie`='".$pozitie."', `telefon`='".$telefon."' WHERE `id`=".$id;
+					$sql="UPDATE `students` SET `last_name`='".$nume."', `first_name`='".$prenume."', `address`='".$adresa."', `city`='".$localitate."', `company`='".$companie."', `job_title`='".$pozitie."', `phone`='".$telefon."' WHERE `id`=".$id;
 				}
 				if ($query=mysqli_query($link,$sql)) {
 					$message = 'Datele tale personale au fost modificate.';
@@ -45,7 +45,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			$botcheck = $_POST['form_botcheck'];
 
 			if ( $botcheck == '' ) {
-					$sql="INSERT INTO `cursant_curs` (`id_cursant`,`id_curs`) VALUES (".$id_cursant.",".$id_curs.")";
+					$sql="INSERT INTO `class_students` (`student_id`,`class_id`) VALUES (".$id_cursant.",".$id_curs.")";
 					
 				if ($query=mysqli_query($link,$sql)) {
 					$message = 'Te-ai înregistrat la acest curs.';

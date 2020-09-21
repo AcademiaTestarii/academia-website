@@ -152,8 +152,8 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
           <div class="row features-style1">
             <div class="col-md-12">
-			<?php $sql="SELECT * FROM `continut` WHERE `id`=3"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
-			<h2 class="mt-0 text-theme-colored"><?php echo $row['titlu'];?></h2>
+			<?php $sql="SELECT * FROM `content` WHERE `id`=3"; $query=mysqli_query($link,$sql); $row=mysqli_fetch_assoc($query);?>
+			<h2 class="mt-0 text-theme-colored"><?php echo $row['title'];?></h2>
 			<?php echo $row['text'];?>
           </div>
         </div>

@@ -14,12 +14,12 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 		if ( $botcheck == '' ) {
 
-			$sql_select="SELECT * FROM `cursanti` WHERE `email`='".$email."'";
+			$sql_select="SELECT * FROM `students` WHERE `email`='".$email."'";
 			$query_select=mysqli_query($link,$sql_select);
 			if (mysqli_num_rows($query_select)==0) {
 				
 				$cod_confirmare=generatePassword();
-				$sql="INSERT INTO `cursanti` (`nume`,`prenume`,`email`,`parola`,`cod_confirmare`) 
+				$sql="INSERT INTO `students` (`last_name`,`first_name`,`email`,`password`,`confirmation_code`) 
 				VALUES 
 				('".$nume."','".$prenume."','".$email."','".md5($parola)."','".$cod_confirmare."')";
 				

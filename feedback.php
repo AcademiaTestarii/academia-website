@@ -4,13 +4,13 @@ if (isset($_GET['id']) && strlen($_GET['id'])==12 && ctype_alnum($_GET['id'])) {
 $id=mysqli_real_escape_string($link,$_GET['id']);
 $sql="
 SELECT 
-cursanti.nume,
-cursanti.prenume,
-cursuri.start_inscriere,
-cursuri.end_inscriere,
-curs_main.titlu_main,
-trainer.nume as `trainer`,
-feedback.scor,
+students.first_name,
+students.last_name,
+classes.registration_start_date,
+classes.registration_end_date,
+main_classes.title,
+trainer.name as `trainer`,
+feedback.grade,
 feedback.organizare_jira_zephyr_plus,
 feedback.organizare_jira_zephyr_minus,
 feedback.test_cases_plus,
@@ -19,13 +19,13 @@ feedback.defects_plus,
 feedback.defects_minus,
 feedback.traceability_plus,
 feedback.traceability_minus,
-feedback.acordat
+feedback.granted_on
 FROM `feedback` 
-LEFT JOIN `cursanti` ON `feedback`.`id_cursant`=`cursanti`.`id`
-LEFT JOIN `cursuri` ON `feedback`.`id_curs`=`cursuri`.`id`
-LEFT JOIN `curs_main` ON `cursuri`.`parent`=`curs_main`.`id_curs_main`
-LEFT JOIN `trainer_curs` ON `cursuri`.`id`=`trainer_curs`.`id_curs`
-LEFT JOIN `trainer` ON `trainer`.`id`=`trainer_curs`.`id_trainer`
+LEFT JOIN `students` ON `feedback`.`student_id`=`students`.`id`
+LEFT JOIN `classes` ON `feedback`.`class_id`=`classes`.`id`
+LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
+LEFT JOIN `class_trainers` ON `classes`.`id`=`class_trainers`.`class_id`
+LEFT JOIN `trainer` ON `trainer`.`id`=`class_trainers`.`trainer_id`
 WHERE `feedback`.`link`='".$id."'";
 $query=mysqli_query($link,$sql);
 if (mysqli_num_rows($query)>0) {
@@ -39,7 +39,7 @@ $row=mysqli_fetch_assoc($query);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Feedback participare pentru <?php echo $row['nume'];?> <?php echo $row['prenume'];?></title>
+    <title>Feedback participare pentru <?php echo $row['last_name'];?> <?php echo $row['first_name'];?></title>
 <base href="https://www.academiatestarii.ro">
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
@@ -109,11 +109,11 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<img src="images/logo-academia-testarii.png" alt="Logo AT" />
 			</div>
 			<div class="col-md-8 text-center text-feedback">
-				<strong>Feedback curs:</strong> <?php echo $row['titlu_main'];?><br />
-				<strong>Student:</strong> <?php echo $row['nume'];?> <?php echo $row['prenume'];?><br />
-				<strong>Perioada curs:</strong> <?php echo strftime("%e %B %Y", strtotime($row['start_inscriere']));?> - <?php echo strftime("%e %B %Y", strtotime($row['end_inscriere']));?><br />
+				<strong>Feedback curs:</strong> <?php echo $row['main_classes.title'];?><br />
+				<strong>Student:</strong> <?php echo $row['last_name'];?> <?php echo $row['first_name'];?><br />
+				<strong>Perioada curs:</strong> <?php echo strftime("%e %B %Y", strtotime($row['registration_start_date']));?> - <?php echo strftime("%e %B %Y", strtotime($row['registration_end_date']));?><br />
 				<strong>Trainer:</strong> <?php echo $row['trainer'];?><br />
-				<strong>Scor general:</strong> <?php echo $row['scor']*10;?>%
+				<strong>Scor general:</strong> <?php echo $row['score']*10;?>%
 			</div>
 		</div>
 	</div>

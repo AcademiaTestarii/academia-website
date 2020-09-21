@@ -8,11 +8,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$id=trim(mysqli_real_escape_string($link,$_GET['id']));
 	$page="cursuri";
 	$sql_curs="
-	SELECT * FROM `cursuri` 
-	LEFT JOIN `curs_main` ON `cursuri`.`parent`=`curs_main`.`id_curs_main` 
-	WHERE `cursuri`.`parent`=".$id."
-	AND `cursuri`.`start_inscriere` > NOW() 
-	ORDER BY `cursuri`.`start_inscriere` ASC
+	SELECT * FROM `classes` 
+	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` 
+	WHERE `classes`.`main_class_id`=".$id."
+	AND `classes`.`registration_start_date` > NOW() 
+	ORDER BY `classes`.`registration_start_date` ASC
 	LIMIT 1";
 	$query_curs=mysqli_query($link,$sql_curs);
 	if (mysqli_num_rows($query_curs)>0) {
@@ -23,11 +23,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 } elseif (isset($_GET['url_string_short'])) {
 	$url=trim(mysqli_real_escape_string($link,$_GET['url_string_short']));
     $sql_curs="
-	SELECT * FROM `cursuri` 
-	LEFT JOIN `curs_main` ON `cursuri`.`parent`=`curs_main`.`id_curs_main` 
-	WHERE `curs_main`.`url_string_short`='".$url."'
-	AND `cursuri`.`start_inscriere` > NOW() 
-	ORDER BY `cursuri`.`start_inscriere` ASC
+	SELECT * FROM `classes` 
+	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` 
+	WHERE `main_classes`.`url_string_short`='".$url."'
+	AND `classes`.`registration_start_date` > NOW() 
+	ORDER BY `classes`.`registration_start_date` ASC
 	LIMIT 1
 	";
 	$query_curs=mysqli_query($link,$sql_curs);
@@ -45,7 +45,7 @@ header("Location:cursuri.php");
 <html dir="ltr" lang="ro">
 <head>
 <!-- Page Title -->
-<title>Academia Testării :: Curs: <?php echo $row_curs['titlu_main'];?></title>
+<title>Academia Testării :: Curs: <?php echo $row_curs['main_classes.title'];?></title>
 <base href="https://www.academiatestarii.ro">
 <!-- Meta Tags -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -73,16 +73,16 @@ header("Location:cursuri.php");
 <meta name="theme-color" content="#ffffff">
 
 <!-- Open Graph data -->
-<meta property="og:title" content="Curs <?php echo $row_curs['titlu_main'];?>" />
+<meta property="og:title" content="Curs <?php echo $row_curs['main_classes.title'];?>" />
 <meta property="og:author" content="@academiatestarii" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];?>" />
-<meta property="og:image:alt" content="<?php echo $row_curs['titlu_main'];?>" />
-<meta property="og:image" content="<?php echo "https://".$_SERVER['HTTP_HOST']."/images/cursuri/".$row_curs['imagine'];?>" />
+<meta property="og:image:alt" content="<?php echo $row_curs['main_classes.title'];?>" />
+<meta property="og:image" content="<?php echo "https://".$_SERVER['HTTP_HOST']."/images/cursuri/".$row_curs['image'];?>" />
 <meta property="og:image:width" content="800" />
 <meta property="og:image:height" content="530" />
 <meta property="og:image:type" content="image/jpeg" />
-<meta property="og:description" content="<?php echo $row_curs['descriere_scurta'];?>" /> 
+<meta property="og:description" content="<?php echo $row_curs['short_description'];?>" />
 <meta property="og:site_name" content="Academia Testării" />
 
 <!-- Stylesheet -->
@@ -187,107 +187,107 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="row">
           <div class="col-md-8 blog-pull-right">
             <div class="single-service">
-<?php if ($row_curs['descriere']!="") { ?>
-              <h3 class="text-theme-colored line-bottom text-theme-colored"><?php echo $row_curs['descriere_scurta'];?></h3>
-              <?php echo $row_curs['descriere'];?>
+<?php if ($row_curs['description']!="") { ?>
+              <h3 class="text-theme-colored line-bottom text-theme-colored"><?php echo $row_curs['short_description'];?></h3>
+              <?php echo $row_curs['description'];?>
 <?php } ?>
               <h4 class="line-bottom mt-20 mb-20 text-theme-colored">Detalii curs</h4>
               <div class="row">
                 <div class="col-md-12">
                     <div class="mt-20">
-<?php if ($row_curs['cui']!="") { ?>
+<?php if ($row_curs['for_whom_description']!="") { ?>
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-bullseye text-theme-colored"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Cui se adresează</h5>
-                          <?php echo $row_curs['cui'];?>
+                          <?php echo $row_curs['for_whom_description'];?>
                         </div>
                       </div>
 <?php } ?>
                     </div>
-<?php if ($row_curs['cerinte']!="") { ?>
+<?php if ($row_curs['requirements_description']!="") { ?>
                     <div>
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-check-square text-theme-colored2"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Ce trebuie să știi</h5>
-                          <?php echo $row_curs['cerinte'];?>
+                          <?php echo $row_curs['requirements_description'];?>
                         </div>
                       </div>
                     </div>
 <?php } ?>
-<?php if ($row_curs['ce']!="") { ?>
+<?php if ($row_curs['about_description']!="") { ?>
                     <div>
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-book text-theme-colored2"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Ce vei învăţa</h5>
-                          <?php echo $row_curs['ce'];?>
+                          <?php echo $row_curs['about_description'];?>
                         </div>
                       </div>
                     </div>
 <?php } ?>
-<?php if ($row_curs['costuri']!="") { ?>
+<?php if ($row_curs['cost_description']!="") { ?>
                     <div>
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-credit-card text-theme-colored"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Cost</h5>
 						   
-						  <? if ($row_curs['pret_redus']!="" && $row_curs['pret_redus']!=0) { ?>
-							<strong>Taxa de înscriere este de </strong> <del><span class="amount"><?php echo $row_curs['pret'];?> Lei</span></del> <strong><span class="amount"><?php echo $row_curs['pret_redus'];?> Lei</span></strong>
+						  <? if ($row_curs['discount_price']!="" && $row_curs['discount_price']!=0) { ?>
+							<strong>Taxa de înscriere este de </strong> <del><span class="amount"><?php echo $row_curs['price'];?> Lei</span></del> <strong><span class="amount"><?php echo $row_curs['discount_price'];?> Lei</span></strong>
 							<?php } else { ?>
-							<strong>Taxa de înscriere este de </strong><span class="amount"><?php echo $row_curs['pret'];?> Lei</span>
+							<strong>Taxa de înscriere este de </strong><span class="amount"><?php echo $row_curs['price'];?> Lei</span>
 							<?php } ?>
-                          <?php echo $row_curs['costuri'];?>
+                          <?php echo $row_curs['cost_description'];?>
                         </div>
                       </div>
                     </div>
 <?php } ?>
                 </div>
               </div>
-<?php if ($row_curs['structura']!="") { ?>
+<?php if ($row_curs['structure_description']!="") { ?>
               <h4 class="line-bottom mt-20 mb-20 text-theme-colored">Structură Curs</h4>
-			  <?php echo $row_curs['structura'];?>
+			  <?php echo $row_curs['structure_description'];?>
 <?php } ?>
 
 <!-- REDUCRERI -->
-<?php if (($row_curs['early']!="") && ($row_curs['loyality']!="") && ($row_curs['friends']!="") && ($row_curs['discount']!="")) { ?>
+<?php if (($row_curs['early_description']!="") && ($row_curs['loyality_description']!="") && ($row_curs['friends_description']!="") && ($row_curs['discount_description']!="")) { ?>
 			  <h4 class="line-bottom mt-20 mb-20 text-theme-colored">Reduceri</h4>
               <div class="row">
                 <div class="col-md-12">
-<?php if ($row_curs['early']!="") { ?>
+<?php if ($row_curs['early_description']!="") { ?>
                     <div class="mt-20">
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-lightbulb-o text-theme-colored"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Early Bird</h5>
-                          <?php echo $row_curs['early'];?>
+                          <?php echo $row_curs['early_description'];?>
                         </div>
                       </div>
                     </div>
 <?php } ?>	
-<?php if ($row_curs['loyality']!="") { ?>
+<?php if ($row_curs['loyality_description']!="") { ?>
                     <div>
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-user-plus text-theme-colored2"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Loyalty</h5>
-                          <?php echo $row_curs['loyality'];?>
+                          <?php echo $row_curs['loyality_description'];?>
                         </div>
                       </div>
                     </div>
 <?php } ?>
-<?php if ($row_curs['friends']!="") { ?>
+<?php if ($row_curs['friends_description']!="") { ?>
                     <div>
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-users text-theme-colored"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Friends will be friends</h5>
-                          <?php echo $row_curs['friends'];?>
+                          <?php echo $row_curs['friends_description'];?>
                         </div>
                       </div>
                     </div>
 <?php } ?>
-<?php if ($row_curs['discount']!="") { ?>
+<?php if ($row_curs['discount_description']!="") { ?>
                     <div>
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-building text-theme-colored2"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Company discount</h5>
-                          <?php echo $row_curs['discount'];?>
+                          <?php echo $row_curs['discount_description'];?>
                         </div>
                       </div>
                     </div>
@@ -297,24 +297,24 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 <?php } ?>	
 <!-- END REDUCRERI -->
 
-<?php if ($row_curs['programa']!="" || $row_curs['pdf_programa']!="") { ?>		  
+<?php if ($row_curs['schedule']!="" || $row_curs['schedule_pdf']!="") { ?>
               <h4 class="line-bottom mt-20 mb-20 text-theme-colored">Programă Curs</h4>
 			  <div class="row">
-<?php if ($row_curs['programa']!="") { ?>
+<?php if ($row_curs['schedule']!="") { ?>
                 <div class="col-md-6">
                     <div class="mt-0">
                       <div class="left media p-0 mb-10">
                         <div class="media-body">
-							<?php echo $row_curs['programa'];?>
+							<?php echo $row_curs['schedule'];?>
                         </div>
                       </div>
                     </div>
 				</div>
 <?php } ?>
-<?php if ($row_curs['pdf_programa']!="") { ?>
+<?php if ($row_curs['schedule_pdf']!="") { ?>
                 <div class="col-md-6">
                     <div class="mt-0">
-                      <div class="left media p-0 mb-10"> <a href="documente/<?php echo $row_curs['pdf_programa'];?>" class="pull-left flip" target="_blank"><i class="fa fa-4x fa-download text-theme-colored"></i></a>
+                      <div class="left media p-0 mb-10"> <a href="documente/<?php echo $row_curs['schedule_pdf'];?>" class="pull-left flip" target="_blank"><i class="fa fa-4x fa-download text-theme-colored"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Descarcă programa în format PDF</h5>
                         </div>
@@ -329,7 +329,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 					<div class="col-md-12">
 <?php 
 if (isset($_SESSION['key_admin']) && $_SESSION['key_admin']== session_id()) { 
-$cursuriSql=mysqli_query($link,"SELECT * FROM `cursant_curs` WHERE `id_cursant`=".$_SESSION['id']." AND `id_curs`=".$row_curs['id']);
+$cursuriSql=mysqli_query($link,"SELECT * FROM `class_students` WHERE `student_id`=".$_SESSION['id']." AND `class_id`=".$row_curs['id']);
 if (mysqli_num_rows($cursuriSql)>0) {
 ?>
 						<h4>Ești deja înscris la acest curs.</h4>
@@ -353,16 +353,16 @@ if (mysqli_num_rows($cursuriSql)>0) {
                 <div class="services-list">
                   <ul class="list list-border">
 <?php	
-$sql_cursuri="SELECT * FROM `cursuri` 
-LEFT JOIN `curs_main` 
-ON `cursuri`.`parent`=`curs_main`.`id_curs_main` 
-WHERE `start_inscriere`>NOW()
-GROUP BY `parent`
-ORDER BY `curs_main`.`order` ASC";
+$sql_cursuri="SELECT * FROM `classes` 
+LEFT JOIN `main_classes` 
+ON `classes`.`main_class_id`=`main_classes`.`id` 
+WHERE `registration_start_date`>NOW()
+GROUP BY `main_class_id`
+ORDER BY `main_classes`.`order` ASC";
 $query_cursuri=mysqli_query($link,$sql_cursuri);
 while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) { ?>
-					<?php if ($id==$row_cursuri['id_curs_main']) { ?><img class="img-fullwidth topmenuimg" src="images/cursuri/<?php echo $row_curs['imagine'];?>" alt="<?php echo $row_curs['titlu_main'];?>"> <?php } ?>
-					<li <?php if ($id==$row_cursuri['id_curs_main']) {echo"class=\"active\"";}?>><a href="curs.php?id=<?php echo $row_cursuri['id_curs_main'];?>"><?php echo $row_cursuri['nou']==0 ? $row_cursuri['titlu_main'] : "<strong>NOU</strong>: ".$row_cursuri['titlu_main'];?></a></li>
+					<?php if ($id==$row_cursuri['main_class_id']) { ?><img class="img-fullwidth topmenuimg" src="images/cursuri/<?php echo $row_curs['image'];?>" alt="<?php echo $row_curs['main_classes.title'];?>"> <?php } ?>
+					<li <?php if ($id==$row_cursuri['main_class_id']) {echo"class=\"active\"";}?>><a href="curs.php?id=<?php echo $row_cursuri['main_class_id'];?>"><?php echo $row_cursuri['is_new']==0 ? $row_cursuri['main_classes.title'] : "<strong>NOU</strong>: ".$row_cursuri['main_classes.title'];?></a></li>
 <?php } ?>
                   </ul>
                 </div>
@@ -374,11 +374,11 @@ while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) { ?>
                   <ul class="list-border">
 				  
                     <li class="clearfix"> 
-<?php 	$datesSql=mysqli_query($link,"SELECT MIN(`data`) AS `start`, MAX(`data`) AS `end` FROM `date_cursuri` WHERE `id_curs`=".$row_curs['id']);
+<?php 	$datesSql=mysqli_query($link,"SELECT MIN(`date`) AS `start`, MAX(`date`) AS `end` FROM `class_dates` WHERE `class_id`=".$row_curs['id']);
 $datesRow=mysqli_fetch_assoc($datesSql);
 ?>
 					<span> <?php if ($datesRow['start']!="0000-00-00") { echo strftime("%e %B %Y", strtotime($datesRow['start']))." - ".strftime("%e %B %Y", strtotime($datesRow['end']));} else {echo "Data va fi anuntata ulterior";}?></span></li>
-                    <li class="clearfix"> <span><?php echo $row_curs['desfasurare'];?></span></li>
+                    <li class="clearfix"> <span><?php echo $row_curs['deployment'];?></span></li>
                   </ul>
                 </div>
               </div> 
@@ -388,10 +388,10 @@ $datesRow=mysqli_fetch_assoc($datesSql);
                 <div class="opening-hours">
                   <ul class="list-border">
                     <li class="clearfix">
-					<?php 	$sqlInscrisi=mysqli_query($link,"SELECT * FROM `cursant_curs` WHERE `id_curs`=".$row_curs['id']);
+					<?php 	$sqlInscrisi=mysqli_query($link,"SELECT * FROM `class_students` WHERE `class_id`=".$row_curs['id']);
 							$cati=mysqli_num_rows($sqlInscrisi);
 					?>
-					<?php echo $row_curs['cursanti']-$cati;?>
+					<?php echo $row_curs['students']-$cati;?>
                     </li>
                   </ul>
                 </div>
@@ -401,7 +401,7 @@ $datesRow=mysqli_fetch_assoc($datesSql);
                 <div class="row">
 					<div class="col-md-12">
 <?php if (isset($_SESSION['key_admin']) && $_SESSION['key_admin']== session_id()) { 
-$cursuriSql=mysqli_query($link,"SELECT * FROM `cursant_curs` WHERE `id_cursant`=".$_SESSION['id']." AND `id_curs`=".$row_curs['id']);
+$cursuriSql=mysqli_query($link,"SELECT * FROM `class_students` WHERE `student_id`=".$_SESSION['id']." AND `class_id`=".$row_curs['id']);
 if (mysqli_num_rows($cursuriSql)>0) {
 ?>
 						<h4>Ești deja înscris la acest curs.</h4>
@@ -417,10 +417,10 @@ if (mysqli_num_rows($cursuriSql)>0) {
               </div>
 
 <?php
-$datesSql2=mysqli_query($link,"SELECT `id` AS `urmatorul` FROM `cursuri` WHERE `parent`=".$id." AND  `start_inscriere` > NOW() AND `id` != ".$row_curs['id']." ORDER BY `start_inscriere` ASC LIMIT 1");
+$datesSql2=mysqli_query($link,"SELECT `id` AS `urmatorul` FROM `classes` WHERE `main_class_id`=".$id." AND  `registration_start_date` > NOW() AND `id` != ".$row_curs['id']." ORDER BY `registration_start_date` ASC LIMIT 1");
 if (mysqli_num_rows($datesSql2)>0) {
 $datesRow2=mysqli_fetch_assoc($datesSql2);
-$datesSql3=mysqli_query($link,"SELECT MIN(`data`) AS `start`, MAX(`data`) AS `end` FROM `date_cursuri` WHERE `id_curs`=".$datesRow2['urmatorul']);
+$datesSql3=mysqli_query($link,"SELECT MIN(`date`) AS `start`, MAX(`date`) AS `end` FROM `class_dates` WHERE `class_id`=".$datesRow2['urmatorul']);
 $datesRow3=mysqli_fetch_assoc($datesSql3);
 ?>
               <div class="widget">
@@ -438,7 +438,7 @@ $datesRow3=mysqli_fetch_assoc($datesSql3);
 <?php } ?>			  
 			  
 <?php
-$sql_trainer="SELECT * FROM `trainer` LEFT JOIN `trainer_curs` ON `trainer`.`id`=`trainer_curs`.`id_trainer` WHERE `trainer_curs`.`id_curs`=".$row_curs['id'];
+$sql_trainer="SELECT * FROM `trainer` LEFT JOIN `class_trainers` ON `trainer`.`id`=`class_trainers`.`trainer_id` WHERE `class_trainers`.`class_id`=".$row_curs['id'];
 $query_trainer=mysqli_query($link,$sql_trainer);
 if (mysqli_num_rows($query_trainer)>0) {
 $row_trainer=mysqli_fetch_assoc($query_trainer);
@@ -447,13 +447,13 @@ $row_trainer=mysqli_fetch_assoc($query_trainer);
                 <h4 class="widget-title line-bottom">Trainer <span class="text-theme-colored2">curs</span></h4>
 					<div class="team-block service-box maxwidth400">
 					  <div class="team-thumb">
-						<img class="img-fullwidth" alt="" src="images/traineri/<?php echo $row_trainer['poza'];?>">
+						<img class="img-fullwidth" alt="" src="images/traineri/<?php echo $row_trainer['picture'];?>">
 					  </div>
 					  <div class="team-bottom-part">
-						<h3 class="text-uppercase text-theme-colored2"><?php echo $row_trainer['nume'];?></h3>
+						<h3 class="text-uppercase text-theme-colored2"><?php echo $row_trainer['name'];?></h3>
 					  </div>
 					<div class="team-overlay team-bottom-part">
-						<h4><?php echo $row_trainer['titlu'];?></h4>
+						<h4><?php echo $row_trainer['title'];?></h4>
 						<?php echo $row_trainer['bio']?>
 						<ul class="styled-icons icon-dark icon-theme-colored icon-circled icon-sm text-center">
 						  <li><a href="<?php echo $row_trainer['linkedin'];?>" target="_blank"><i class="fa fa-linkedin"></i></a></li>

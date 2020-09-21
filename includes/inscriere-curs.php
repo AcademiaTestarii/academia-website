@@ -31,13 +31,13 @@ if (isset($_POST['action'])) {
 
 		if ( $botcheck == '' ) {
 
-			$sql_select="SELECT * FROM `cursanti` WHERE `email`='".$email."'";
+			$sql_select="SELECT * FROM `students` WHERE `email`='".$email."'";
 			$query_select=mysqli_query($link,$sql_select);
 			if (mysqli_num_rows($query_select)==0) {
 				
 				$parola=generateParolaMica();
 				$cod_confirmare=generatePassword();
-				$sql="INSERT INTO `cursanti` (`nume`,`prenume`,`email`,`parola`,`cod_confirmare`,`data_nastere`,`pozitie`,`telefon`,`adresa`,`localitate`,`judet`,`educatie`,`engleza`,`alta_limba`,`ms_office`,`web`,`newsletter`) VALUES (
+				$sql="INSERT INTO `students` (`last_name`,`first_name`,`email`,`password`,`confirmation_code`,`date_of_birth`,`job_title`,`phone`,`address`,`city`,`county`,`education`,`english`,`other_language`,`ms_office`,`web`,`newsletter`) VALUES (
 				'".$nume."',
 				'".$prenume."',
 				'".$email."',
@@ -60,7 +60,7 @@ if (isset($_POST['action'])) {
 				if ( $query=(mysqli_query($link,$sql)) ) {
 				
 					$id_cursant=mysqli_insert_id($link); 
-					$sql2="INSERT INTO `cursant_curs` (`id_cursant`, `id_curs`, `modalitate_plata`,`tip_plata`) 
+					$sql2="INSERT INTO `class_students` (`student_id`, `class_id`, `payment_method`,`payment_type`) 
 					VALUES 
 					(".$id_cursant.", ".$id_curs.", '".$modalitate_plata."', '".$tip_plata."')";
 					$query2=mysqli_query($link,$sql2);
@@ -91,15 +91,15 @@ if (isset($_POST['action'])) {
 					$status = "true";
 					
 					/* Notificare */
-					$sqlnotificare="SELECT * FROM `cursuri` 
-					LEFT JOIN `curs_main` ON `cursuri`.`parent`=`curs_main`.`id_curs_main`
-					WHERE `id`=".$id_curs;
+					$sqlnotificare="SELECT * FROM `classes` 
+					LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
+					WHERE `classes`.`id`=".$id_curs;
 					$querynotificare=mysqli_query($link,$sqlnotificare);
 					if (mysqli_num_rows($querynotificare)>0) {
 						$cursactiv=mysqli_fetch_assoc($querynotificare);
-						$valoare=$cursactiv['pret'];
-						$nume_curs=$cursactiv['titlu_main'];
-						$data=$cursactiv['start_inscriere'];
+						$valoare=$cursactiv['price'];
+						$nume_curs=$cursactiv['main_class.title'];
+						$data=$cursactiv['registration_start_date'];
 					}
 					$notificare = new PHPMailer();
 
@@ -137,7 +137,7 @@ if (isset($_POST['action'])) {
 			
 			} else {
 				$id_cursant=$cursant; 
-				$sql3="INSERT INTO `cursant_curs` (`id_cursant`, `id_curs`, `modalitate_plata`,`tip_plata`) 
+				$sql3="INSERT INTO `class_students` (`student_id`, `class_id`, `payment_method`,`payment_type`) 
 				VALUES 
 				(".$id_cursant.", ".$id_curs.", '".$modalitate_plata."', '".$tip_plata."')";
 				$query3=mysqli_query($link,$sql3);

@@ -6,9 +6,9 @@ if(isset($_SESSION['key_admin']) && $_SESSION['key_admin']==session_id()) {$memb
 $page="inscriere-curs";
 if (isset($_GET['curs']) && is_numeric($_GET['curs'])) { 
 	$curs=trim(mysqli_real_escape_string($link,$_GET['curs']));
-$sql="SELECT * FROM `cursuri` 
-LEFT JOIN `curs_main` ON `cursuri`.`parent`=`curs_main`.`id_curs_main`
-WHERE `id`=".$curs;
+$sql="SELECT * FROM `classes` 
+LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
+WHERE `classes.id`=".$curs;
 $query=mysqli_query($link,$sql);
 $cursactiv=mysqli_fetch_assoc($query);
 $set=true;
@@ -25,7 +25,7 @@ $set=true;
 <meta name="keywords" content="" />
 
 <!-- Page Title -->
-<title>Academia Testarii:: Formular inscriere curs <?php echo $cursactiv['titlu_main'];?></title>
+<title>Academia Testarii:: Formular inscriere curs <?php echo $cursactiv['main_classes.title'];?></title>
 <base href="https://www.academiatestarii.ro">
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
@@ -148,7 +148,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="title text-white">Formular inscriere curs <br /><?php echo $cursactiv['titlu_main'];?></h2>
+              <h2 class="title text-white">Formular inscriere curs <br /><?php echo $cursactiv['main_classes.title'];?></h2>
             </div>
           </div>
         </div>
@@ -173,7 +173,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Nume <small>*</small></label>
 					<?php if ($membru) { ?>
-					<input name="nume" class="form-control" type="text" value="<?php echo $row_userlogat['nume'];?>" readonly>
+					<input name="nume" class="form-control" type="text" value="<?php echo $row_userlogat['last_name'];?>" readonly>
 					<?php } else { ?>
                     <input name="nume" class="form-control" type="text" placeholder="Nume" minlength="3" required="">
 					<?php } ?>
@@ -183,7 +183,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Prenume <small>*</small></label>
 					<?php if ($membru) { ?>
-					<input name="prenume" class="form-control" type="text" value="<?php echo $row_userlogat['prenume'];?>" readonly>
+					<input name="prenume" class="form-control" type="text" value="<?php echo $row_userlogat['first_name'];?>" readonly>
 					<?php } else { ?>
                     <input name="prenume" class="form-control" type="text" placeholder="Prenume" minlength="3" required="">
 					<?php } ?>
@@ -203,7 +203,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Data naștere</label>
 					<?php if ($membru) { ?>
-					<input name="data_nastere" class="form-control" type="date" value="<?php echo $row_userlogat['data_nastere'];?>" readonly>
+					<input name="data_nastere" class="form-control" type="date" value="<?php echo $row_userlogat['date_of_birth'];?>" readonly>
 					<?php } else { ?>
                     <input name="data_nastere" class="form-control" type="date" minlength="10" placeholder="Data naștere">
 					<?php } ?>
@@ -216,7 +216,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Adresă <small>*</small></label>
 					<?php if ($membru) { ?>
-					<input name="adresa" class="form-control" type="text" value="<?php echo $row_userlogat['adresa'];?>" readonly>
+					<input name="adresa" class="form-control" type="text" value="<?php echo $row_userlogat['address'];?>" readonly>
 					<?php } else { ?>
                     <input name="adresa" class="form-control" type="text" placeholder="O folosim pentru factură" minlength="10" required="">
 					<?php } ?>
@@ -226,7 +226,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Localitate <small>*</small></label>
 					<?php if ($membru) { ?>
-					<input name="localitate" class="form-control" type="text" value="<?php echo $row_userlogat['localitate'];?>" readonly>
+					<input name="localitate" class="form-control" type="text" value="<?php echo $row_userlogat['city'];?>" readonly>
 					<?php } else { ?>
                     <input name="localitate" class="form-control" type="text" placeholder="O folosim pentru factură" minlength="3" required="">
 					<?php } ?>
@@ -236,7 +236,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Judet <small>*</small></label>
 					<?php if ($membru) { ?>
-					<input name="judet" class="form-control" type="text" value="<?php echo $row_userlogat['judet'];?>" readonly >
+					<input name="judet" class="form-control" type="text" value="<?php echo $row_userlogat['county'];?>" readonly >
 					<?php } else { ?>
                     <input name="judet" class="form-control" type="text" placeholder="Îl folosim pentru factură" minlength="3" required="">
 					<?php } ?>
@@ -251,7 +251,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Profesie actuală</label>
 					<?php if ($membru) { ?>
-					<input name="profesie" class="form-control" type="text" value="<?php echo $row_userlogat['pozitie'];?>" readonly>
+					<input name="profesie" class="form-control" type="text" value="<?php echo $row_userlogat['job_title'];?>" readonly>
 					<?php } else { ?>
                     <input name="profesie" class="form-control" type="text" placeholder="Profesie actuală">
 					<?php } ?>
@@ -261,7 +261,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Telefon <small>*</small></label>
 					<?php if ($membru) { ?>
-					<input name="telefon" class="form-control" type="text" value="<?php echo $row_userlogat['telefon'];?>" readonly>
+					<input name="telefon" class="form-control" type="text" value="<?php echo $row_userlogat['phone'];?>" readonly>
 					<?php } else { ?>
                     <input name="telefon" class="form-control" type="text" placeholder="Telefon" minlength="10" required="">
 					<?php } ?>
@@ -271,7 +271,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Educaţie</label>
 					<?php if ($membru) { ?>
-					<input name="educatie" class="form-control" type="text" value="<?php echo $row_userlogat['educatie'];?>" readonly>
+					<input name="educatie" class="form-control" type="text" value="<?php echo $row_userlogat['education'];?>" readonly>
 					<?php } else { ?>
                     <input name="educatie" class="form-control" type="text" placeholder="Educaţie">
 					<?php } ?>
@@ -298,7 +298,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<div class="form-group">
                     <label>Cunostinţe altă limbă străină </label>
 					<?php if ($membru) { ?>
-					<input name="alta_limba" class="form-control" type="text" value="<?php echo $row_userlogat['alta_limba'];?>" readonly >
+					<input name="alta_limba" class="form-control" type="text" value="<?php echo $row_userlogat['other_language'];?>" readonly >
 					<?php } else { ?>
                     <input name="alta_limba" class="form-control" type="text" placeholder="Cunostinţe altă limbă străina">
 					<?php } ?>
@@ -340,25 +340,25 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 						<select id="curs" class="form-control" name="curs">
 							<option value="--">-- alege curs --</option>
 <?php 	
-$sql_cursuri="SELECT * FROM `curs_main` WHERE `activ_main`=1 ORDER BY `order` ASC";
+$sql_cursuri="SELECT * FROM `main_classes` WHERE `is_active`=1 ORDER BY `order` ASC";
 $query_cursuri=mysqli_query($link,$sql_cursuri);
 $disabled="";
 while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) { ?>
-							<optgroup label="<?php echo str_replace("<br />","",$row_cursuri['titlu_main']);?>">
+							<optgroup label="<?php echo str_replace("<br />","",$row_cursuri['title']);?>">
 <?php 	
-$sql_cursuri2="SELECT * FROM `cursuri` WHERE `parent`=".$row_cursuri['id_curs_main']." AND `start_inscriere`>NOW() ORDER BY `start_inscriere` ASC LIMIT 2";
+$sql_cursuri2="SELECT * FROM `classes` WHERE `main_class_id`=".$row_cursuri['id']." AND `registration_start_date`>NOW() ORDER BY `registration_start_date` ASC LIMIT 2";
 $query_cursuri2=mysqli_query($link,$sql_cursuri2);
 while ($row_cursuri2=mysqli_fetch_assoc($query_cursuri2)) { 
 $disabled="";
 if ($membru) {
-$cursuriSql=mysqli_query($link,"SELECT * FROM `cursant_curs` WHERE `id_cursant`=".$row_userlogat['id']." AND `id_curs`=".$row_cursuri2['id']);
+$cursuriSql=mysqli_query($link,"SELECT * FROM `class_students` WHERE `student_id`=".$row_userlogat['id']." AND `class_id`=".$row_cursuri2['id']);
 if (mysqli_num_rows($cursuriSql)>0) {$inscris=true;$disabled="disabled";} else {$inscris=false;$disabled="";}
 }
 $activ="";
 if ($row_cursuri2['id']==$cursactiv['id']) {$activ="selected";}
 echo $row_cursuri2['id']."--".$cursactiv['id'];
 ?>
-								<option <?php echo $activ;?> <?php echo $disabled;?> value="<?php echo $row_cursuri2['id'];?>"><?php if ($row_cursuri2['start_inscriere']!="0000-00-00") { echo strftime("%e %B %Y", strtotime($row_cursuri2['start_inscriere']))." - ".strftime("%e %B %Y", strtotime($row_cursuri2['end_inscriere']));} else {echo "TBA";}?> <?php if ($inscris) {echo " -- Esti înscris la acest curs.";};?></option>
+								<option <?php echo $activ;?> <?php echo $disabled;?> value="<?php echo $row_cursuri2['id'];?>"><?php if ($row_cursuri2['registration_start_date']!="0000-00-00") { echo strftime("%e %B %Y", strtotime($row_cursuri2['registration_start_date']))." - ".strftime("%e %B %Y", strtotime($row_cursuri2['registration_end_date']));} else {echo "TBA";}?> <?php if ($inscris) {echo " -- Esti înscris la acest curs.";};?></option>
 <?php } ?>
 							</optgroup>
 <?php } ?>
@@ -419,7 +419,7 @@ echo $row_cursuri2['id']."--".$cursactiv['id'];
 			<?php 
 			$inscrisdeja=false;
 			if ($membru) {
-			$cursuriSql=mysqli_query($link,"SELECT * FROM `cursant_curs` WHERE `id_cursant`=".$row_userlogat['id']." AND `id_curs`=".$curs);
+			$cursuriSql=mysqli_query($link,"SELECT * FROM `class_students` WHERE `student_id`=".$row_userlogat['id']." AND `class_id`=".$curs);
 				if (mysqli_num_rows($cursuriSql)>0) {$inscrisdeja=true;} else {$inscrisdeja=false;}
 			}?>
 			<?php if ($inscrisdeja) { ?>
@@ -431,9 +431,9 @@ echo $row_cursuri2['id']."--".$cursactiv['id'];
 			</div>
 		</div>
 		<input name="cursant" class="form-control" value="<?php echo $row_userlogat['id'];?>" type="hidden">
-		<input name="numecurs" class="form-control" value="<?php echo $cursactiv["titlu_main"]." - ".$cursactiv["titlu"];?>" type="hidden">
-		<input name="datacurs" class="form-control" value="<?php echo $cursactiv["start_inscriere"];?>" type="hidden">
-		<input name="cost" class="form-control" value="<?php echo $cursactiv['pret'];?>" type="hidden">
+		<input name="numecurs" class="form-control" value="<?php echo $cursactiv["main_classes.title"]." - ".$cursactiv["classes.title"];?>" type="hidden">
+		<input name="datacurs" class="form-control" value="<?php echo $cursactiv["registration_start_date"];?>" type="hidden">
+		<input name="cost" class="form-control" value="<?php echo $cursactiv['price'];?>" type="hidden">
 		<input name="form_botcheck" class="form-control" value="" type="hidden">
 		<input name="action" class="form-control" value="inscriere_curs" type="hidden">
 		</form>
@@ -480,11 +480,11 @@ $("#inscriere_curs").validate({
 	</div>
 <div class="pl-50 pr-50 pb-50">	
 <?php 
-$sql_termeni="SELECT * FROM `continut` WHERE id=6";
+$sql_termeni="SELECT * FROM `content` WHERE id=6";
 $termeni=mysqli_fetch_assoc(mysqli_query($link,$sql_termeni));
 ?>
 
-<h2 class="modal-title" id="myModalLabel2"><?php echo $termeni['titlu'];?></h2>
+<h2 class="modal-title" id="myModalLabel2"><?php echo $termeni['title'];?></h2>
 <hr />
 <?php echo $termeni['text'];?>
 </div>

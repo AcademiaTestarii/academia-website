@@ -13,11 +13,11 @@
             <!-- Section: Clients -->
             <div class="owl-carousel-3col text-center">
 <?php
-$sql_parteneri="SELECT * FROM `parteneri` ORDER BY `nume_parteneri`";
+$sql_parteneri="SELECT * FROM `partners` ORDER BY `name`";
 $query_parteneri=mysqli_query($link,$sql_parteneri);
 while ($row_parteneri=mysqli_fetch_array($query_parteneri)) {
 ?>			
-              <div class="item"> <a href="<?php echo $row_parteneri['link_parteneri'];?>" target="_blank"><img src="images/parteneri/<?php echo $row_parteneri['logo_parteneri'];?>" alt="<?php echo $row_parteneri['nume_parteneri'];?>"></a></div>
+              <div class="item"> <a href="<?php echo $row_parteneri['url'];?>" target="_blank"><img src="images/parteneri/<?php echo $row_parteneri['logo'];?>" alt="<?php echo $row_parteneri['name'];?>"></a></div>
 <?php } ?>
             </div>
           </div>

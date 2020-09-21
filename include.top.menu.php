@@ -12,16 +12,16 @@
               <li <?php if($page=="cursuri") {echo'class="active"';}?>><a href="cursuri.php">Cursuri pentru tine </a>
                 <ul class="dropdown">
 <?php	
-$sql_cursuri="SELECT * FROM `cursuri` 
-LEFT JOIN `curs_main` 
-ON `cursuri`.`parent`=`curs_main`.`id_curs_main` 
-WHERE `start_inscriere`>NOW() AND `activ`=1
-GROUP BY `parent`
-ORDER BY `curs_main`.`order` ASC";
+$sql_cursuri="SELECT * FROM `classes` 
+LEFT JOIN `main_classes` 
+ON `classes`.`main_class_id`=`main_classes`.`main_classes` 
+WHERE `registration_start_date`>NOW() AND `is_active`=1
+GROUP BY `main_class_id`
+ORDER BY `main_classes`.`order` ASC";
 $query_cursuri=mysqli_query($link,$sql_cursuri);
 while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) { 
 ?>
-                  <li><a href="curs.php?id=<?php echo $row_cursuri['id_curs_main'];?>"><?php echo $row_cursuri['nou']==0 ? str_replace("<br />","",$row_cursuri['titlu_main']) : "<strong>NOU!</strong> ".str_replace("<br />","",$row_cursuri['titlu_main']);?></a></li>
+                  <li><a href="curs.php?id=<?php echo $row_cursuri['main_class_id'];?>"><?php echo $row_cursuri['is_new']==0 ? str_replace("<br />","",$row_cursuri['main_classes.title']) : "<strong>NOU!</strong> ".str_replace("<br />","",$row_cursuri['main_classes.title']);?></a></li>
 				<?php } ?>
                 </ul>
               </li>
