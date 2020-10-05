@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "restricted area"
-AuthUserFile /home/academia/public_html/crm/.htpasswd
-require valid-user
