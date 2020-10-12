@@ -1,18 +1,18 @@
-<!-- Made by: DanielM 2019 --> 
-<?php 
+<!-- Made by: DanielM 2019 -->
+<?php
 session_start();
 include("__connect.php");
 if(isset($_SESSION['key_admin']) && $_SESSION['key_admin']==session_id()) {$membru=true;include("useract.php");} else {$membru=false;}
 $page="inscriere-curs";
-if (isset($_GET['curs']) && is_numeric($_GET['curs'])) { 
+if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
 	$curs=trim(mysqli_real_escape_string($link,$_GET['curs']));
-$sql="SELECT * FROM `classes` 
+$sql="SELECT * FROM `classes`
 LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 WHERE `classes.id`=".$curs;
 $query=mysqli_query($link,$sql);
 $cursactiv=mysqli_fetch_assoc($query);
 $set=true;
-} 
+}
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="ro">
@@ -50,13 +50,13 @@ $set=true;
 <meta property="og:title" content="Academia Testării: Formular inscriere curs" />
 <meta property="og:author" content="@academiatestarii" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.academiatestarii.ro/inscriere-curs.php" />
+<meta property="og:url" content="/inscriere-curs.php" />
 <meta property="og:image:alt" content="Cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." />
-<meta property="og:image" content="https://www.academiatestarii.ro/images/cursuri-og.jpg" />
+<meta property="og:image" content="/images/cursuri-og.jpg" />
 <meta property="og:image:width" content="1195" />
 <meta property="og:image:height" content="963" />
 <meta property="og:image:type" content="image/jpeg" />
-<meta property="og:description" content="Academia Testarii e despre atenţia la detalii. Oferim cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing" /> 
+<meta property="og:description" content="Academia Testarii e despre atenţia la detalii. Oferim cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing" />
 <meta property="og:site_name" content="Academia Testării" />
 
 <!-- Stylesheet -->
@@ -76,7 +76,7 @@ $set=true;
 <!-- CSS | Responsive media queries -->
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <!-- Academia Testarii CSS | Style css -->
-<link href="css/style.css" rel="stylesheet" type="text/css"> 
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <!-- Revolution Slider 5.x CSS settings -->
 <link  href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
 <link  href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css"/>
@@ -98,7 +98,7 @@ $set=true;
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"https://www.academiatestarii.ro/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"https://www.academiatestarii.ro/#organization","name":"Academia Testarii","logo":"https://www.academiatestarii.ro/images/logo-academia-testarii.png"}</script>
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"/#organization","name":"Academia Testarii","logo":"/images/logo-academia-testarii.png"}</script>
 
 <!-- Facebook Pixel Code -->
 <script>
@@ -110,11 +110,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
- fbq('init', '347879355772596'); 
+ fbq('init', '347879355772596');
 fbq('track', 'PageView');
 </script>
 <noscript>
- <img height="1" width="1" 
+ <img height="1" width="1"
 src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 &noscript=1"/>
 </noscript>
@@ -130,14 +130,14 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
       </div>
     </div>
     <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>
-  </div> 
-  
+  </div>
+
 <!-- Header -->
   <header id="header" class="header modern-header modern-header-white">
 <?php include ("include.top.header.php");?>
 <?php include ("include.top.menu.php");?>
   </header>
- 
+
 <!-- Start main-content -->
   <div class="main-content">
 
@@ -159,8 +159,8 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
     <section class="divider">
       <div class="container pt-60 pb-60">
 		<h2 class="mt-0 text-theme-colored">Te rugăm să completezi acest formular pentru a te înscrie la cursurile organizate de Academia Testării:</h2>
-<?php if (!$membru) { ?>	  
-		<p>După ce completezi acest formular vei primi un mesaj de confirmare pe email. In acest mesaj vei primi deasemenea și instrucţiuni pentru activarea contului tău de pe platforma Academia Testării unde vei putea consulta materiale pentru curs precum și alte informaţii care privesc relaţia dintre Academia Testării și tine.</p><p>Dacă ai deja cont pe platforma Academia Testării, te rugăm să <strong><a href="ajax-load/login-form.html" class="ajaxload-popup text-theme-colored">intri în contul tău</a></strong> pentru a te înscrie la cursuri.</p> 
+<?php if (!$membru) { ?>
+		<p>După ce completezi acest formular vei primi un mesaj de confirmare pe email. In acest mesaj vei primi deasemenea și instrucţiuni pentru activarea contului tău de pe platforma Academia Testării unde vei putea consulta materiale pentru curs precum și alte informaţii care privesc relaţia dintre Academia Testării și tine.</p><p>Dacă ai deja cont pe platforma Academia Testării, te rugăm să <strong><a href="ajax-load/login-form.html" class="ajaxload-popup text-theme-colored">intri în contul tău</a></strong> pentru a te înscrie la cursuri.</p>
 <?php } else { ?>
 		<p>Avem nevoie de datele tale personale (Nume, Adresa, Localitate, etc pentru facturare). Te rugăm să completezi datele personale în <strong><a href="contul_tau.php#sectiuneaDate" class="text-theme-colored">contul tău</a></strong>, apoi să revi la formularul de înscriere.</p>
 		<p>Dacă ai toate datele completate, atunci te poţi înscrie la cursuri selectând modulul dorit din partea de jos a formularului.</p>
@@ -209,7 +209,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 					<?php } ?>
 				</div>
             </div>
-          </div>          
+          </div>
 
 		  <div class="row entry-content">
             <div class="col-sm-12 col-md-4">
@@ -245,7 +245,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 
           </div>
 		  <hr />
-		  
+
 		  <div class="row entry-content">
             <div class="col-sm-12 col-md-4">
 				<div class="form-group">
@@ -339,16 +339,16 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
                     <label>Modulul dorit <small>*</small></label>
 						<select id="curs" class="form-control" name="curs">
 							<option value="--">-- alege curs --</option>
-<?php 	
+<?php
 $sql_cursuri="SELECT * FROM `main_classes` WHERE `is_active`=1 ORDER BY `order` ASC";
 $query_cursuri=mysqli_query($link,$sql_cursuri);
 $disabled="";
 while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) { ?>
 							<optgroup label="<?php echo str_replace("<br />","",$row_cursuri['title']);?>">
-<?php 	
+<?php
 $sql_cursuri2="SELECT * FROM `classes` WHERE `main_class_id`=".$row_cursuri['id']." AND `registration_start_date`>NOW() ORDER BY `registration_start_date` ASC LIMIT 2";
 $query_cursuri2=mysqli_query($link,$sql_cursuri2);
-while ($row_cursuri2=mysqli_fetch_assoc($query_cursuri2)) { 
+while ($row_cursuri2=mysqli_fetch_assoc($query_cursuri2)) {
 $disabled="";
 if ($membru) {
 $cursuriSql=mysqli_query($link,"SELECT * FROM `class_students` WHERE `student_id`=".$row_userlogat['id']." AND `class_id`=".$row_cursuri2['id']);
@@ -387,36 +387,36 @@ echo $row_cursuri2['id']."--".$cursactiv['id'];
                     Trei rate </label>
                 </div>
             </div>
-			
+
           </div>
 		  <hr />
-		  
+
 		<div class="row">
 			<div class="col-sm-12 col-md-12">
 				<div class="form-check">
-					<input class="form-check-input" id="termeni_site" type="checkbox" name="termeni_site" value=""> 
+					<input class="form-check-input" id="termeni_site" type="checkbox" name="termeni_site" value="">
 					<label class="form-check-label"><a data-toggle="modal" data-target=".bs-example-modal-lg">Sunt de acord cu Termenii și Condițiile site-ului.</a></label>
 				</div>
 			</div>
 <?php if ($set) { ?>
 			<div class="col-sm-12 col-md-12">
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" name="conditii_minime" value=""> 
+					<input class="form-check-input" type="checkbox" name="conditii_minime" value="">
 					<label class="form-check-label">Am citit și îndeplinesc condițiile minime ale cursului</label>
 				</div>
 			</div>
 <?php } ?>
 			<div class="col-sm-12 col-md-12">
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" name="newsletter" value="" checked="checked"> 
+					<input class="form-check-input" type="checkbox" name="newsletter" value="" checked="checked">
 					<label class="form-check-label">Doresc sa primesc noutați prin email</label>
 				</div>
 			</div>
 		</div>
-			
+
 		<div class="row">
 			<div class="col-sm-12 col-md-12 text-center">
-			<?php 
+			<?php
 			$inscrisdeja=false;
 			if ($membru) {
 			$cursuriSql=mysqli_query($link,"SELECT * FROM `class_students` WHERE `student_id`=".$row_userlogat['id']." AND `class_id`=".$curs);
@@ -427,7 +427,7 @@ echo $row_cursuri2['id']."--".$cursactiv['id'];
 				<a href="contul_tau.php#sectiuneaCursuri" class="btn btn-dark btn-theme-colored"><i class="fa fa-user-o"></i> Verifică informaţiile în contul tău.</a>
 			<?php } else { ?>
 				<button id="submitBtn" type="submit" class="btn btn-dark btn-theme-colored" data-loading-text="Asteapta putin..." disabled="disabled">Înscrie-te la curs</button>
-			<? } ?>	
+			<? } ?>
 			</div>
 		</div>
 		<input name="cursant" class="form-control" value="<?php echo $row_userlogat['id'];?>" type="hidden">
@@ -437,7 +437,7 @@ echo $row_cursuri2['id']."--".$cursactiv['id'];
 		<input name="form_botcheck" class="form-control" value="" type="hidden">
 		<input name="action" class="form-control" value="inscriere_curs" type="hidden">
 		</form>
-		
+
 <script type="text/javascript">
 $("#inscriere_curs").validate({
   submitHandler: function(form) {
@@ -463,12 +463,12 @@ $("#inscriere_curs").validate({
 	});
   }
 });
-</script>			
-		
+</script>
+
         </div>
       </div>
     </section>
-	
+
   <!-- end main-content -->
   </div>
 
@@ -478,8 +478,8 @@ $("#inscriere_curs").validate({
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Inchide"><span aria-hidden="true">&times;</span></button>
 	</div>
-<div class="pl-50 pr-50 pb-50">	
-<?php 
+<div class="pl-50 pr-50 pb-50">
+<?php
 $sql_termeni="SELECT * FROM `content` WHERE id=6";
 $termeni=mysqli_fetch_assoc(mysqli_query($link,$sql_termeni));
 ?>
@@ -494,11 +494,11 @@ $termeni=mysqli_fetch_assoc(mysqli_query($link,$sql_termeni));
 
   <!-- Footer -->
   <footer id="footer" class="footer" data-bg-img="images/footer-bg.png" data-bg-color="#020443">
-  
+
 <?php include("include.footer.php");?>
-	
+
 <?php include("include.subfooter.php");?>
-	
+
   </footer>
   <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
@@ -527,7 +527,7 @@ $(document).ready(function() {
             $("#submitBtn").attr("disabled", "disabled");
         }
     });
-});     
+});
 </script>
 <?php include ("tracking.php");?>
 </body>

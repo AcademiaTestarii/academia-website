@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("__connect.php");
 ?>
 <!DOCTYPE html>
@@ -35,11 +35,11 @@ include("__connect.php");
 <link href="css/animate.css" rel="stylesheet" type="text/css">
 <link href="css/css-plugin-collections.css" rel="stylesheet"/>
 <!-- Academia Testarii CSS | Style css -->
-<link href="css/style.css" rel="stylesheet" type="text/css"> 
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <!-- CSS | Academia Testarii -->
 <link href="css/colors/academia-testarii.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Fondamento&display=swap" rel="stylesheet"> 
-<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"https://www.academiatestarii.ro/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"https://www.academiatestarii.ro/#organization","name":"Academia Testarii","logo":"https://www.academiatestarii.ro/images/logo-academia-testarii.png"}</script>
+<link href="https://fonts.googleapis.com/css2?family=Fondamento&display=swap" rel="stylesheet">
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"/#organization","name":"Academia Testarii","logo":"/images/logo-academia-testarii.png"}</script>
 
 <!-- Facebook Pixel Code -->
 <script>
@@ -51,11 +51,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
- fbq('init', '347879355772596'); 
+ fbq('init', '347879355772596');
 fbq('track', 'PageView');
 </script>
 <noscript>
- <img height="1" width="1" 
+ <img height="1" width="1"
 src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 &noscript=1"/>
 </noscript>
@@ -70,7 +70,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 	</div>
 	<div class="curscert">
 		Initiere in Software Testing
-	</div>	
+	</div>
 	<div class="datacert">
 		16 Aprilie 2020
 	</div>

@@ -1,17 +1,17 @@
-<!-- Made by: DanielM 2019 --> 
-<?php 
+<!-- Made by: DanielM 2019 -->
+<?php
 session_start();
 include("__connect.php");
 if(isset($_SESSION['key_admin']) && $_SESSION['key_admin']==session_id()) {$membru=true;include("useract.php");} else {$membru=false;}
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) { 
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$id=trim(mysqli_real_escape_string($link,$_GET['id']));
 	$page="cursuri";
 	$sql_curs="
-	SELECT * FROM `classes` 
-	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` 
+	SELECT * FROM `classes`
+	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 	WHERE `classes`.`main_class_id`=".$id."
-	AND `classes`.`registration_start_date` > NOW() 
+	AND `classes`.`registration_start_date` > NOW()
 	ORDER BY `classes`.`registration_start_date` ASC
 	LIMIT 1";
 	$query_curs=mysqli_query($link,$sql_curs);
@@ -23,10 +23,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 } elseif (isset($_GET['url_string_short'])) {
 	$url=trim(mysqli_real_escape_string($link,$_GET['url_string_short']));
     $sql_curs="
-	SELECT * FROM `classes` 
-	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` 
+	SELECT * FROM `classes`
+	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 	WHERE `main_classes`.`url_string_short`='".$url."'
-	AND `classes`.`registration_start_date` > NOW() 
+	AND `classes`.`registration_start_date` > NOW()
 	ORDER BY `classes`.`registration_start_date` ASC
 	LIMIT 1
 	";
@@ -38,7 +38,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 		header("Location:cursuri.php");
 	}
 } else {
-header("Location:cursuri.php");	
+header("Location:cursuri.php");
 }
 ?>
 <!DOCTYPE html>
@@ -102,7 +102,7 @@ header("Location:cursuri.php");
 <!-- CSS | Responsive media queries -->
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <!-- Academia Testarii CSS | Style css -->
-<link href="css/style.css" rel="stylesheet" type="text/css"> 
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <!-- Revolution Slider 5.x CSS settings -->
 <link  href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
 <link  href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css"/>
@@ -124,7 +124,7 @@ header("Location:cursuri.php");
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"https://www.academiatestarii.ro/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"https://www.academiatestarii.ro/#organization","name":"Academia Testarii","logo":"https://www.academiatestarii.ro/images/logo-academia-testarii.png"}</script>
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"/#organization","name":"Academia Testarii","logo":"/images/logo-academia-testarii.png"}</script>
 
 <!-- Facebook Pixel Code -->
 <script>
@@ -136,11 +136,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
- fbq('init', '347879355772596'); 
+ fbq('init', '347879355772596');
 fbq('track', 'PageView');
 </script>
 <noscript>
- <img height="1" width="1" 
+ <img height="1" width="1"
 src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 &noscript=1"/>
 </noscript>
@@ -156,14 +156,14 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
       </div>
     </div>
     <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>
-  </div> 
-  
+  </div>
+
 <!-- Header -->
   <header id="header" class="header modern-header modern-header-white">
 <?php include ("include.top.header.php");?>
 <?php include ("include.top.menu.php");?>
   </header>
- 
+
 <!-- Start main-content -->
   <div class="main-content">
 
@@ -229,7 +229,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-credit-card text-theme-colored"></i></a>
                         <div class="media-body">
                           <h5 class="mt-0">Cost</h5>
-						   
+
 						  <? if ($row_curs['discount_price']!="" && $row_curs['discount_price']!=0) { ?>
 							<strong>Taxa de înscriere este de </strong> <del><span class="amount"><?php echo $row_curs['price'];?> Lei</span></del> <strong><span class="amount"><?php echo $row_curs['discount_price'];?> Lei</span></strong>
 							<?php } else { ?>
@@ -261,7 +261,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
                         </div>
                       </div>
                     </div>
-<?php } ?>	
+<?php } ?>
 <?php if ($row_curs['loyality_description']!="") { ?>
                     <div>
                       <div class="left media p-0 mb-10"> <a href="#" class="pull-left flip"><i class="fa fa-3x fa-user-plus text-theme-colored2"></i></a>
@@ -291,10 +291,10 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
                         </div>
                       </div>
                     </div>
-<?php } ?>		
+<?php } ?>
                 </div>
               </div>
-<?php } ?>	
+<?php } ?>
 <!-- END REDUCRERI -->
 
 <?php if ($row_curs['schedule']!="" || $row_curs['schedule_pdf']!="") { ?>
@@ -327,8 +327,8 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 				<h4 class="line-bottom mt-20 mb-20 text-theme-colored">Înscriere</h4>
 				<div class="row">
 					<div class="col-md-12">
-<?php 
-if (isset($_SESSION['key_admin']) && $_SESSION['key_admin']== session_id()) { 
+<?php
+if (isset($_SESSION['key_admin']) && $_SESSION['key_admin']== session_id()) {
 $cursuriSql=mysqli_query($link,"SELECT * FROM `class_students` WHERE `student_id`=".$_SESSION['id']." AND `class_id`=".$row_curs['id']);
 if (mysqli_num_rows($cursuriSql)>0) {
 ?>
@@ -347,15 +347,15 @@ if (mysqli_num_rows($cursuriSql)>0) {
           </div>
           <div class="col-sm-12 col-md-4">
             <div class="sidebar sidebar-left mt-sm-30 ml-40">
-			
+
               <div class="widget">
                 <h4 class="widget-title line-bottom">Cursurile <span class="text-theme-colored2">noastre</span></h4>
                 <div class="services-list">
                   <ul class="list list-border">
-<?php	
-$sql_cursuri="SELECT * FROM `classes` 
-LEFT JOIN `main_classes` 
-ON `classes`.`main_class_id`=`main_classes`.`id` 
+<?php
+$sql_cursuri="SELECT * FROM `classes`
+LEFT JOIN `main_classes`
+ON `classes`.`main_class_id`=`main_classes`.`id`
 WHERE `registration_start_date`>NOW()
 GROUP BY `main_class_id`
 ORDER BY `main_classes`.`order` ASC";
@@ -367,13 +367,13 @@ while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) { ?>
                   </ul>
                 </div>
               </div>
-			   
+
               <div class="widget">
                 <h4 class="widget-title line-bottom">Desfășurare <span class="text-theme-colored2">Curs</span></h4>
                 <div class="opening-hours">
                   <ul class="list-border">
-				  
-                    <li class="clearfix"> 
+
+                    <li class="clearfix">
 <?php 	$datesSql=mysqli_query($link,"SELECT MIN(`date`) AS `start`, MAX(`date`) AS `end` FROM `class_dates` WHERE `class_id`=".$row_curs['id']);
 $datesRow=mysqli_fetch_assoc($datesSql);
 ?>
@@ -381,8 +381,8 @@ $datesRow=mysqli_fetch_assoc($datesSql);
                     <li class="clearfix"> <span><?php echo $row_curs['deployment'];?></span></li>
                   </ul>
                 </div>
-              </div> 
-			  
+              </div>
+
               <div class="widget">
                 <h4 class="widget-title line-bottom">Locuri  <span class="text-theme-colored2">Disponibile</span></h4>
                 <div class="opening-hours">
@@ -396,11 +396,11 @@ $datesRow=mysqli_fetch_assoc($datesSql);
                   </ul>
                 </div>
               </div>
-			  
+
               <div class="widget">
                 <div class="row">
 					<div class="col-md-12">
-<?php if (isset($_SESSION['key_admin']) && $_SESSION['key_admin']== session_id()) { 
+<?php if (isset($_SESSION['key_admin']) && $_SESSION['key_admin']== session_id()) {
 $cursuriSql=mysqli_query($link,"SELECT * FROM `class_students` WHERE `student_id`=".$_SESSION['id']." AND `class_id`=".$row_curs['id']);
 if (mysqli_num_rows($cursuriSql)>0) {
 ?>
@@ -428,15 +428,15 @@ $datesRow3=mysqli_fetch_assoc($datesSql3);
                 <div class="opening-hours">
                   <ul class="list-border">
                     <li class="clearfix">
-					
+
 					<?php if ($datesRow3['start']!="0000-00-00") { echo strftime("%e %B %Y", strtotime($datesRow3['start']))." - ".strftime("%e %B %Y", strtotime($datesRow3['end']));} else {echo "Data va fi anuntată ulterior";}?>
-					
+
                     </li>
                   </ul>
                 </div>
               </div>
-<?php } ?>			  
-			  
+<?php } ?>
+
 <?php
 $sql_trainer="SELECT * FROM `trainer` LEFT JOIN `class_trainers` ON `trainer`.`id`=`class_trainers`.`trainer_id` WHERE `class_trainers`.`class_id`=".$row_curs['id'];
 $query_trainer=mysqli_query($link,$sql_trainer);
@@ -474,11 +474,11 @@ $row_trainer=mysqli_fetch_assoc($query_trainer);
 
   <!-- Footer -->
   <footer id="footer" class="footer" data-bg-img="images/footer-bg.png" data-bg-color="#020443">
-  
+
 <?php include("include.footer.php");?>
-	
+
 <?php include("include.subfooter.php");?>
-	
+
   </footer>
   <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 </div>

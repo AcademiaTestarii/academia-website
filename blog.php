@@ -1,5 +1,5 @@
-<!-- Made by: DanielM 2019 --> 
-<?php 
+<!-- Made by: DanielM 2019 -->
+<?php
 session_start();
 include("__connect.php");
 if(isset($_SESSION['key_admin']) && $_SESSION['key_admin']==session_id()) {$membru=true;include("useract.php");} else {$membru=false;}
@@ -40,13 +40,13 @@ $page="blog";
 <meta property="og:title" content="Academia Testării:: Blog" />
 <meta property="og:author" content="@academiatestarii" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.academiatestarii.ro/blog.php" />
+<meta property="og:url" content="/blog.php" />
 <meta property="og:image:alt" content="Cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." />
-<meta property="og:image" content="https://www.academiatestarii.ro/images/academia.jpg" />
+<meta property="og:image" content="/images/academia.jpg" />
 <meta property="og:image:width" content="1195" />
 <meta property="og:image:height" content="963" />
 <meta property="og:image:type" content="image/jpeg" />
-<meta property="og:description" content="Blog Academia Testarii: Cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." /> 
+<meta property="og:description" content="Blog Academia Testarii: Cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." />
 <meta property="og:site_name" content="Academia Testării" />
 
 <!-- Stylesheet -->
@@ -66,7 +66,7 @@ $page="blog";
 <!-- CSS | Responsive media queries -->
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <!-- Academia Testarii CSS | Style css -->
-<link href="css/style.css" rel="stylesheet" type="text/css"> 
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <!-- Revolution Slider 5.x CSS settings -->
 <link  href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
 <link  href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css"/>
@@ -88,7 +88,7 @@ $page="blog";
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"https://www.academiatestarii.ro/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"https://www.academiatestarii.ro/#organization","name":"Academia Testarii","logo":"https://www.academiatestarii.ro/images/logo-academia-testarii.png"}</script>
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"/#organization","name":"Academia Testarii","logo":"/images/logo-academia-testarii.png"}</script>
 
 <!-- Facebook Pixel Code -->
 <script>
@@ -100,11 +100,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
- fbq('init', '347879355772596'); 
+ fbq('init', '347879355772596');
 fbq('track', 'PageView');
 </script>
 <noscript>
- <img height="1" width="1" 
+ <img height="1" width="1"
 src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 &noscript=1"/>
 </noscript>
@@ -120,14 +120,14 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
       </div>
     </div>
     <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>
-  </div> 
-  
+  </div>
+
 <!-- Header -->
   <header id="header" class="header modern-header modern-header-white">
 <?php include ("include.top.header.php");?>
 <?php include ("include.top.menu.php");?>
   </header>
- 
+
 <!-- Start main-content -->
   <div class="main-content">
 
@@ -152,7 +152,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
             <div class="blog-posts">
               <div class="col-md-12">
                 <div class="row list-dashed">
-<?php 
+<?php
 $items_per_page = 3;
 if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
 	$current_page = $_GET['pagina'];
@@ -161,7 +161,7 @@ if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
 }
 
 $sql="
-SELECT * FROM `news` 
+SELECT * FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
 WHERE `news`.`is_active`=1 ";
 $query=mysqli_query($link,$sql);
@@ -186,14 +186,14 @@ $sql .= $pagination_query;
 
 $query=mysqli_query($link,$sql);
 
-while ($row=mysqli_fetch_assoc($query)) { 
+while ($row=mysqli_fetch_assoc($query)) {
 $scurta=removeTags($row['text'], array("p","ul","li","div","hr","h1","h2","h3","span","table","tr","td","img","strong","br","ol","dl")); // remove html
 $descriere=truncate($scurta,300,"...");
-?>				
+?>
                   <article class="post clearfix mb-30 pb-30">
 <?php if ($row['image']!="") { ?>
                     <div class="entry-header">
-                      <div class="post-thumb thumb"> 
+                      <div class="post-thumb thumb">
                         <img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive img-fullwidth">
                       </div>
                     </div>
@@ -210,7 +210,7 @@ $descriere=truncate($scurta,300,"...");
                         <div class="media-body pl-15">
                           <div class="event-content pull-left flip">
                             <h3 class="entry-title text-white text-uppercase m-0 mt-5"><a href="articol.php?id=<?php echo $row['news.id'];?>"><?php echo $row['title'];?></a></h3>
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> -- </span>                       
+                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> -- </span>
                             <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-eye mr-5 text-theme-colored"></i> <?php echo $row['views'];?> </span>
                           </div>
                         </div>
@@ -220,8 +220,8 @@ $descriere=truncate($scurta,300,"...");
                       <div class="clearfix"></div>
                     </div>
                   </article>
-<?php } ?>				  
-				  
+<?php } ?>
+
                 </div>
               </div>
 
@@ -235,22 +235,22 @@ $descriere=truncate($scurta,300,"...");
 				<?php } ?>
 				<?php for ($i = 1; $i <= $pages; $i++) { ?>
                     <li <?php if($current_page==$i) {echo "class=\"active\" ";}?>><a href="blog.php?pagina=<?php echo $i;?>"><?php echo $i;?></a></li>
-				<?php } ?>	
+				<?php } ?>
 				<?php if ($current_page<$pages) { ?>
                     <li> <a aria-label="Inainte" href="blog.php?pagina=<?php echo $current_page+1; ?>"> <span aria-hidden="true">»</span> </a> </li>
 				<?php } ?>
                   </ul>
                 </nav>
               </div>
-<?php } ?>			  
-			  
-			  
+<?php } ?>
+
+
             </div>
           </div>
-		  
+
           <div class="col-md-3">
             <div class="sidebar sidebar-right mt-sm-30">
-			
+
               <!--div class="widget">
                 <h5 class="widget-title line-bottom">Categorii</h5>
                 <ul class="list-divider list-border list check">
@@ -262,21 +262,21 @@ $descriere=truncate($scurta,300,"...");
                   <li><a href="#">Lorem</a></li>
                 </ul>
               </div-->
-			  
+
               <div class="widget">
                 <h5 class="widget-title line-bottom">Articole recente</h5>
                 <div class="latest-posts">
-<?php 
+<?php
 $sql="
-SELECT * FROM `news` 
+SELECT * FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
 WHERE `news`.`is_active`=1
 ORDER BY `news_images`.`date` DESC LIMIT 3";
 $query=mysqli_query($link,$sql);
-while ($row=mysqli_fetch_assoc($query)) { 
+while ($row=mysqli_fetch_assoc($query)) {
 $scurta=removeTags($row['text'], array("p","ul","li","div","hr","h1","h2","h3","span","table","tr","td","img","strong","br","ol","dl")); // remove html
-$descrierescurta=truncate($scurta,100,"..."); 
-?>	
+$descrierescurta=truncate($scurta,100,"...");
+?>
                   <article class="post media-post clearfix pb-0 mb-10">
 <?php if ($row['image']!="") { ?>
                     <a class="post-thumb" href="articol.php?id=<?php echo $row['news.id'];?>"><img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>"></a>
@@ -286,14 +286,14 @@ $descrierescurta=truncate($scurta,100,"...");
                       <p class="post_sub"><?php echo $descrierescurta;?></p>
                     </div>
                   </article>
-<?php } ?>	
+<?php } ?>
                 </div>
               </div>
 
               <div class="widget">
                 <h5 class="widget-title line-bottom">Taguri</h5>
                 <div class="tags">
-<?php 
+<?php
 /* metatags */
 $metakeyList="";
 $sql_meta="SELECT * FROM `news` WHERE `keywords`<>''";
@@ -308,7 +308,7 @@ while($rowmeta = mysqli_fetch_array($query_meta)) {
 		}
 	}
 ksort($metakeys);
-foreach($metakeys as $metakeyname => $value) { 
+foreach($metakeys as $metakeyname => $value) {
 if ($taguri==$metakeyname) {$activ='class="active"';} else {$activ="";}
 	$metakeyList .='<a '.$activ.' href="blog.php?tag='.$metakeyname.'">'.$metakeyname.'</a>';
 }
@@ -316,24 +316,24 @@ echo $metakeyList;
 ?>
                 </div>
               </div>
-			  
+
             </div>
           </div>
-		  
+
         </div>
       </div>
-    </section> 
-  
+    </section>
+
   <!-- end main-content -->
   </div>
 
   <!-- Footer -->
   <footer id="footer" class="footer" data-bg-img="images/footer-bg.png" data-bg-color="#020443">
-  
+
 <?php include("include.footer.php");?>
-	
+
 <?php include("include.subfooter.php");?>
-	
+
   </footer>
   <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 </div>

@@ -1,8 +1,8 @@
-<!-- Made by: DanielM 2019 --> 
-<?php 
+<!-- Made by: DanielM 2019 -->
+<?php
 session_start();
 require_once("__connect.php");
-if(isset($_SESSION['key_admin']) && $_SESSION['key_admin'] ==session_id()) { 
+if(isset($_SESSION['key_admin']) && $_SESSION['key_admin'] ==session_id()) {
 $sql="SELECT * FROM `students` WHERE `id`=".$_SESSION['id'];
 $query=mysqli_query($link,$sql);
 $row=mysqli_fetch_assoc($query);
@@ -58,7 +58,7 @@ $today = date("Y-m-d");
 <!-- CSS | Responsive media queries -->
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <!-- Academia Testarii CSS | Style css -->
-<link href="css/style.css" rel="stylesheet" type="text/css"> 
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <!-- Revolution Slider 5.x CSS settings -->
 <link  href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
 <link  href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css"/>
@@ -80,7 +80,7 @@ $today = date("Y-m-d");
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"https://www.academiatestarii.ro/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"https://www.academiatestarii.ro/#organization","name":"Academia Testarii","logo":"https://www.academiatestarii.ro/images/logo-academia-testarii.png"}</script>
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"/#organization","name":"Academia Testarii","logo":"/images/logo-academia-testarii.png"}</script>
 </head>
 <body class="" id="up">
 <div id="wrapper" class="clearfix">
@@ -92,14 +92,14 @@ $today = date("Y-m-d");
       </div>
     </div>
     <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>
-  </div> 
-  
+  </div>
+
 <!-- Header -->
   <header id="header" class="header modern-header modern-header-white">
 <?php include ("include.top.header.php");?>
 <?php include ("include.top.menu.php");?>
   </header>
- 
+
 <!-- Start main-content -->
   <div class="main-content">
 
@@ -119,12 +119,12 @@ $today = date("Y-m-d");
 
     <!-- Section -->
     <section class="inside">
-	
+
       <div class="container">
-	  
+
           <div class="row">
             <div class="col-md-12">
-			
+
               <h2 class="mt-0 text-theme-colored">Bine ai venit in contul tău <span class="text-theme-colored2"><?php echo $row['first_name'];?></span>.</h2>
 			  <p>Oferim cursuri de pregătire specializată în testare software, consultanță și servicii de resurse.</p>
 			  <p>Conectat la cele mai recente tendințe, practici, tehnologii și industrie instrumente, avem o vastă experiență în zonă, adunate prin aplicare practică în procesul de dezvoltare timp de aproape 20 de ani.</p>
@@ -132,7 +132,7 @@ $today = date("Y-m-d");
           </div>
 
       </div>
-	  
+
 	<div class="container profil">
         <div class="row">
           <div class="col-md-3">
@@ -171,9 +171,9 @@ $today = date("Y-m-d");
           </div>
           <div class="col-md-9">
             <div class="icon-box mb-0 p-0">
-			
+
             <div class="panel-group accordion-theme-colored accordion-icon-right" id="accordion16" role="tablist">
-			
+
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingCursuri">
                   <h6 class="panel-title">
@@ -185,7 +185,7 @@ $today = date("Y-m-d");
                 <div id="sectiuneaCursuri" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCursuri" aria-expanded="false">
                   <div class="panel-body">
 					<div class="row">
-<?php 
+<?php
 $sql_cursuri=mysqli_query($link,"SELECT * FROM `class_students` LEFT JOIN `classes` ON `class_students`.`class_id`=`classes`.`id` LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` WHERE `class_students`.`student_id`=".$row['id']." ORDER BY `registration_start_date` ASC");
 if (mysqli_num_rows($sql_cursuri)>0) {	?>
 
@@ -196,10 +196,10 @@ if (mysqli_num_rows($sql_cursuri)>0) {	?>
 							</ul>
 							<div id="myTabContent" class="tab-content">
 							  <div class="tab-pane fade in active" id="active">
-<?php 
+<?php
 $sql_cursuri_active=mysqli_query($link,"SELECT * FROM `class_students` LEFT JOIN `classes` ON `class_students`.`class_id`=`classes`.`id` LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` WHERE `class_students`.`student_id`=".$row['id']." AND `registration_end_date`>= NOW() ORDER BY `registration_start_date` ASC");
 $i=0;
-while ($row_curs_activ=mysqli_fetch_assoc($sql_cursuri_active)) { 
+while ($row_curs_activ=mysqli_fetch_assoc($sql_cursuri_active)) {
 $datesSqlactiv=mysqli_query($link,"SELECT MIN(`date`) AS `start1`, MAX(`date`) AS `end1` FROM `class_dates` WHERE `class_id`=".$row_curs_activ['id']);
 $datesRowactiv=mysqli_fetch_assoc($datesSqlactiv);
 ?>
@@ -208,7 +208,7 @@ $datesRowactiv=mysqli_fetch_assoc($datesSqlactiv);
 <h4><?php echo $row_curs_activ['main_classes.title'];?></h4>
 								<p><strong>Data înscriere: </strong> <?php echo strftime("%e %B %Y la %H:%M:%S", strtotime($row_curs_activ['registration_start_date']));?><br />
 								<strong>Cursul începe pe: </strong> <?php echo strftime("%e %B %Y", strtotime($datesRowactiv['start1']));?><br />
-								
+
 								<? if ($row_curs_activ['discount_price']!="" && $row_curs_activ['discount_price']!=0) { ?>
 								<strong>Preț curs: </strong> <del><span class="amount"><?php echo $row_curs_activ['price'];?> Lei</span></del> <strong><span class="amount"><?php echo $row_curs_activ['discount_price'];?> Lei</span></strong>
 								<?php } else { ?>
@@ -232,7 +232,7 @@ $datesRowactiv=mysqli_fetch_assoc($datesSqlactiv);
             </div>
 <?php } ?>
 </div>
-<div class="col-md-12">	
+<div class="col-md-12">
 								<?php if ($row_curs_activ['schedule_pdf']!="") { ?>
 									<a href="documente/<?php echo $row_curs_activ['schedule_pdf'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Programa curs</a>
 								<?php } ?>
@@ -245,7 +245,7 @@ $datesRowactiv=mysqli_fetch_assoc($datesSqlactiv);
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-label="Inchide"><span aria-hidden="true">&times;</span></button>
 											</div>
-										<div class="pl-50 pr-50 pb-50">	
+										<div class="pl-50 pr-50 pb-50">
 										<h2 class="modal-title" id="myModalLabel3">Cerinte minime de participare la cursul: <br /><?php echo $row_curs_activ['main_classes.title'];?></h2>
 										<hr />
 										<?php echo $row_curs_activ['requirements_description'];?>
@@ -254,22 +254,22 @@ $datesRowactiv=mysqli_fetch_assoc($datesSqlactiv);
 										  </div>
 										</div>
 								<?php } ?>
-</div>								
-</div>	
+</div>
+</div>
 								<hr />
 								<?php $i++;} ?>
 							  </div>
 
 							  <div class="tab-pane fade" id="inactive">
-<?php 
+<?php
 $sql_cursuri_inactive=mysqli_query($link,"SELECT * FROM `class_students` LEFT JOIN `classes` ON `class_students`.`class_id`=`classes`.`id` LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` WHERE `class_students`.`student_id`=".$row['id']." AND `registration_end_date`< NOW() ORDER BY `registration_start_date` ASC");
 $j=0;
-while ($row_curs_inactiv=mysqli_fetch_assoc($sql_cursuri_inactive)) { 
+while ($row_curs_inactiv=mysqli_fetch_assoc($sql_cursuri_inactive)) {
 $datesSqlinactiv=mysqli_query($link,"SELECT MIN(`date`) AS `start2`, MAX(`date`) AS `end2` FROM `class_dates` WHERE `class_id`=".$row_curs_inactiv['id']);
 $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 ?>
-									
-								
+
+
 <div class="row">
 <div class="col-md-6">
 <h4><?php echo $row_curs_inactiv['main_classes.title'];?></h4>
@@ -294,9 +294,9 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
             </div>
 <?php } ?>
 </div>
-<div class="col-md-12">							
+<div class="col-md-12">
 								<?php if ($row_curs_inactiv['pdf_programa']!="") { ?>
-									<a href="documente/<?php echo $row_curs_inactiv['pdf_programa'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Programa curs</a> 
+									<a href="documente/<?php echo $row_curs_inactiv['pdf_programa'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Programa curs</a>
 								<?php } ?>
 
 								<?php if ($row_curs_inactiv['schedule_pdf']!="") { ?>
@@ -307,7 +307,7 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-label="Inchide"><span aria-hidden="true">&times;</span></button>
 											</div>
-										<div class="pl-50 pr-50 pb-50">	
+										<div class="pl-50 pr-50 pb-50">
 										<h2 class="modal-title" id="myModalLabel3">Cerinte minime de participare la cursul: <br /><?php echo $row_curs_inactiv['main_classes.title'];?></h2>
 										<hr />
 										<?php echo $row_curs_inactiv['requirements_description'];?>
@@ -316,32 +316,32 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 										  </div>
 										</div>
 								<?php } ?>
-								
+
 								<?php
 								$sql_feedback="SELECT * FROM `feedback` WHERE `student_id`=".$row['id'];
 								$query_feedback=mysqli_query($link,$sql_feedback);
-								if (mysqli_num_rows($query_feedback)>0) { 
+								if (mysqli_num_rows($query_feedback)>0) {
 								$row_feedback=mysqli_fetch_array($query_feedback);
 								?>
-									| <a href="feedback.php?id=<?php echo $row_feedback['link'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Feedback curs</a> 
-									| <a href="certificat.php?id=<?php echo $row_feedback['link'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Certificat de ablosvire curs</a> 
+									| <a href="feedback.php?id=<?php echo $row_feedback['link'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Feedback curs</a>
+									| <a href="certificat.php?id=<?php echo $row_feedback['link'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Certificat de ablosvire curs</a>
 								<?php } ?>
-</div>								
-</div>								
+</div>
+</div>
 								<hr />
 								<?php $j++; } ?>
 							</div>
-					</div>		
+					</div>
 <?php } else { ?>
 					<div class="col-md-12 col-xs-12 curs">
 						<h4>Nu te-ai înscris la nici un curs încă.</h4>
 					</div>
 <?php } ?>
-					</div>	
+					</div>
                   </div>
                 </div>
-              </div>	
-			
+              </div>
+
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingDate">
                   <h6 class="panel-title">
@@ -352,7 +352,7 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
                 </div>
                 <div id="sectiuneaDate" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDate" aria-expanded="false">
                   <div class="panel-body">
-				  
+
                     <!-- Register Form Starts -->
 					  <form id="profil" name="profil" class="reservation-form" method="post" action="includes/profil.php" novalidate="novalidate" enctype="multipart/form-data">
 						<div class="row">
@@ -405,7 +405,7 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 							<div class="form-group mb-30"><label>Email</label> <small>Adresa de email nu poate fi schimbată<small>
 							  <input disabled placeholder="Email" id="email" name="email" class="form-control" required="" aria-required="true" type="email" value="<?php echo $row['email'];?>">
 							</div>
-						  </div>			 						  
+						  </div>
 
 						  <div class="col-sm-12">
 							<div class="form-group mb-0 mt-0">
@@ -442,11 +442,11 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 						  }
 						});
 					  </script>
-                  
+
 				  </div>
                 </div>
               </div>
-		
+
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingPreferinte">
                   <h6 class="panel-title">
@@ -461,7 +461,7 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 							<div class="form-group mb-30"><label>Schimbă parola <small>(maxim 12 caractere)</small></label>
 							  <input maxlength="12" placeholder="Seteaza parola" id="parola" name="parola" required="" class="form-control" aria-required="true" type="password" value="">
 							</div>
-						</div>	
+						</div>
 						<div class="col-sm-12">
 							<div class="form-group mb-0 mt-0">
 							  <input name="form_botcheck" class="form-control" value="" type="hidden">
@@ -472,7 +472,7 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 						</div>
 						</div>
 					</form>
-					
+
 					  <script type="text/javascript">
 						$("#schimbaparola").validate({
 						  submitHandler: function(form) {
@@ -496,11 +496,11 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 							});
 						  }
 						});
-					  </script>				
+					  </script>
                   </div>
                 </div>
               </div>
-		
+
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingPreferinte">
                   <h6 class="panel-title">
@@ -512,13 +512,13 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 					<form id="preferinte" name="preferinte" class="reservation-form" method="post" action="includes/profil.php" novalidate="novalidate">
 					<div class="row">
 					<div class="col-sm-12">
-						<div class="checkbox tab-content"> 
+						<div class="checkbox tab-content">
 							<label><input type="checkbox" value="" name="promotii" <?php echo ($row['promotions']==1?"checked":"");?>> Discounturi și promoții Academia Testării </label>
 						</div>
-						<div class="checkbox tab-content"> 
+						<div class="checkbox tab-content">
 							<label><input type="checkbox" value="" name="newsletter" <?php echo ($row['newsletter']==1?"checked":"");?>> Newsletter Academia Testării </label>
 						</div>
-					</div>	
+					</div>
 						<div class="col-sm-12">
 							<div class="form-group mb-0 mt-0">
 								<input name="form_botcheck" class="form-control" value="" type="hidden">
@@ -529,7 +529,7 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 						</div>
 						</div>
 					</form>
-					
+
 					  <script type="text/javascript">
 						$("#preferinte").validate({
 						  submitHandler: function(form) {
@@ -553,28 +553,28 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 							});
 						  }
 						});
-					  </script>					
+					  </script>
                   </div>
                 </div>
               </div>
-			  
+
             </div>
-			
+
           </div>
         </div>
-      </div>	  
-	  
+      </div>
+
     </section>
   <!-- end main-content -->
   </div>
 
   <!-- Footer -->
   <footer id="footer" class="footer" data-bg-img="images/footer-bg.png" data-bg-color="#020443">
-  
+
 <?php include("include.footer.php");?>
-	
+
 <?php include("include.subfooter.php");?>
-	
+
   </footer>
   <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
@@ -590,8 +590,8 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Inchide"><span aria-hidden="true">&times;</span></button>
 	</div>
-<div class="pl-50 pr-50 pb-50">	
-<?php 
+<div class="pl-50 pr-50 pb-50">
+<?php
 $sql_termeni="SELECT * FROM `content` WHERE id=6";
 $termeni=mysqli_fetch_assoc(mysqli_query($link,$sql_termeni));
 ?>

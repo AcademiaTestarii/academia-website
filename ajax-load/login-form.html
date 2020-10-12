@@ -1,60 +1,123 @@
 <section class="">
-  <div class="container position-relative p-0 mt-90" style="max-width: 570px;">
+  <div
+    class="container position-relative p-0 mt-90"
+    style="max-width: 570px;"
+  >
     <h3 class="bg-theme-colored2 p-15 pt-10 mt-0 mb-0 text-white">Contul tău</h3>
     <div class="section-content bg-white p-30">
       <div class="row">
         <div class="col-md-12">
-		
+
           <!-- Register Form Starts -->
-		<form id="login" name="login" class="reservation-form mb-0 bg-silver-light p-30" method="post" action="https://www.academiatestarii.ro/includes/login.php" novalidate="novalidate">
+          <form
+            id="login"
+            name="login"
+            class="reservation-form mb-0 bg-silver-light p-30"
+            method="post"
+            action="/includes/login.php"
+            novalidate="novalidate"
+          >
             <h3 class="text-center mt-0 mb-30">Intră în contul tău!</h3>
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group mb-30">
-                  <input placeholder="Email" id="email" name="email" required="" class="form-control" aria-required="true" type="email">
+                  <input
+                    placeholder="Email"
+                    id="email"
+                    name="email"
+                    required=""
+                    class="form-control"
+                    aria-required="true"
+                    type="email"
+                  >
                 </div>
               </div>
               <div class="col-sm-12">
                 <div class="form-group mb-30">
-                  <input placeholder="Parola" id="parola" name="parola" class="form-control" required="" aria-required="true" type="password" maxlength="12">
+                  <input
+                    placeholder="Parola"
+                    id="parola"
+                    name="parola"
+                    class="form-control"
+                    required=""
+                    aria-required="true"
+                    type="password"
+                    maxlength="12"
+                  >
                 </div>
               </div>
               <div class="col-sm-12">
                 <div class="form-group mb-0 mt-0">
-                  <input name="form_botcheck" class="form-control" value="" type="hidden">
-                  <button type="submit" class="btn btn-colored btn-block btn-theme-colored2 text-white btn-lg btn-flat" data-loading-text="Asteapta putin...">Intră în cont</button>
+                  <input
+                    name="form_botcheck"
+                    class="form-control"
+                    value=""
+                    type="hidden"
+                  >
+                  <button
+                    type="submit"
+                    class="btn btn-colored btn-block btn-theme-colored2 text-white btn-lg btn-flat"
+                    data-loading-text="Asteapta putin..."
+                  >Intră în cont</button>
                 </div>
               </div>
             </div>
-			<div class="col-sm-12">
-				<div class="form-group mb-0 mt-30 text-center">
-				  <a id="resetare" href="javascript:void(0)">Ai uitat parola?</a>
-				</div>
-			</div>
-		</form>
-		  
-		<form id="reset" name="reset" class="reservation-form mb-0 bg-silver-light p-30" method="post" action="includes/reset.php" novalidate="novalidate">
+            <div class="col-sm-12">
+              <div class="form-group mb-0 mt-30 text-center">
+                <a
+                  id="resetare"
+                  href="javascript:void(0)"
+                >Ai uitat parola?</a>
+              </div>
+            </div>
+          </form>
+
+          <form
+            id="reset"
+            name="reset"
+            class="reservation-form mb-0 bg-silver-light p-30"
+            method="post"
+            action="includes/reset.php"
+            novalidate="novalidate"
+          >
             <h3 class="text-center mt-0 mb-30">Resetează parola</h3>
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group mb-30">
-                  <input placeholder="Adresa de email cu care te-ai înregistrat." id="email" name="email" required="" class="form-control" aria-required="true" type="email">
+                  <input
+                    placeholder="Adresa de email cu care te-ai înregistrat."
+                    id="email"
+                    name="email"
+                    required=""
+                    class="form-control"
+                    aria-required="true"
+                    type="email"
+                  >
                 </div>
               </div>
               <div class="col-sm-12">
                 <div class="form-group mb-0 mt-0">
-                  <input name="form_botcheck" class="form-control" value="" type="hidden">
-                  <button type="submit" class="btn btn-dark btn-theme-colored" data-loading-text="Asteapta putin...">Resetează</button>
+                  <input
+                    name="form_botcheck"
+                    class="form-control"
+                    value=""
+                    type="hidden"
+                  >
+                  <button
+                    type="submit"
+                    class="btn btn-dark btn-theme-colored"
+                    data-loading-text="Asteapta putin..."
+                  >Resetează</button>
                 </div>
               </div>
             </div>
-		</form>
+          </form>
 
           <!-- Appointment Form Validation-->
           <script type="text/javascript">
-			$("#reset").hide();
+            $("#reset").hide();
             $("#login").validate({
-              submitHandler: function(form) {
+              submitHandler: function (form) {
                 var form_btn = $(form).find('button[type="submit"]');
                 var form_result_div = '#form-result';
                 $(form_result_div).remove();
@@ -62,28 +125,28 @@
                 var form_btn_old_msg = form_btn.html();
                 form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
                 $(form).ajaxSubmit({
-                  dataType:  'json',
-                  success: function(data) {
-                    if( data.status == 'true' ) {
+                  dataType: 'json',
+                  success: function (data) {
+                    if (data.status == 'true') {
                       //$(form).find('.form-control').val('');
-					  location.href = "contul_tau.php#sectiuneaCursuri";
+                      location.href = "contul_tau.php#sectiuneaCursuri";
                     }
                     form_btn.prop('disabled', false).html(form_btn_old_msg);
                     $(form_result_div).html(data.message).fadeIn('slow');
-                    setTimeout(function(){ $(form_result_div).fadeOut('slow') }, 6000);
+                    setTimeout(function () { $(form_result_div).fadeOut('slow') }, 6000);
                   }
                 });
               }
             });
           </script>
-		  
-		  <script type="text/javascript">
-			$("#resetare").click(function(){
-			  $("#login").hide();
-			  $("#reset").show();
-			});
-			$("#reset").validate({
-              submitHandler: function(form) {
+
+          <script type="text/javascript">
+            $("#resetare").click(function () {
+              $("#login").hide();
+              $("#reset").show();
+            });
+            $("#reset").validate({
+              submitHandler: function (form) {
                 var form_btn = $(form).find('button[type="submit"]');
                 var form_result_div = '#form-result';
                 $(form_result_div).remove();
@@ -91,24 +154,28 @@
                 var form_btn_old_msg = form_btn.html();
                 form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
                 $(form).ajaxSubmit({
-                  dataType:  'json',
-                  success: function(data) {
-                    if( data.status == 'true' ) {
+                  dataType: 'json',
+                  success: function (data) {
+                    if (data.status == 'true') {
                       $(form).find('.form-control').val('');
-					  //location.href = "contul_tau.php";
+                      //location.href = "contul_tau.php";
                     }
                     form_btn.prop('disabled', false).html(form_btn_old_msg);
                     $(form_result_div).html(data.message).fadeIn('slow');
-                    setTimeout(function(){ $(form_result_div).fadeOut('slow') }, 6000);
+                    setTimeout(function () { $(form_result_div).fadeOut('slow') }, 6000);
                   }
                 });
               }
             });
-		  </script>
-		  
+          </script>
+
         </div>
       </div>
     </div>
-    <button title="Close (Esc)" type="button" class="mfp-close font-36">×</button>
+    <button
+      title="Close (Esc)"
+      type="button"
+      class="mfp-close font-36"
+    >×</button>
   </div>
 </section>

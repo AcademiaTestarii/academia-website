@@ -24,13 +24,13 @@ if (isset($_GET['cheie']) AND strlen($_GET['cheie'])==12 AND ctype_alnum($_GET['
 
 			$greetings = "Salutare ".$prenume."<br><br>";
 			$message = "Mulţumim pentru confirmare! <br>Am setat o parola temporara pentru tine: <strong></strong>.
-			<p>O poti scimba orican din contul tau sau folosind ntru a intra în contul tău de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"https://www.academiatestarii.ro/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Te aşteptăm cu drag,<br>Academia Testării.";
+			<p>O poti scimba orican din contul tau sau folosind ntru a intra în contul tău de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Te aşteptăm cu drag,<br>Academia Testării.";
 
 			$body = "$greetings $message";
 
 			$mail->MsgHTML( $body );
 			$sendEmail = $mail->Send();
-			
+
 		header("Location:contul_tau.php");
 	} else {
 		// deja activat

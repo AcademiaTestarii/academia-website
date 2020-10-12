@@ -1,38 +1,92 @@
 <section class="fereastra">
-  <div class="container position-relative p-0 mt-90" style="max-width: 700px;">
+  <div
+    class="container position-relative p-0 mt-90"
+    style="max-width: 700px;"
+  >
     <h3 class="bg-theme-colored2 p-15 pt-10 mt-0 mb-0 text-white">Înregistrează-te</h3>
     <div class="section-content bg-white p-30">
       <div class="row">
         <div class="col-md-12">
-		
+
           <!-- Register Form Starts -->
-          <form id="inregistrare" name="inregistrare" class="reservation-form mb-0 bg-silver-light p-30" method="post" action="https://www.academiatestarii.ro/includes/register.php" novalidate="novalidate">
+          <form
+            id="inregistrare"
+            name="inregistrare"
+            class="reservation-form mb-0 bg-silver-light p-30"
+            method="post"
+            action="/includes/register.php"
+            novalidate="novalidate"
+          >
             <h3 class="text-center mt-0 mb-30">Înregistrează-te pe platforma noastră!</h3>
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group mb-30">
-                  <input placeholder="Nume" id="nume" name="nume" required="" class="form-control" aria-required="true" type="text">
+                  <input
+                    placeholder="Nume"
+                    id="nume"
+                    name="nume"
+                    required=""
+                    class="form-control"
+                    aria-required="true"
+                    type="text"
+                  >
                 </div>
               </div>
               <div class="col-sm-12">
                 <div class="form-group mb-30">
-                  <input placeholder="Prenume" id="prenume" name="prenume" required="" class="form-control" aria-required="true" type="text">
+                  <input
+                    placeholder="Prenume"
+                    id="prenume"
+                    name="prenume"
+                    required=""
+                    class="form-control"
+                    aria-required="true"
+                    type="text"
+                  >
                 </div>
               </div>
               <div class="col-sm-12">
                 <div class="form-group mb-30">
-                  <input placeholder="Adresa Email" id="email" name="email" class="form-control" required="" aria-required="true" type="email">
+                  <input
+                    placeholder="Adresa Email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    required=""
+                    aria-required="true"
+                    type="email"
+                  >
                 </div>
               </div>
               <div class="col-sm-12">
                 <div class="form-group mb-30">
-                  <input placeholder="Seteaza parola (max 12 caractere)" id="parola" name="parola" required="" class="form-control" aria-required="true" type="password" maxlength="12">
+                  <input
+                    placeholder="Seteaza parola (max 12 caractere)"
+                    id="parola"
+                    name="parola"
+                    required=""
+                    class="form-control"
+                    aria-required="true"
+                    type="password"
+                    maxlength="12"
+                  >
                 </div>
               </div>
               <div class="col-sm-12">
                 <div class="form-group mb-0 mt-0">
-                  <input name="form_botcheck" class="form-control" value="" type="hidden">
-                  <button id="submit" name="submit" type="submit" class="btn btn-colored btn-block btn-theme-colored2 text-white btn-lg btn-flat" data-loading-text="Asteapta putin...">Crează cont</button>
+                  <input
+                    name="form_botcheck"
+                    class="form-control"
+                    value=""
+                    type="hidden"
+                  >
+                  <button
+                    id="submit"
+                    name="submit"
+                    type="submit"
+                    class="btn btn-colored btn-block btn-theme-colored2 text-white btn-lg btn-flat"
+                    data-loading-text="Asteapta putin..."
+                  >Crează cont</button>
                 </div>
               </div>
             </div>
@@ -41,33 +95,37 @@
           <!-- Form Validation-->
           <script type="text/javascript">
             $("#inregistrare").validate({
-              submitHandler: function(form) {
-			  
+              submitHandler: function (form) {
+
                 var form_btn = $(form).find('button[type="submit"]');
                 var form_result_div = '#form-result';
                 $(form_result_div).remove();
                 form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
                 var form_btn_old_msg = form_btn.html();
                 form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
-				
+
                 $(form).ajaxSubmit({
-                  dataType:  'json',
-                  success: function(data) {
-                    if( data.status == 'true' ) {
+                  dataType: 'json',
+                  success: function (data) {
+                    if (data.status == 'true') {
                       $(form).find('.form-control').val('');
                     }
                     form_btn.prop('disabled', false).html(form_btn_old_msg);
                     $(form_result_div).html(data.message).fadeIn('slow');
-                    setTimeout(function(){ $(form_result_div).fadeOut('slow') }, 6000);
+                    setTimeout(function () { $(form_result_div).fadeOut('slow') }, 6000);
                   }
                 });
               }
             });
           </script>
-		  
+
         </div>
       </div>
     </div>
-    <button title="Close (Esc)" type="button" class="mfp-close font-36">×</button>
+    <button
+      title="Close (Esc)"
+      type="button"
+      class="mfp-close font-36"
+    >×</button>
   </div>
 </section>

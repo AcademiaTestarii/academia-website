@@ -17,14 +17,14 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			$sql_select="SELECT * FROM `students` WHERE `email`='".$email."'";
 			$query_select=mysqli_query($link,$sql_select);
 			if (mysqli_num_rows($query_select)==0) {
-				
+
 				$cod_confirmare=generatePassword();
-				$sql="INSERT INTO `students` (`last_name`,`first_name`,`email`,`password`,`confirmation_code`) 
-				VALUES 
+				$sql="INSERT INTO `students` (`last_name`,`first_name`,`email`,`password`,`confirmation_code`)
+				VALUES
 				('".$nume."','".$prenume."','".$email."','".md5($parola)."','".$cod_confirmare."')";
-				
+
 				if ( $query=(mysqli_query($link,$sql)) ):
-				
+
 					require_once('phpmailer/class.phpmailer.php');
 
 					$mail = new PHPMailer();
@@ -35,23 +35,23 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					$mail->Subject = "Confirmă înregistrarea pe platforma Academia Testării";
 
 					$greetings = "Salutare ".$prenume."<br><br>";
-					$message = "Mulţumim pentru înregistrare! <br>Pentru a intra în contul tău de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"https://www.academiatestarii.ro/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Parola ta este: <strong>".$parola."</strong><br><br>Te aşteptăm cu drag,<br>Academia Testării.";
+					$message = "Mulţumim pentru înregistrare! <br>Pentru a intra în contul tău de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Parola ta este: <strong>".$parola."</strong><br><br>Te aşteptăm cu drag,<br>Academia Testării.";
 
 					$body = "$greetings $message";
 
 					$mail->MsgHTML( $body );
 					$Sendmail = $mail->Send();
-				
+
 					if( $Sendmail == true ):
 					$message = 'Mulţumim pentru înregistrare. Am trimis un mesaj de confirmare, te rugăm să verifici emailul şi să dai click pe linkul din mesaj pentru a confirma înregistrarea.';
 					$status = "true";
-					
+
 					/* Notificare */
 					$notificare = new PHPMailer();
 
 					$notificare->setFrom( "office@academiatestarii.ro" ,"Academia Testării" );
 					$notificare->addAddress( "contact@academiatestarii.ro" ,"Academia Testării" );
-					
+
 					$notificare->Subject = "Academia Testarii - O Inregistrare Noua!";
 
 					$greetingsnotificare = "<h3>O Inregistrare Noua!</h3>";
@@ -62,34 +62,34 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 					$notificare->msgHTML( $bodynotificare );
 					$Sendmailnotificare = $notificare->Send();
-					
+
 					else:
 					$message = 'Eroare! Te rugăm sa contactezi webmasterul. Cod Eroare: 12M';
 					$status = "false";
 					endif;
-				
+
 					$message = 'Mulţumim pentru înregistrare. Am trimis un mesaj de confirmare, te rugăm să verifici emailul şi să dai click pe linkul din mesaj pentru a confirma înregistrarea.';
 					$status = "true";
 				else:
 					$message = 'Eroare! Te rugăm sa contactezi webmasterul. Cod Eroare: 12Q';
 					$status = "false";
 				endif;
-			
+
 			} else {
 				$message = 'Ai deja cont pe platforma noastra. Te rugăm să foloseşti formularul de login pentru a intra in cont sau pentru a schimba parola.';
 				$status = "false";
 			}
-			
+
 		} else {
 			$message = 'Bot <strong>Detected</strong>.! Clean yourself Botster.!';
 			$status = "false";
-		}	
-	
+		}
+
     } else {
         $message = 'Te rog să <strong>completezi toate campurile</strong> şi să încerci din nou.';
         $status = "false";
     }
-	
+
 } else {
     $message = 'A apărut o eroare, încearcă mai târziu.';
     $status = "false";

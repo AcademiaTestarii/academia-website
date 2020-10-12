@@ -1,9 +1,9 @@
-<?php 
+<?php
 include("__connect.php");
 if (isset($_GET['id']) && strlen($_GET['id'])==12 && ctype_alnum($_GET['id'])) {
 $id=mysqli_real_escape_string($link,$_GET['id']);
 $sql="
-SELECT 
+SELECT
 students.first_name,
 students.last_name,
 classes.registration_start_date,
@@ -20,7 +20,7 @@ feedback.defects_minus,
 feedback.traceability_plus,
 feedback.traceability_minus,
 feedback.granted_on
-FROM `feedback` 
+FROM `feedback`
 LEFT JOIN `students` ON `feedback`.`student_id`=`students`.`id`
 LEFT JOIN `classes` ON `feedback`.`class_id`=`classes`.`id`
 LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
@@ -66,11 +66,11 @@ $row=mysqli_fetch_assoc($query);
 <link href="css/animate.css" rel="stylesheet" type="text/css">
 <link href="css/css-plugin-collections.css" rel="stylesheet"/>
 <!-- Academia Testarii CSS | Style css -->
-<link href="css/style.css" rel="stylesheet" type="text/css"> 
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <!-- CSS | Academia Testarii -->
 <link href="css/colors/academia-testarii.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Fondamento&display=swap" rel="stylesheet"> 
-<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"https://www.academiatestarii.ro/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"https://www.academiatestarii.ro/#organization","name":"Academia Testarii","logo":"https://www.academiatestarii.ro/images/logo-academia-testarii.png"}</script>
+<link href="https://fonts.googleapis.com/css2?family=Fondamento&display=swap" rel="stylesheet">
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"/#organization","name":"Academia Testarii","logo":"/images/logo-academia-testarii.png"}</script>
 
 <!-- Facebook Pixel Code -->
 <script>
@@ -82,11 +82,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
- fbq('init', '347879355772596'); 
+ fbq('init', '347879355772596');
 fbq('track', 'PageView');
 </script>
 <noscript>
- <img height="1" width="1" 
+ <img height="1" width="1"
 src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 &noscript=1"/>
 </noscript>
@@ -117,7 +117,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 			</div>
 		</div>
 	</div>
-	
+
 <div class="parte">
 <div class="row m-sm" style="padding:15px;">
 	<div class="col-md-12 text-center"><h3>Organizare Jira & Zephyr</h3></div>

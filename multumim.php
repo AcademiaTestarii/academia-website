@@ -1,13 +1,13 @@
-<!-- Made by: DanielM 2019 --> 
-<?php 
+<!-- Made by: DanielM 2019 -->
+<?php
 session_start();
 include("__connect.php");
 if(isset($_SESSION['key_admin']) && $_SESSION['key_admin']==session_id()) {$membru=true;include("useract.php");} else {$membru=false;}
 $page="multumim";
 
-if (isset($_GET['curs']) && is_numeric($_GET['curs'])) { 
+if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
 	$curs=trim(mysqli_real_escape_string($link,$_GET['curs']));
-	$sql="SELECT * FROM `cursuri` 
+	$sql="SELECT * FROM `cursuri`
 	LEFT JOIN `curs_main` ON `cursuri`.`parent`=`curs_main`.`id_curs_main`
 	WHERE `id`=".$curs;
 	$query=mysqli_query($link,$sql);
@@ -17,10 +17,10 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
 		$nume=$cursactiv['titlu_main'];
 		$data=$cursactiv['start_inscriere'];
 	} else {
-		header("Location:cursuri.php");	
+		header("Location:cursuri.php");
 	}
 } else {
-	header("Location:cursuri.php");	
+	header("Location:cursuri.php");
 }
 ?>
 <!DOCTYPE html>
@@ -58,13 +58,13 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
 <meta property="og:title" content="Academia Testării:: Mulțumim" />
 <meta property="og:author" content="@academiatestarii" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.academiatestarii.ro/multumim.php" />
+<meta property="og:url" content="/multumim.php" />
 <meta property="og:image:alt" content="Cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." />
-<meta property="og:image" content="https://www.academiatestarii.ro/images/contact-og.jpg" />
+<meta property="og:image" content="/images/contact-og.jpg" />
 <meta property="og:image:width" content="1195" />
 <meta property="og:image:height" content="963" />
 <meta property="og:image:type" content="image/jpeg" />
-<meta property="og:description" content="Academia Testarii e despre atenţia la detalii. Oferim cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." /> 
+<meta property="og:description" content="Academia Testarii e despre atenţia la detalii. Oferim cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." />
 <meta property="og:site_name" content="Academia Testării" />
 
 <!-- Stylesheet -->
@@ -84,7 +84,7 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
 <!-- CSS | Responsive media queries -->
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <!-- Academia Testarii CSS | Style css -->
-<link href="css/style.css" rel="stylesheet" type="text/css"> 
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <!-- Revolution Slider 5.x CSS settings -->
 <link  href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
 <link  href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css"/>
@@ -106,7 +106,7 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"https://www.academiatestarii.ro/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"https://www.academiatestarii.ro/#organization","name":"Academia Testarii","logo":"https://www.academiatestarii.ro/images/logo-academia-testarii.png"}</script>
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"/","sameAs":["https://www.facebook.com/academiatestarii/","https://www.linkedin.com/company/18151104/"],"@id":"/#organization","name":"Academia Testarii","logo":"/images/logo-academia-testarii.png"}</script>
 
 <!-- Facebook Pixel Code -->
 <script>
@@ -118,11 +118,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
- fbq('init', '347879355772596'); 
+ fbq('init', '347879355772596');
 fbq('track', 'PageView');
 </script>
 <noscript>
- <img height="1" width="1" 
+ <img height="1" width="1"
 src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 &noscript=1"/>
 </noscript>
@@ -138,14 +138,14 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
       </div>
     </div>
     <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>
-  </div> 
-  
+  </div>
+
 <!-- Header -->
   <header id="header" class="header modern-header modern-header-white">
 <?php include ("include.top.header.php");?>
 <?php include ("include.top.menu.php");?>
   </header>
- 
+
 <!-- Start main-content -->
   <div class="main-content">
 
@@ -162,7 +162,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         </div>
       </div>
     </section>
-    
+
     <!-- Divider: Contact -->
     <section class="divider bg-lighter">
       <div class="container">
@@ -184,11 +184,11 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 
   <!-- Footer -->
   <footer id="footer" class="footer" data-bg-img="images/footer-bg.png" data-bg-color="#020443">
-  
+
 <?php include("include.footer.php");?>
-	
+
 <?php include("include.subfooter.php");?>
-	
+
   </footer>
   <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 </div>

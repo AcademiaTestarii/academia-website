@@ -17,7 +17,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				$cod_resetare=generatePassword();
 				$today=date("Y-m-d H:i:s");
 				$sql="UPDATE `students` SET `reset`='".$today."',`reset_code`='".$cod_resetare."'  WHERE `id`=".$row['id'];
-				
+
 				if ( $query=(mysqli_query($link,$sql)) ):
 
 						require_once('phpmailer/class.phpmailer.php');
@@ -29,15 +29,15 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 						$mail->Subject = "Cerere resetare parolă platforma Academia Testării";
 
 						$greetings = "Salutare ".$prenume."<br><br>";
-						$message = "Ai cerut o resetare a parolei de pe platforma Academia Testării. <br>Poţi schimba parola dupa ce intri în contul tău de pe platforma Academia Testării dând clik pe linkul de mai jos:<br><br><a href=\"https://www.academiatestarii.ro/reset.php?cheie=$cod_resetare\">Schimbă parola</a><br><br>ATENTIE: Acest link expira în 15 minute.<br><br><strong>Daca nu ai solicitat tu acest lucru, te rugăm sa ignori acest mesaj!</strong>";
+						$message = "Ai cerut o resetare a parolei de pe platforma Academia Testării. <br>Poţi schimba parola dupa ce intri în contul tău de pe platforma Academia Testării dând clik pe linkul de mai jos:<br><br><a href=\"/reset.php?cheie=$cod_resetare\">Schimbă parola</a><br><br>ATENTIE: Acest link expira în 15 minute.<br><br><strong>Daca nu ai solicitat tu acest lucru, te rugăm sa ignori acest mesaj!</strong>";
 
 						$body = "$greetings $message";
 
 						$mail->MsgHTML( $body );
 						$sendEmail = $mail->Send();
-					
+
 						if( $sendEmail == true ):
-						$message = 'Am trimis un email cu instrucțiuni pentru resetarea parolei.';					
+						$message = 'Am trimis un email cu instrucțiuni pentru resetarea parolei.';
 						$status = "true";
 						else:
 						$message = 'Eroare! Te rugăm sa contactezi webmasterul. Cod Eroare: 11R';
@@ -48,22 +48,22 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					$message = 'Eroare! Te rugăm să contactezi webmaster-ul. Cod Eroare: 12R';
 					$status = "false";
 				endif;
-			
+
 			} else {
 				$message = 'Ne pare rău. Nu ai cont pe platforma noastră, eşti inactiv sau ai introdus date greşite. Te rugăm să încerci din nou.';
 				$status = "false";
 			}
-			
+
 		} else {
 			$message = 'Bot <strong>Detected</strong>.! Clean yourself Botster.!';
 			$status = "false";
-		}	
-	
+		}
+
     } else {
         $message = 'Te rog să <strong>completezi toate câmpurile</strong> şi să incerci din nou.';
         $status = "false";
     }
-	
+
 } else {
     $message = 'A apărut o eroare, incearcă mai târziu. Cod Eroare: 14R';
     $status = "false";
