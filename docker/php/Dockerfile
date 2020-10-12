@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:5.3-fpm
 
 # Copy composer.lock and composer.json
 COPY . /var/www
@@ -8,6 +8,9 @@ WORKDIR /var/www
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
+  mysql-server \
+  mysql-client \
+  php5-mysql \
   build-essential \
   libzip-dev \
   libpng-dev \
