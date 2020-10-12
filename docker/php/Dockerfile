@@ -8,8 +8,6 @@ WORKDIR /var/www
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-  mysql-server \
-  mysql-client \
   php5-mysql \
   build-essential \
   libzip-dev \
