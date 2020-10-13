@@ -10,7 +10,7 @@ $page="blog";
 <head>
 <!-- Page Title -->
 <title>Academia Testării:: Blog</title>
-<base href="https://www.academiatestarii.ro">
+<base href="<?php echo $_SERVER['SERVER_NAME'];?>>">
 <!-- Meta Tags -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -161,7 +161,7 @@ if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
 }
 
 $sql="
-SELECT * FROM `news`
+SELECT *, news.id as news_id FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
 WHERE `news`.`is_active`=1 ";
 $query=mysqli_query($link,$sql);
@@ -209,14 +209,14 @@ $descriere=truncate($scurta,300,"...");
                         </div>
                         <div class="media-body pl-15">
                           <div class="event-content pull-left flip">
-                            <h3 class="entry-title text-white text-uppercase m-0 mt-5"><a href="articol.php?id=<?php echo $row['news.id'];?>"><?php echo $row['title'];?></a></h3>
+                            <h3 class="entry-title text-white text-uppercase m-0 mt-5"><a href="articol.php?id=<?php echo $row['news_id'];?>"><?php echo $row['title'];?></a></h3>
                             <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> -- </span>
                             <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-eye mr-5 text-theme-colored"></i> <?php echo $row['views'];?> </span>
                           </div>
                         </div>
                       </div>
                       <p class="mt-10"><?php echo $descriere;?></p>
-                      <a href="articol.php?id=<?php echo $row['news.id'];?>" class="btn-read-more">Citeste articolul</a>
+                      <a href="articol.php?id=<?php echo $row['news_id'];?>" class="btn-read-more">Citeste articolul</a>
                       <div class="clearfix"></div>
                     </div>
                   </article>
@@ -271,7 +271,7 @@ $sql="
 SELECT * FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
 WHERE `news`.`is_active`=1
-ORDER BY `news_images`.`date` DESC LIMIT 3";
+ORDER BY `news_images`.`created_at` DESC LIMIT 3";
 $query=mysqli_query($link,$sql);
 while ($row=mysqli_fetch_assoc($query)) {
 $scurta=removeTags($row['text'], array("p","ul","li","div","hr","h1","h2","h3","span","table","tr","td","img","strong","br","ol","dl")); // remove html
@@ -279,10 +279,10 @@ $descrierescurta=truncate($scurta,100,"...");
 ?>
                   <article class="post media-post clearfix pb-0 mb-10">
 <?php if ($row['image']!="") { ?>
-                    <a class="post-thumb" href="articol.php?id=<?php echo $row['news.id'];?>"><img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>"></a>
+                    <a class="post-thumb" href="articol.php?id=<?php echo $row['news_id'];?>"><img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>"></a>
 <? } ?>
                     <div class="post-right">
-                      <h4 class="post-title mt-0"><a href="articol.php?id=<?php echo $row['news.id'];?>"><?php echo $row['title'];?></a></h4>
+                      <h4 class="post-title mt-0"><a href="articol.php?id=<?php echo $row['news_id'];?>"><?php echo $row['title'];?></a></h4>
                       <p class="post_sub"><?php echo $descrierescurta;?></p>
                     </div>
                   </article>

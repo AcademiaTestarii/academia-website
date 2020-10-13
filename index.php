@@ -15,7 +15,7 @@ $page = "home";
 <head>
   <!-- Page Title -->
   <title>Academia Testării</title>
-  <base href="http://34.123.100.80/">
+  <base href="<?php echo $_SERVER['SERVER_NAME'];?>>">
   <!-- Meta Tags -->
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />

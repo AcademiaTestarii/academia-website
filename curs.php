@@ -46,7 +46,7 @@ header("Location:cursuri.php");
 <head>
 <!-- Page Title -->
 <title>Academia Testării :: Curs: <?php echo $row_curs['main_classes.title'];?></title>
-<base href="https://www.academiatestarii.ro">
+<base href="<?php echo $_SERVER['SERVER_NAME'];?>>">
 <!-- Meta Tags -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -353,16 +353,25 @@ if (mysqli_num_rows($cursuriSql)>0) {
                 <div class="services-list">
                   <ul class="list list-border">
 <?php
-$sql_cursuri="SELECT * FROM `classes`
-LEFT JOIN `main_classes`
-ON `classes`.`main_class_id`=`main_classes`.`id`
-WHERE `registration_start_date`>NOW()
-GROUP BY `main_class_id`
-ORDER BY `main_classes`.`order` ASC";
+$sql_cursuri="SELECT  a.*, c.*, a.title as main_title
+FROM main_classes a 
+    INNER JOIN classes c
+        ON a.id = c.main_class_id
+    INNER JOIN
+    (
+        SELECT main_class_id, MAX(registration_start_date) maxDate
+        FROM classes
+        GROUP BY main_class_id
+    ) b ON c.main_class_id = b.main_class_id AND
+            c.registration_start_date = b.maxDate
+             WHERE `c`.`registration_start_date`>NOW() AND `c`.`is_active`=1
+             order by `c`.`registration_start_date` asc";
+
 $query_cursuri=mysqli_query($link,$sql_cursuri);
 while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) { ?>
-					<?php if ($id==$row_cursuri['main_class_id']) { ?><img class="img-fullwidth topmenuimg" src="images/cursuri/<?php echo $row_curs['image'];?>" alt="<?php echo $row_curs['main_classes.title'];?>"> <?php } ?>
-					<li <?php if ($id==$row_cursuri['main_class_id']) {echo"class=\"active\"";}?>><a href="curs.php?id=<?php echo $row_cursuri['main_class_id'];?>"><?php echo $row_cursuri['is_new']==0 ? $row_cursuri['main_classes.title'] : "<strong>NOU</strong>: ".$row_cursuri['main_classes.title'];?></a></li>
+					<?php if ($id==$row_cursuri['main_class_id']) { ?><img class="img-fullwidth topmenuimg" src="images/cursuri/<?php echo $row_curs['image'];?>" alt="<?php echo $row_curs['main_title'];?>"> <?php } ?>
+					<li <?php if ($id==$row_cursuri['main_class_id']) {echo"class=\"active\"";}?>>
+                        <a href="curs.php?id=<?php echo $row_cursuri['main_class_id'];?>"><?php echo ($row_cursuri['is_new']==0) ? ($row_cursuri['main_title']) : ("<strong>NOU</strong>: ".$row_cursuri['main_title']);?></a></li>
 <?php } ?>
                   </ul>
                 </div>

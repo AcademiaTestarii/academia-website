@@ -21,7 +21,7 @@ $today = date("Y-m-d");
 
 <!-- Page Title -->
 <title>Academia Testării:: Contul tău</title>
-<base href="https://www.academiatestarii.ro">
+<base href="<?php echo $_SERVER['SERVER_NAME'];?>>">
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">

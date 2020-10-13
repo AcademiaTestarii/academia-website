@@ -7,15 +7,15 @@ $page="multumim";
 
 if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
 	$curs=trim(mysqli_real_escape_string($link,$_GET['curs']));
-	$sql="SELECT * FROM `cursuri`
-	LEFT JOIN `curs_main` ON `cursuri`.`parent`=`curs_main`.`id_curs_main`
-	WHERE `id`=".$curs;
+	$sql="SELECT * FROM `classes`
+	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
+	WHERE `main_class_id`=".$curs;
 	$query=mysqli_query($link,$sql);
 	if (mysqli_num_rows($query)>0) {
 		$cursactiv=mysqli_fetch_assoc($query);
-		$valoare=$cursactiv['pret'];
-		$nume=$cursactiv['titlu_main'];
-		$data=$cursactiv['start_inscriere'];
+		$valoare=$cursactiv['price'];
+		$nume=$cursactiv['main_classes.title'];
+		$data=$cursactiv['registration_start_date'];
 	} else {
 		header("Location:cursuri.php");
 	}
@@ -28,7 +28,7 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
 <head>
 <!-- Page Title -->
 <title>Academia Testării:: Mulțumim</title>
-<base href="https://www.academiatestarii.ro">
+<base href="<?php echo $_SERVER['SERVER_NAME'];?>>">
 <!-- Meta Tags -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>

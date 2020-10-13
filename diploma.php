@@ -9,7 +9,7 @@ include("__connect.php");
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Certificat de absolvire</title>
-<base href="https://www.academiatestarii.ro">
+<base href="<?php echo $_SERVER['SERVER_NAME'];?>>">
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">

@@ -22,7 +22,7 @@ header("Location:blog.php");
 <head>
 <!-- Page Title -->
 <title>Academia Testarii:: <?php echo $row['title'];?></title>
-<base href="https://www.academiatestarii.ro">
+<base href="<?php echo $_SERVER['SERVER_NAME'];?>>">
 <!-- Meta Tags -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -302,10 +302,10 @@ if (mysqli_num_rows($query_comentarii)>0) {
                 <div class="latest-posts">
 <?php
 $sql="
-SELECT * FROM `news`
+SELECT *, news.id as news_id FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
-WHERE `news`.`is_activ`=1 AND `news`.`id`!=".$id."
-ORDER BY `news`.`date` DESC LIMIT 3";
+WHERE `news`.`is_active`=1 AND `news`.`id`!= ".$id."
+ORDER BY `news`.`created_at` DESC LIMIT 3";
 $query=mysqli_query($link,$sql);
 while ($row=mysqli_fetch_assoc($query)) {
 $scurta=removeTags($row['text'], array("p","ul","li","div","hr","h1","h2","h3","span","table","tr","td","img","strong","br","ol","dl")); // remove html
@@ -313,10 +313,10 @@ $descrierescurta=truncate($scurta,100,"...");
 ?>
                   <article class="post media-post clearfix pb-0 mb-10">
 <?php if ($row['image']!="") { ?>
-                    <a class="post-thumb" href="articol.php?id=<?php echo $row['news.id'];?>"><img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>"></a>
+                    <a class="post-thumb" href="articol.php?id=<?php echo $row['news_id'];?>"><img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>"></a>
 <? } ?>
                     <div class="post-right">
-                      <h4 class="post-title mt-0"><a href="articol.php?id=<?php echo $row['news.id'];?>"><?php echo $row['title'];?></a></h4>
+                      <h4 class="post-title mt-0"><a href="articol.php?id=<?php echo $row['news_id'];?>"><?php echo $row['title'];?></a></h4>
                       <p class="post_sub"><?php echo $descrierescurta;?></p>
                     </div>
                   </article>

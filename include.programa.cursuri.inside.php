@@ -14,19 +14,19 @@
 <?php 	 
 // nu e final 
 $sql_cursuri="
-SELECT `selectie`.* FROM 
-(
-SELECT * FROM `classes` 
-LEFT JOIN `main_classes` 
-ON `classes`.`main_class_id`=`main_classes`.`id` 
-ORDER BY `classes`.`registration_start_date` ASC
-LIMIT 18446744073709551615
-)
-AS `selectie` 
-WHERE `selectie`.`registration_start_date`>NOW()
-AND `selectie`.`is_active`=1
-GROUP BY `main_class_id`
-ORDER BY `selectie`.`registration_start_date` ASC
+SELECT  a.*, c.*, a.title as main_title
+FROM main_classes a 
+    INNER JOIN classes c
+        ON a.id = c.main_class_id
+    INNER JOIN
+    (
+        SELECT main_class_id, MAX(registration_start_date) maxDate
+        FROM classes
+        GROUP BY main_class_id
+    ) b ON c.main_class_id = b.main_class_id AND
+            c.registration_start_date = b.maxDate
+             WHERE `c`.`registration_start_date`>NOW() AND `c`.`is_active`=1
+             order by `c`.`registration_start_date` asc
 ";
 $query_cursuri=mysqli_query($link,$sql_cursuri);
 while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) {
@@ -55,7 +55,7 @@ while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) {
                       <div class="entry-meta media mt-0 mb-10">
                         <div class="media-body pl-0">
                           <div class="event-content pull-left flip">
-                            <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5"><a href="curs.php?id=<?php echo $row_cursuri['main_class_id'];?>"><?php echo $row_cursuri['main_classes.title'];?></a></h4>
+                            <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5"><a href="curs.php?id=<?php echo $row_cursuri['main_class_id'];?>"><?php echo $row_cursuri['main_title'];?></a></h4>
 							<?php if (strlen($row_cursuri['classes.title'])<32) {echo "<br />";} ?>
 							<p><?php echo $row_cursuri['short_description'];?></p>
 							
@@ -94,7 +94,7 @@ while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) {
                         </div>
                       </div>
                       <!--p class="mt-5"><?php if ($row_cursuri['weekend']==0) {echo "In timpul saptamanii";} else {echo "In weekend";}?></p-->
-                      <a class="btn btn-dark btn-theme-colored2" href="curs.php?id=<?php echo $row_cursuri['id_curs_main'];?>"> Detalii curs</a>
+                      <a class="btn btn-dark btn-theme-colored2" href="curs.php?id=<?php echo $row_cursuri['main_class_id'];?>"> Detalii curs</a>
 					  <a href="inscriere-curs.php?curs=<?php echo $row_cursuri['id'];?>" class="btn btn-dark btn-theme-colored pull-right">Înscrie-te</a>
                     </div>
                   </article>

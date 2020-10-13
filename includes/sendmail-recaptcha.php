@@ -10,7 +10,7 @@
 $recaptcha_secretkey = "6LcFfhAUAAAAAJQ0xtpn1SkKpuNN5QVedbU6zrf2";
 
 // GOOGLE reCAPTCHA Validation Check
-ini_set('display_errors',1);  error_reporting(E_ALL);
+//ini_set('display_errors',1);  //error_reporting(E_ALL);
 
 
 $message = "";

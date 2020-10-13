@@ -10,7 +10,7 @@ $page="firme";
 <head>
 <!-- Page Title -->
 <title>Academia Testarii:: Pentru companii</title>
-<base href="https://www.academiatestarii.ro">
+<base href="<?php echo $_SERVER['SERVER_NAME'];?>>">
 <!-- Meta Tags -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
