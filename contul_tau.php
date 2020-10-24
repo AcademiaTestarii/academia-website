@@ -1,4 +1,3 @@
-<!-- Made by: DanielM 2019 -->
 <?php
 session_start();
 require_once("__connect.php");

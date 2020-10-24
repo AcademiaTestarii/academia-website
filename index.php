@@ -1,4 +1,3 @@
-<!-- Made by: DanielM 2019 -->
 <?php
 include("__connect.php");
 if (isset($_SESSION['key_admin']) && $_SESSION['key_admin'] == session_id()) {
