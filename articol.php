@@ -8,7 +8,7 @@ $id=trim(mysqli_real_escape_string($link,$_GET['id']));
 $sql="
 SELECT * FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
-WHERE `news`.`id`=".$id;
+WHERE `news`.`deleted_at` is null AND  ``news`.`id`=".$id;
 $query=mysqli_query($link,$sql);
 $row=mysqli_fetch_assoc($query);
 mysqli_query($link,"UPDATE `news` SET `views`=`views`+1 WHERE `id`=".$id);
@@ -205,7 +205,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 <?php
 /* metatags */
 $metakeyList="";
-$sql_meta="SELECT * FROM `news` WHERE `keywords`<>'' AND `id`=".$id;
+$sql_meta="SELECT * FROM `news` WHERE `news`.`deleted_at` is null and `keywords`<>'' AND `id`=".$id;
 $query_meta=mysqli_query($link,$sql_meta);
 while($rowmeta = mysqli_fetch_array($query_meta)) {
 	$metakeysParts = explode(",", $rowmeta['keywords']);
@@ -303,7 +303,7 @@ if (mysqli_num_rows($query_comentarii)>0) {
 $sql="
 SELECT *, news.id as news_id FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
-WHERE `news`.`is_active`=1 AND `news`.`id`!= ".$id."
+WHERE `news`.`deleted_at` is null AND `news`.`is_active`=1 AND `news`.`id`!= ".$id."
 ORDER BY `news`.`created_at` DESC LIMIT 3";
 $query=mysqli_query($link,$sql);
 while ($row=mysqli_fetch_assoc($query)) {
@@ -329,7 +329,7 @@ $descrierescurta=truncate($scurta,100,"...");
 <?php
 /* metatags */
 $metakeyList="";
-$sql_meta="SELECT * FROM `news` WHERE `keywords`<>''";
+$sql_meta="SELECT * FROM `news` WHERE `news`.`deleted_at` is null AND `keywords`<>''";
 $query_meta=mysqli_query($link,$sql_meta);
 while($rowmeta = mysqli_fetch_array($query_meta)) {
 	$metakeysParts = explode(",", $rowmeta['keywords']);

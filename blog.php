@@ -162,7 +162,7 @@ if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
 $sql="
 SELECT *, news.id as news_id FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
-WHERE `news`.`is_active`=1 ";
+WHERE `news`.`deleted_at` is null AND `news`.`is_active`=1 ";
 $query=mysqli_query($link,$sql);
 
 if (isset($_GET['tag'])) {
@@ -269,7 +269,7 @@ $descriere=truncate($scurta,300,"...");
 $sql="
 SELECT * FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
-WHERE `news`.`is_active`=1
+WHERE `news`.`deleted_at` is null and `news`.`is_active`=1
 ORDER BY `news_images`.`created_at` DESC LIMIT 3";
 $query=mysqli_query($link,$sql);
 while ($row=mysqli_fetch_assoc($query)) {
@@ -295,7 +295,7 @@ $descrierescurta=truncate($scurta,100,"...");
 <?php
 /* metatags */
 $metakeyList="";
-$sql_meta="SELECT * FROM `news` WHERE `keywords`<>''";
+$sql_meta="SELECT * FROM `news` WHERE `news`.`deleted_at` is null and `keywords`<>''";
 $query_meta=mysqli_query($link,$sql_meta);
 while($rowmeta = mysqli_fetch_array($query_meta)) {
 	$metakeysParts = explode(",", $rowmeta['keywords']);
