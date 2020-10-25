@@ -30,7 +30,7 @@ if (isset($_POST['contact_message2'])) {
     mysqli_query($link,"INSERT INTO `comments` (`article_id`,`reply_id`,`name`,`email`,`webpage`, `comment`)
 				VALUES
                 ($id, NULL,'".$name."','".$email."','".$webpage."', '".$comment."')");
-    
+
 }
 ?>
 <!DOCTYPE html>
