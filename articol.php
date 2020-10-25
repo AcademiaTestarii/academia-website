@@ -20,6 +20,18 @@ mysqli_query($link,"UPDATE `news` SET `views`=`views`+1 WHERE `id`=".$id);
 } else {
 header("Location:blog.php");
 }
+if (isset($_POST['contact_message2'])) {
+    $id=trim(mysqli_real_escape_string($link,$_GET['id']));
+    $name =trim(mysqli_real_escape_string($link,$_POST['contact_name']));
+    $email =trim(mysqli_real_escape_string($link,$_POST['contact_email2']));
+    $comment =trim(mysqli_real_escape_string($link,$_POST['contact_message2']));
+    $webpage =trim(mysqli_real_escape_string($link,$_POST['contact_webpage']));
+
+    mysqli_query($link,"INSERT INTO `comments` (`article_id`,`reply_id`,`name`,`email`,`webpage`, `comment`)
+				VALUES
+                ($id, NULL,'".$name."','".$email."','".$webpage."', '".$comment."')");
+    
+}
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="ro">
@@ -269,7 +281,7 @@ if (mysqli_num_rows($query_comentarii)>0) {
                   <div class="col-sm-12">
                     <h5>Lasă un comentariu</h5>
                     <div class="row">
-                      <form role="form" id="comment-form">
+                      <form role="form" id="comment-form" method="POST" action="articol.php?id=<?php echo $id;?>">
                         <div class="col-sm-6 pt-0 pb-0">
                           <div class="form-group">
                             <input type="text" class="form-control" required name="contact_name" id="contact_name" placeholder="Numele tau">
@@ -278,7 +290,7 @@ if (mysqli_num_rows($query_comentarii)>0) {
                             <input type="text" required class="form-control" name="contact_email2" id="contact_email2" placeholder="Adresa Email">
                           </div>
                           <div class="form-group">
-                            <input type="text" placeholder="Pagina web" required class="form-control" name="subject">
+                            <input type="text" placeholder="Pagina web" required class="form-control" name="contact_webpage">
                           </div>
                         </div>
                         <div class="col-sm-6">
