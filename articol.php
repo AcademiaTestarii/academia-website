@@ -8,9 +8,14 @@ $id=trim(mysqli_real_escape_string($link,$_GET['id']));
 $sql="
 SELECT * FROM `news`
 LEFT JOIN `news_images` ON `news`.`id`=`news_images`.`news_id`
-WHERE `news`.`deleted_at` is null AND  ``news`.`id`=".$id;
+WHERE `news`.`deleted_at` is null AND `news`.`id`=".$id;
 $query=mysqli_query($link,$sql);
 $row=mysqli_fetch_assoc($query);
+
+if($row['views'] == null) {
+    mysqli_query($link,"UPDATE `news` SET `views`=0 WHERE `id`=".$id);
+}
+
 mysqli_query($link,"UPDATE `news` SET `views`=`views`+1 WHERE `id`=".$id);
 } else {
 header("Location:blog.php");
