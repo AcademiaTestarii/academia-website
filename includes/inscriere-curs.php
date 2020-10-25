@@ -33,6 +33,7 @@ if (isset($_POST['action'])) {
 
 			$sql_select="SELECT * FROM `students` WHERE `email`='".$email."'";
 			$query_select=mysqli_query($link,$sql_select);
+
 			if (mysqli_num_rows($query_select)==0) {
 
 				$parola=generateParolaMica();
@@ -56,7 +57,6 @@ if (isset($_POST['action'])) {
 				'".$web."',
 				".$newsletter."
 				)";
-
 				if ( $query=(mysqli_query($link,$sql)) ) {
 
 					$id_cursant=mysqli_insert_id($link);
@@ -64,7 +64,6 @@ if (isset($_POST['action'])) {
 					VALUES
 					(".$id_cursant.", ".$id_curs.", '".$modalitate_plata."', '".$tip_plata."')";
 					$query2=mysqli_query($link,$sql2);
-
 					require_once('phpmailer/class.phpmailer.php');
 
 					$mail = new PHPMailer();
@@ -91,14 +90,15 @@ if (isset($_POST['action'])) {
 					$status = "true";
 
 					/* Notificare */
-					$sqlnotificare="SELECT * FROM `classes`
+					$sqlnotificare="SELECT *, main_classes.title as main_title FROM `classes`
 					LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 					WHERE `classes`.`id`=".$id_curs;
 					$querynotificare=mysqli_query($link,$sqlnotificare);
+
 					if (mysqli_num_rows($querynotificare)>0) {
 						$cursactiv=mysqli_fetch_assoc($querynotificare);
 						$valoare=$cursactiv['price'];
-						$nume_curs=$cursactiv['main_class.title'];
+						$nume_curs=$cursactiv['main_title'];
 						$data=$cursactiv['registration_start_date'];
 					}
 					$notificare = new PHPMailer();
