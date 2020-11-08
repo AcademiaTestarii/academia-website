@@ -17,7 +17,7 @@ $sql_parteneri="SELECT * FROM `partners` ORDER BY `name`";
 $query_parteneri=mysqli_query($link,$sql_parteneri);
 while ($row_parteneri=mysqli_fetch_array($query_parteneri)) {
 ?>			
-              <div class="item"> <a href="<?php echo $row_parteneri['url'];?>" target="_blank"><img src="images/parteneri/<?php echo $row_parteneri['logo'];?>" alt="<?php echo $row_parteneri['name'];?>"></a></div>
+              <div class="item"> <a href="<?php echo $row_parteneri['url'];?>" target="_blank"><img src="<?php echo $crmHost;?>/partners/<?php echo $row_parteneri['logo'];?>" alt="<?php echo $row_parteneri['name'];?>"></a></div>
 <?php } ?>
             </div>
           </div>

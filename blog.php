@@ -193,8 +193,8 @@ $descriere=truncate($scurta,300,"...");
 <?php if ($row['image']!="") { ?>
                     <div class="entry-header">
                       <div class="post-thumb thumb">
-                        <img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive img-fullwidth">
-                      </div>
+                        <img src="<?php echo $crmHost;?>/news/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive img-fullwidth">
+                      </div>s
                     </div>
 <?php } ?>
                     <div class="entry-content border-1px p-20 pr-10">
@@ -278,7 +278,7 @@ $descrierescurta=truncate($scurta,100,"...");
 ?>
                   <article class="post media-post clearfix pb-0 mb-10">
 <?php if ($row['image']!="") { ?>
-                    <a class="post-thumb" href="articol.php?id=<?php echo $row['news_id'];?>"><img src="images/blog/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>"></a>
+                    <a class="post-thumb" href="articol.php?id=<?php echo $row['news_id'];?>"><img src="<?php echo $crmHost;?>/news/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>"></a>
 <? } ?>
                     <div class="post-right">
                       <h4 class="post-title mt-0"><a href="articol.php?id=<?php echo $row['news_id'];?>"><?php echo $row['title'];?></a></h4>

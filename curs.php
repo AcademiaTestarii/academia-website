@@ -7,7 +7,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$id=trim(mysqli_real_escape_string($link,$_GET['id']));
 	$page="cursuri";
 	$sql_curs="
-	SELECT * FROM `classes`
+	SELECT classes.*, main_classes.title as main_title FROM `classes`
 	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 	WHERE `classes`.`main_class_id`=".$id."
 	AND `classes`.`registration_start_date` > NOW()
@@ -22,7 +22,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 } elseif (isset($_GET['url_string_short'])) {
 	$url=trim(mysqli_real_escape_string($link,$_GET['url_string_short']));
     $sql_curs="
-	SELECT * FROM `classes`
+	SELECT classes.*, main_classes.title as main_title FROM `classes`
 	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 	WHERE `main_classes`.`url_string_short`='".$url."'
 	AND `classes`.`registration_start_date` > NOW()
@@ -44,7 +44,7 @@ header("Location:cursuri.php");
 <html dir="ltr" lang="ro">
 <head>
 <!-- Page Title -->
-<title>Academia Testării :: Curs: <?php echo $row_curs['main_classes.title'];?></title>
+<title>Academia Testării :: Curs: <?php echo $row_curs['main_title'];?></title>
 <base href="<?php echo $_SERVER['SERVER_NAME'];?>>">
 <!-- Meta Tags -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -72,12 +72,12 @@ header("Location:cursuri.php");
 <meta name="theme-color" content="#ffffff">
 
 <!-- Open Graph data -->
-<meta property="og:title" content="Curs <?php echo $row_curs['main_classes.title'];?>" />
+<meta property="og:title" content="Curs <?php echo $row_curs['main_title'];?>" />
 <meta property="og:author" content="@academiatestarii" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];?>" />
-<meta property="og:image:alt" content="<?php echo $row_curs['main_classes.title'];?>" />
-<meta property="og:image" content="<?php echo "https://".$_SERVER['HTTP_HOST']."/images/cursuri/".$row_curs['image'];?>" />
+<meta property="og:image:alt" content="<?php echo $row_curs['main_title'];?>" />
+<meta property="og:image" content="<?php echo $crmHost ."/classes/".$row_curs['image'];?>" />
 <meta property="og:image:width" content="800" />
 <meta property="og:image:height" content="530" />
 <meta property="og:image:type" content="image/jpeg" />
@@ -128,6 +128,7 @@ header("Location:cursuri.php");
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
+
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
@@ -173,7 +174,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="section-content">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="title text-white"><?php echo $row_curs['titlu_main'];?></h2>
+              <h2 class="title text-white"><?php echo $row_curs['main_title'];?></h2>
             </div>
           </div>
         </div>
@@ -368,7 +369,7 @@ FROM main_classes a
 
 $query_cursuri=mysqli_query($link,$sql_cursuri);
 while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) { ?>
-					<?php if ($id==$row_cursuri['main_class_id']) { ?><img class="img-fullwidth topmenuimg" src="images/cursuri/<?php echo $row_curs['image'];?>" alt="<?php echo $row_curs['main_title'];?>"> <?php } ?>
+					<?php if ($id==$row_cursuri['main_class_id']) { ?><img class="img-fullwidth topmenuimg" src="<?php echo $crmHost;?>/classes/<?php echo $row_curs['image'];?>" alt="<?php echo $row_curs['main_title'];?>"> <?php } ?>
 					<li <?php if ($id==$row_cursuri['main_class_id']) {echo"class=\"active\"";}?>>
                         <a href="curs.php?id=<?php echo $row_cursuri['main_class_id'];?>"><?php echo ($row_cursuri['is_new']==0) ? ($row_cursuri['main_title']) : ("<strong>NOU</strong>: ".$row_cursuri['main_title']);?></a></li>
 <?php } ?>
@@ -455,7 +456,7 @@ $row_trainer=mysqli_fetch_assoc($query_trainer);
                 <h4 class="widget-title line-bottom">Trainer <span class="text-theme-colored2">curs</span></h4>
 					<div class="team-block service-box maxwidth400">
 					  <div class="team-thumb">
-						<img class="img-fullwidth" alt="" src="images/traineri/<?php echo $row_trainer['picture'];?>">
+						<img class="img-fullwidth" alt="" src="<?php echo $crmHost;?>/trainers/<?php echo $row_trainer['picture'];?>">
 					  </div>
 					  <div class="team-bottom-part">
 						<h3 class="text-uppercase text-theme-colored2"><?php echo $row_trainer['name'];?></h3>

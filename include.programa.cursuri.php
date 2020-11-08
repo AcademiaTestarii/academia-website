@@ -36,7 +36,7 @@ while ($row_cursuri=mysqli_fetch_assoc($query_cursuri)) {
                   <article class="post clearfix mb-30">
                     <div class="entry-header">
                       <div class="post-thumb thumb"> 
-                        <img src="images/cursuri/<?php echo $row_cursuri['image'];?>" alt="" class="img-responsive img-fullwidth">
+                        <img src="<?php echo $crmHost;?>/classes/<?php echo $row_cursuri['image'];?>" alt="" class="img-responsive img-fullwidth">
                       </div>                    
                       <div class="entry-date media-left text-center flip bg-theme-colored border-top-theme-colored2-3px pt-5 pr-15 pb-5 pl-15">
 					<?php if ($row_cursuri['is_planned']==1) { ?>

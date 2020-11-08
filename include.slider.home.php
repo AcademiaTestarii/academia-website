@@ -14,9 +14,9 @@
 ?>
 			
 <!-- SLIDE -->
-              <li data-index="rs-<?php echo $i;?>" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/slider/<?php echo $row_slider['image'];?>" data-rotate="0" data-saveperformance="off" data-title="<?php echo $row_slider['title'];?>" data-description="">
+              <li data-index="rs-<?php echo $i;?>" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="<?php echo $crmHost;?>/slider/<?php echo $row_slider['image'];?>" data-rotate="0" data-saveperformance="off" data-title="<?php echo $row_slider['title'];?>" data-description="">
                 <!-- MAIN IMAGE -->
-                <img src="images/slider/<?php echo $row_slider['image'];?>"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                <img src="<?php echo $crmHost;?>/slider/<?php echo $row_slider['image'];?>"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
