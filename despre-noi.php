@@ -237,7 +237,7 @@ $page = "despre";
                 <div class="col-xs-12 col-sm-6 col-md-4 sm-text-center mb-30 mb-sm-30">
                   <div class="team-block service-box maxwidth400">
                     <div class="team-thumb">
-                      <img class="img-fullwidth" alt="" src="images/<?php echo $row_team['picture']; ?>">
+                      <img class="img-fullwidth" alt="" src="<?php echo $crmHost;?>/trainers/<?php echo $row_team['picture']; ?>">
                       <div class="team-overlay">
                         <h3 class="text-white"><?php echo $row_team['title']; ?></h3>
                         <ul class="list-inline text-white font-16 mb-10">
