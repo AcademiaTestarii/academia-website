@@ -1,22 +1,28 @@
-a:hover,a:focus{
+a:hover, a:focus {
     text-decoration: none;
     outline: none;
 }
-.vertical-tab{ display: table; }
-.vertical-tab .nav-tabs{
+
+.vertical-tab {
+    display: table;
+}
+
+.vertical-tab .nav-tabs {
     display: table-cell;
     width: 50%;
     min-width: 50%;
     border-bottom: none;
 }
-.vertical-tab .nav-tabs li{
+
+.vertical-tab .nav-tabs li {
     float: left;
     vertical-align: top;
-	width: 50%;
+    width: 50%;
     min-width: 50%;
-	min-height:70px;
+    min-height: 70px;
 }
-.vertical-tab .nav-tabs li a{
+
+.vertical-tab .nav-tabs li a {
     display: block;
     padding: 16px;
     margin: 0 10px 5px 0;
@@ -33,45 +39,51 @@ a:hover,a:focus{
     overflow: hidden;
     position: relative;
     transition: all 0.3s ease 0s;
-	height:70px;
+    height: 70px;
 }
+
 .vertical-tab .nav-tabs li a:hover,
-.vertical-tab .nav-tabs li.active a{
-    color: #4c3391 ;
+.vertical-tab .nav-tabs li.active a {
+    color: #4c3391;
     background: #fff;
     border: none;
     border-top: 3px solid #4c3391;
     border-bottom: 3px solid #4c3391;
 }
+
 .vertical-tab .nav-tabs li a:before,
-.vertical-tab .nav-tabs li a:after{
+.vertical-tab .nav-tabs li a:after {
     content: "";
     width: 20px;
     height: 20px;
-    background: linear-gradient(135deg,#4c3391 49%, transparent 50%);
+    background: linear-gradient(135deg, #4c3391 49%, transparent 50%);
     position: absolute;
     top: -20px;
     left: -20px;
-    transition:all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
 }
-.vertical-tab .nav-tabs li a:after{
-    background: linear-gradient(315deg,#4c3391 49%, transparent 50%);
+
+.vertical-tab .nav-tabs li a:after {
+    background: linear-gradient(315deg, #4c3391 49%, transparent 50%);
     top: auto;
     left: auto;
     bottom: -20px;
     right: -20px;
 }
+
 .vertical-tab .nav-tabs li a:hover:before,
-.vertical-tab .nav-tabs li.active a:before{
+.vertical-tab .nav-tabs li.active a:before {
     top: 0;
     left: 0;
 }
+
 .vertical-tab .nav-tabs li a:hover:after,
-.vertical-tab .nav-tabs li.active a:after{
+.vertical-tab .nav-tabs li.active a:after {
     bottom: 0;
     right: 0;
 }
-.vertical-tab .tab-content{
+
+.vertical-tab .tab-content {
     display: table-cell;
     padding: 10px 20px;
     font-size: 15px;
@@ -84,46 +96,67 @@ a:hover,a:focus{
     border-bottom: 3px solid #4c3391;
     position: relative;
 }
+
 .vertical-tab .tab-content:before,
-.vertical-tab .tab-content:after{
+.vertical-tab .tab-content:after {
     content: "";
     width: 20px;
     height: 20px;
-    background: linear-gradient(135deg,#4c3391 49%, transparent 50%);
+    background: linear-gradient(135deg, #4c3391 49%, transparent 50%);
     position: absolute;
     top: 0;
     left: 0;
 }
-.vertical-tab .tab-content:after{
-    background: linear-gradient(315deg,#4c3391 49%, transparent 50%);
+
+.vertical-tab .tab-content:after {
+    background: linear-gradient(315deg, #4c3391 49%, transparent 50%);
     top: auto;
     left: auto;
     bottom: 0;
     right: 0;
 }
-.vertical-tab .tab-content h3{
+
+.vertical-tab .tab-content h3 {
     font-size: 24px;
     margin: 0 0 5px 0;
 }
-@media only screen and (max-width: 479px){
-    .vertical-tab .nav-tabs{
+
+@media only screen and (max-width: 479px) {
+    .vertical-tab .nav-tabs {
         display: block;
         width: 100%;
     }
-    .vertical-tab .nav-tabs li{ margin-bottom: 10px; }
-    .vertical-tab .nav-tabs li:last-child{ margin-bottom: 0; }
-    .vertical-tab .nav-tabs li a{ padding: 10px; }
-    .vertical-tab .tab-content{
+
+    .vertical-tab .nav-tabs li {
+        margin-bottom: 10px;
+    }
+
+    .vertical-tab .nav-tabs li:last-child {
+        margin-bottom: 0;
+    }
+
+    .vertical-tab .nav-tabs li a {
+        padding: 10px;
+    }
+
+    .vertical-tab .tab-content {
         display: block;
         padding: 20px 5px 5px;
     }
-    .vertical-tab .tab-content h3{ font-size: 18px; }
+
+    .vertical-tab .tab-content h3 {
+        font-size: 18px;
+    }
 }
 
 ul.nav li:before {
-  content: "";
+    content: "";
 }
 
 .blog .post .entry-title {
     height: auto;
+}
+
+#termeni_site-error, #conditii_minime-error, #newsletter-error {
+    margin-left: 5px;
 }
