@@ -25,11 +25,10 @@ if (isset($_POST['contact_message2'])) {
     $name =trim(mysqli_real_escape_string($link,$_POST['contact_name']));
     $email =trim(mysqli_real_escape_string($link,$_POST['contact_email2']));
     $comment =trim(mysqli_real_escape_string($link,$_POST['contact_message2']));
-    $webpage =trim(mysqli_real_escape_string($link,$_POST['contact_webpage']));
 
     mysqli_query($link,"INSERT INTO `comments` (`article_id`,`reply_id`,`name`,`email`,`webpage`, `comment`)
 				VALUES
-                ($id, NULL,'".$name."','".$email."','".$webpage."', '".$comment."')");
+                ($id, NULL,'".$name."','".$email."', NULL, '".$comment."')");
 
 }
 ?>
@@ -288,9 +287,6 @@ if (mysqli_num_rows($query_comentarii)>0) {
                           </div>
                           <div class="form-group">
                             <input type="text" required class="form-control" name="contact_email2" id="contact_email2" placeholder="Adresa Email">
-                          </div>
-                          <div class="form-group">
-                            <input type="text" placeholder="Pagina web" required class="form-control" name="contact_webpage">
                           </div>
                         </div>
                         <div class="col-sm-6">

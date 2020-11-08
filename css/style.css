@@ -160,3 +160,7 @@ ul.nav li:before {
 #termeni_site-error, #conditii_minime-error, #newsletter-error {
     margin-left: 5px;
 }
+
+#contact_message2 {
+    max-height: 105px;
+}
