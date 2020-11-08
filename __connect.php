@@ -1,9 +1,9 @@
 <?php
-$db_host        = '127.0.0.1';
-$db_user        = 'homestead';
-$db_pass        = 'secret';
-$db_database    = 'homestead';
-$db_port        = '33060';
+$db_host        = '144.76.145.178';
+$db_user        = 'vladstoica15_academia_new';
+$db_pass        = 'Hackers!@#4';
+$db_database    = 'vladstoica15_academia_new';
+$db_port        = '3306';
 
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_database, $db_port);
 mysqli_set_charset($link, "utf8");
