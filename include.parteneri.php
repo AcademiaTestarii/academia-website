@@ -13,7 +13,7 @@
             <!-- Section: Clients -->
             <div class="owl-carousel-3col text-center">
 <?php
-$sql_parteneri="SELECT * FROM `partners` ORDER BY `name`";
+$sql_parteneri="SELECT * FROM `partners` WHERE deleted_at is NULL ORDER BY `name`";
 $query_parteneri=mysqli_query($link,$sql_parteneri);
 while ($row_parteneri=mysqli_fetch_array($query_parteneri)) {
 ?>			
