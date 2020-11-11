@@ -194,7 +194,7 @@ $descriere=truncate($scurta,300,"...");
                     <div class="entry-header">
                       <div class="post-thumb thumb">
                         <img src="<?php echo $crmHost;?>/news/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive img-fullwidth">
-                      </div>s
+                      </div>
                     </div>
 <?php } ?>
                     <div class="entry-content border-1px p-20 pr-10">
