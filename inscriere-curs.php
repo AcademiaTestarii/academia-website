@@ -320,7 +320,7 @@ WHERE `classes.id`=" . $curs;
                                                value="<?php echo $row_userlogat['phone']; ?>" readonly>
                                     <?php } else { ?>
                                         <input name="telefon" class="form-control" type="text" placeholder="Telefon"
-                                               minlength="10" required="">
+                                                required="">
                                     <?php } ?>
                                 </div>
                             </div>
@@ -534,11 +534,10 @@ WHERE `classes.id`=" . $curs;
                     </form>
 
                     <script type="text/javascript">
-
                         $.validator.addMethod("maxDate", function (value, element) {
                             var curDate = new Date();
                             var inputDate = new Date(value);
-                            console.log(inputDate);
+
                             if (inputDate == 'Invalid Date') {
                                 return true;
                             }
@@ -546,7 +545,7 @@ WHERE `classes.id`=" . $curs;
                                 return true;
                             }
                             return false;
-                        }, "Data nasterii trebuie sa fie mai mica decat astazi.");   // error message
+                        }, "Data nasterii trebuie sa fie mai mica decat astazi.");
 
                         $("#inscriere_curs").validate({
                             rules: {
@@ -554,6 +553,17 @@ WHERE `classes.id`=" . $curs;
                                     required: false,
                                     date: true,
                                     maxDate: true
+                                },
+                                telefon: {
+                                    required: true,
+                                    number: true,
+                                    minlength: 10,
+                                }
+                            },
+                            messages: {
+                                telefon: {
+                                    number: "Telefonul trebuie sa contina doar cifre",
+                                    minlength: "Introduceti cel putin 10 caractere"
                                 }
                             },
                             submitHandler: function (form) {
