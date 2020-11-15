@@ -230,7 +230,7 @@ $page = "despre";
           <div class="section-content">
             <div class="row mtli-row-clearfix">
 
-              <?php $sql_team = "SELECT * FROM `trainer` WHERE `is_staff`=1";
+              <?php $sql_team = "SELECT * FROM `trainer` WHERE deleted_at is null";
               $query_team = mysqli_query($link, $sql_team);
               while ($row_team = mysqli_fetch_assoc($query_team)) { ?>
 
