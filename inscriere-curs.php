@@ -156,7 +156,7 @@ WHERE `classes.id`=" . $curs;
                 <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
             </div>
         </div>
-        <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>
+     <!--   <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>-->
     </div>
 
     <!-- Header -->

@@ -147,7 +147,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
         <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
       </div>
     </div>
-    <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>
+    <!--<div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>-->
   </div>
 
 <!-- Header -->
