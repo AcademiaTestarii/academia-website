@@ -7,7 +7,7 @@
           <div class="rev_slider" data-version="5.0">
             <ul>
 
-<?php 	$sql_slider="SELECT * FROM `slider` where deleted_at is null ORDER BY rand()";
+<?php 	$sql_slider="SELECT * FROM `slider` where deleted_at is null AND active = 1 ORDER BY rand()";
 		$query_slider=mysqli_query($link,$sql_slider);
 		$i=1;
 		while ($row_slider=mysqli_fetch_assoc($query_slider)) {
