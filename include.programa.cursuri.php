@@ -16,7 +16,7 @@
 
                         <?php
                         $sql_cursuri = "
-select *, main_classes.title as main_title from main_classes mc
+select *, mc.title as main_title from main_classes mc
 left join classes c on mc.id = c.main_class_id
 where c.registration_start_date > NOW() 
 order by c.registration_start_date;
