@@ -447,7 +447,8 @@ $datesRow3=mysqli_fetch_assoc($datesSql3);
 <?php } ?>
 
 <?php
-$sql_trainer="SELECT * FROM `trainer` LEFT JOIN `class_trainers` ON `trainer`.`id`=`class_trainers`.`trainer_id` WHERE `class_trainers`.`class_id`=".$row_curs['id'];
+$sql_trainer="SELECT * FROM `trainer` LEFT JOIN `class_trainers` ON `trainer`.`id`=`class_trainers`.`trainer_id` 
+WHERE `class_trainers`.`class_id`=".$row_curs['id'].' and trainer.deleted_at is null';
 $query_trainer=mysqli_query($link,$sql_trainer);
 if (mysqli_num_rows($query_trainer)>0) {
 $row_trainer=mysqli_fetch_assoc($query_trainer);

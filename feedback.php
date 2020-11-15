@@ -26,7 +26,7 @@ LEFT JOIN `classes` ON `feedback`.`class_id`=`classes`.`id`
 LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 LEFT JOIN `class_trainers` ON `classes`.`id`=`class_trainers`.`class_id`
 LEFT JOIN `trainer` ON `trainer`.`id`=`class_trainers`.`trainer_id`
-WHERE `feedback`.`link`='".$id."'";
+WHERE `feedback`.`link`='".$id."' and trainer.deleted_at is null";
 $query=mysqli_query($link,$sql);
 if (mysqli_num_rows($query)>0) {
 $row=mysqli_fetch_assoc($query);
