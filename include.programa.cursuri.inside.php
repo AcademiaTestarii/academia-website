@@ -21,7 +21,7 @@ where c.registration_start_date > NOW()
 order by c.registration_start_date;
 ";
                 $query_cursuri = mysqli_query($link, $sql_cursuri);
-                $mainClasses = [];
+                $mainClasses = array();
                 while ($row_cursuri = mysqli_fetch_assoc($query_cursuri)) {
                     if (!in_array($row_cursuri['main_class_id'], $mainClasses)) {
                         $mainClasses[] = $row_cursuri['main_class_id'];

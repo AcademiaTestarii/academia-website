@@ -16,13 +16,13 @@
 
                         <?php
                         $sql_cursuri = "
-select * from main_classes mc
+select *, main_classes.title as main_title from main_classes mc
 left join classes c on mc.id = c.main_class_id
 where c.registration_start_date > NOW() 
 order by c.registration_start_date;
 ";
                         $query_cursuri = mysqli_query($link, $sql_cursuri);
-                        $mainClasses = [];
+                        $mainClasses = array();
                         while ($row_cursuri = mysqli_fetch_assoc($query_cursuri)) {
                             if (!in_array($row_cursuri['main_class_id'], $mainClasses)) {
                                 $mainClasses[] = $row_cursuri['main_class_id'];
