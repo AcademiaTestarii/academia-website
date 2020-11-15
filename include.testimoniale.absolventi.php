@@ -12,7 +12,7 @@
           <div class="col-md-12 mb-10">
             <div class="owl-carousel-2col" data-dots="true">
 			
-			<?php 	$sql_absolventi="SELECT * FROM `testimonials` ORDER BY rand()";
+			<?php 	$sql_absolventi="SELECT * FROM `testimonials` where deleted_at is null ORDER BY rand()";
 					$query_absolventi=mysqli_query($link,$sql_absolventi);
 					while ($row_absolventi=mysqli_fetch_assoc($query_absolventi)) {
 			?>
