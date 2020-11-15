@@ -547,6 +547,15 @@ WHERE `classes.id`=" . $curs;
                             return false;
                         }, "Data nasterii trebuie sa fie mai mica decat astazi.");
 
+                        $.validator.addMethod("isSelected", function (value, element) {
+                            var curs = value;
+
+                            if (curs != '--') {
+                                return true;
+                            }
+                            return false;
+                        }, "Alege un curs.");
+
                         $("#inscriere_curs").validate({
                             rules: {
                                 data_nastere: {
@@ -558,7 +567,11 @@ WHERE `classes.id`=" . $curs;
                                     required: true,
                                     number: true,
                                     minlength: 10,
-                                }
+                                },
+                                curs: {
+                                    required: true,
+                                    isSelected: true
+                                },
                             },
                             messages: {
                                 telefon: {
