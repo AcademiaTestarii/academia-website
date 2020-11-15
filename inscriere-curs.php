@@ -156,7 +156,7 @@ WHERE `classes.id`=" . $curs;
                 <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
             </div>
         </div>
-     <!--   <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>-->
+        <!--   <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>-->
     </div>
 
     <!-- Header -->
@@ -479,16 +479,14 @@ WHERE `classes.id`=" . $curs;
                                             cu Termenii și Condițiile site-ului *</a></label>
                                 </div>
                             </div>
-                            <?php if ($set) { ?>
-                                <div class="col-sm-12 col-md-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="conditii_minime" value=""
-                                               required="">
-                                        <label class="form-check-label">Am citit și îndeplinesc condițiile minime ale
-                                            cursului *</label>
-                                    </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="conditii_minime" value=""
+                                           required="">
+                                    <label class="form-check-label">Am citit și îndeplinesc condițiile minime ale
+                                        cursului *</label>
                                 </div>
-                            <?php } ?>
+                            </div>
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="newsletter" value=""
