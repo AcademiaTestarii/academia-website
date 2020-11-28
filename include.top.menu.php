@@ -15,7 +15,7 @@
 $sql_cursuri="SELECT main_classes.* FROM `main_classes` 
 JOIN `classes` 
 ON `classes`.`main_class_id`=`main_classes`.`id` 
-WHERE `registration_start_date`>NOW() AND main_classes.`is_active`=1
+WHERE main_classes.`is_active`=1
 GROUP by main_classes.id
 ORDER BY `main_classes`.`order` ASC";
 $query_cursuri=mysqli_query($link,$sql_cursuri);
