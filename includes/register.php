@@ -2,7 +2,7 @@
 require_once("../__connect.php");
 
 $status = "false";
-
+$host = $_SERVER['HTTP_HOST'];
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     if ( $_POST['nume'] != '' AND $_POST['prenume'] != '' AND $_POST['email'] != '' AND $_POST['parola'] != '') {
 
@@ -35,7 +35,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					$mail->Subject = "Confirmă înregistrarea pe platforma Academia Testării";
 
 					$greetings = "Salutare ".$prenume."<br><br>";
-					$message = "Mulţumim pentru înregistrare! <br>Pentru a intra în contul tău de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Parola ta este: <strong>".$parola."</strong><br><br>Te aşteptăm cu drag,<br>Academia Testării.";
+					$message = "Mulţumim pentru înregistrare! <br>Pentru a intra în contul tău de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"$host/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Parola ta este: <strong>".$parola."</strong><br><br>Te aşteptăm cu drag,<br>Academia Testării.";
 
 					$body = "$greetings $message";
 
