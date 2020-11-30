@@ -7,7 +7,7 @@ SELECT * FROM `feedback`
 LEFT JOIN `students` ON `feedback`.`student_id`=`students`.`id`
 LEFT JOIN `classes` ON `feedback`.`class_id`=`classes`.`id`
 LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
-WHERE `link`='".$id."'";
+WHERE `link`='".$id."'" . " AND `trainer_provider_id` = $academiaTestariiTrainerProvider";
 $query=mysqli_query($link,$sql);
 if (mysqli_num_rows($query)>0) {
 $row=mysqli_fetch_assoc($query);

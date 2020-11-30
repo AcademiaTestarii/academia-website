@@ -22,6 +22,7 @@ error_reporting(0);
 /*--END-------------------------------------------------------------------------------*/
 
 $crmHost = 'http://academia-testarii.test';
+$academiaTestariiTrainerProvider = 1;
 
 // stergere taguri
 function removeTags($str, $tags)
