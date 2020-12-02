@@ -18,14 +18,14 @@
                         $sql_cursuri = "
 select *, mc.title as main_title from main_classes mc
 left join classes c on mc.id = c.main_class_id
-where c.registration_start_date >= NOW() 
+where c.registration_start_date >= NOW() AND mc.trainer_provider_id = $academiaTestariiTrainerProvider
 order by c.registration_start_date;
 ";
 
                         $sql_cursuri_without_date = "
 select *, mc.title as main_title from main_classes mc
 left join classes c on mc.id = c.main_class_id
-where c.registration_start_date < NOW() 
+where c.registration_start_date < NOW() AND mc.trainer_provider_id = $academiaTestariiTrainerProvider
 order by c.registration_start_date;";
 
                         $query_cursuri = mysqli_query($link, $sql_cursuri);

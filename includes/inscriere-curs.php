@@ -92,7 +92,7 @@ if (isset($_POST['action'])) {
 					/* Notificare */
 					$sqlnotificare="SELECT *, main_classes.title as main_title FROM `classes`
 					LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
-					WHERE `classes`.`id`=".$id_curs;
+					WHERE `classes`.`id`=".$id_curs." AND main_classes.trainer_provider_id=$academiaTestariiTrainerProvider";
 					$querynotificare=mysqli_query($link,$sqlnotificare);
 
 					if (mysqli_num_rows($querynotificare)>0) {
