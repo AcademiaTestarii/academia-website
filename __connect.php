@@ -1,8 +1,8 @@
 <?php
-$db_host        = '144.76.145.178';
-$db_user        = 'vladstoica15_academia_new';
+$db_host        = 'localhost';
+$db_user        = 'academia_up-grade_stage';
 $db_pass        = 'Hackers!@#4';
-$db_database    = 'vladstoica15_academia_new';
+$db_database    = 'academia_up-grade_stage';
 $db_port        = '3306';
 
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_database, $db_port);
@@ -21,7 +21,7 @@ setlocale(LC_ALL, "ro_RO");
 error_reporting(0);
 /*--END-------------------------------------------------------------------------------*/
 
-$crmHost = 'http://academia-testarii.test';
+$crmHost = 'http://34.107.54.105';
 
 // stergere taguri
 function removeTags($str, $tags)
