@@ -106,7 +106,7 @@ order by c.registration_start_date;";
                                                         <span class="mb-10 text-gray-darkgray mr-10 font-13">Locuri disponibile: <?php echo $row_cursuri['students'] - $cati; ?></span>
 
                                                         <?php
-                                                        $datesSql2 = mysqli_query($link, "SELECT `id` AS `urmatorul`,`weekend` FROM `classes` WHERE `main_class_id`=" . $row_cursuri['main_classes.id'] . " AND  `registration_start_date` > NOW() AND `id` != " . $row_cursuri['id'] . " ORDER BY `registration_start_date` ASC LIMIT 1");
+                                                        $datesSql2 = mysqli_query($link, "SELECT `id` AS `urmatorul`,`weekend` FROM `classes` WHERE `main_class_id`=" . $row_cursuri['main_class_id'] . " AND  `registration_start_date` > NOW() AND `id` != " . $row_cursuri['id'] . " ORDER BY `registration_start_date` ASC LIMIT 1");
                                                         if (mysqli_num_rows($datesSql2) > 0) {
                                                             $datesRow2 = mysqli_fetch_assoc($datesSql2);
                                                             $datesSql3 = mysqli_query($link, "SELECT MIN(`date`) AS `start`, MAX(`date`) AS `end` FROM `class_dates` WHERE `class_id`=" . $datesRow2['urmatorul']);
@@ -201,7 +201,8 @@ order by c.registration_start_date;";
                                                         <span class="mb-10 text-gray-darkgray mr-10 font-13">Locuri disponibile: <?php echo $row_cursuri_without_date['students'] - $cati; ?></span>
 
                                                         <?php
-                                                        $datesSql2 = mysqli_query($link, "SELECT `id` AS `urmatorul`,`weekend` FROM `classes` WHERE `main_class_id`=" . $row_cursuri_without_date['main_classes.id'] . " AND  `registration_start_date` > NOW() AND `id` != " . $row_cursuri_without_date['id'] . " ORDER BY `registration_start_date` ASC LIMIT 1");
+                                                        $datesSql2 = mysqli_query($link, "SELECT `id` AS `urmatorul`,`weekend` FROM `classes` WHERE `main_class_id`=" . $row_cursuri_without_date['main_class_id'] . " 
+                                                        AND  `registration_start_date` > NOW() AND `id` != " . $row_cursuri_without_date['id'] . " ORDER BY `registration_start_date` ASC LIMIT 1");
                                                         if (mysqli_num_rows($datesSql2) > 0) {
                                                             $datesRow2 = mysqli_fetch_assoc($datesSql2);
                                                             $datesSql3 = mysqli_query($link, "SELECT MIN(`date`) AS `start`, MAX(`date`) AS `end` FROM `class_dates` WHERE `class_id`=" . $datesRow2['urmatorul']);
@@ -218,7 +219,7 @@ order by c.registration_start_date;";
                                                         <?php } else { ?>
                                                             <hr class="mb-0"/>
                                                             <span class="mb-10 text-gray-darkgray mr-10 font-13">Cursuri viitoare: <br/><i
-                                                                        class="fa fa-calendar mr-5 text-theme-colored"></i> Data va fi anunţată ulterior</span>
+                                                                        class="fa fa-calendar mr-5 text-theme-colored"></i>Data va fi anunţată ulterior</span>
                                                         <?php } ?>
 
                                                     </div>
