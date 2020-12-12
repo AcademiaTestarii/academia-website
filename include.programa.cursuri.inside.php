@@ -16,15 +16,21 @@
                 $sql_cursuri = "
 select *, mc.title as main_title from main_classes mc
 left join classes c on mc.id = c.main_class_id and c.is_active = 1
-where c.registration_start_date >= NOW() AND mc.trainer_provider_id = $academiaTestariiTrainerProvider
-and mc.is_active = 1
+where c.registration_start_date >= NOW()";
+                if (isset($academiaTestariiTrainerProvider)) {
+                    $sql_cursuri .= "AND mc.trainer_provider_id = $academiaTestariiTrainerProvider";
+                }
+                $sql_cursuri .= "and mc.is_active = 1
 order by c.registration_start_date;";
 
                 $sql_cursuri_without_start_date = "
 select *, mc.title as main_title from main_classes mc
 left join classes c on mc.id = c.main_class_id and c.is_active = 1
-where c.registration_start_date < NOW() AND mc.trainer_provider_id = $academiaTestariiTrainerProvider
-and mc.is_active = 1
+where c.registration_start_date < NOW()";
+                  if (isset($academiaTestariiTrainerProvider)) {
+                    $sql_cursuri_without_start_date .= "AND mc.trainer_provider_id = $academiaTestariiTrainerProvider";
+                }
+$sql_cursuri_without_start_date .= "and mc.is_active = 1
 order by c.registration_start_date;";
 
 
