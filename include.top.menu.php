@@ -16,6 +16,7 @@ $sql_cursuri="SELECT main_classes.* FROM `main_classes`
 JOIN `classes` 
 ON `classes`.`main_class_id`=`main_classes`.`id` 
 WHERE main_classes.`is_active`=1 AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider
+AND classes.is_active = 1
 GROUP by main_classes.id
 ORDER BY `main_classes`.`order` ASC";
 $query_cursuri=mysqli_query($link,$sql_cursuri);
