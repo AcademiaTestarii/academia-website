@@ -14,8 +14,12 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $sql_curs = "
 	SELECT classes.*, main_classes.title as main_title FROM `classes`
 	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` 
-	WHERE `classes`.`main_class_id`=" . $id . " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider"
-	. " AND `classes`.`registration_start_date` > NOW()
+	WHERE `classes`.`main_class_id`=" . $id . " ";
+    if (isset($academiaTestariiTrainerProvider)) {
+        $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
+    }
+
+    $sql_curs .= " AND `classes`.`registration_start_date` > NOW()
 	ORDER BY `classes`.`registration_start_date` ASC
 	LIMIT 1";
     $query_curs = mysqli_query($link, $sql_curs);
@@ -25,8 +29,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         $sql_curs = "
 	SELECT classes.*, main_classes.title as main_title FROM `classes`
 	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
-	WHERE `classes`.`main_class_id`=" . $id . " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider
-	AND `classes`.`registration_start_date` <= NOW()
+	WHERE `classes`.`main_class_id`=" . $id . "" ;
+	   if (isset($academiaTestariiTrainerProvider)) {
+        $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
+        }
+	$sql_curs .= " AND `classes`.`registration_start_date` <= NOW()
 	ORDER BY `classes`.`registration_start_date` DESC
 	LIMIT 1";
         $query_curs = mysqli_query($link, $sql_curs);
@@ -38,8 +45,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $sql_curs = "
 	SELECT classes.*, main_classes.title as main_title FROM `classes`
 	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
-	WHERE `main_classes`.`url_string_short`='" . $url . "' AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider
-	AND `classes`.`registration_start_date` > NOW()
+	WHERE `main_classes`.`url_string_short`='" . $url . "' ";
+    if (isset($academiaTestariiTrainerProvider)) {
+        $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
+    }
+	$sql_curs .= " AND `classes`.`registration_start_date` > NOW()
 	ORDER BY `classes`.`registration_start_date` ASC
 	LIMIT 1
 	";
@@ -362,7 +372,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                         <div class="col-md-6">
                                             <div class="mt-0">
                                                 <div class="left media p-0 mb-10"><a
-                                                            href="documente/<?php echo $row_curs['schedule_pdf']; ?>"
+                                                            href="<?php echo $crmHost; ?>/documents/<?php echo $row_curs['schedule_pdf']; ?>"
                                                             class="pull-left flip" target="_blank"><i
                                                                 class="fa fa-4x fa-download text-theme-colored"></i></a>
                                                     <div class="media-body">
@@ -425,8 +435,11 @@ FROM main_classes a
         GROUP BY main_class_id
     ) b ON c.main_class_id = b.main_class_id AND
             c.registration_start_date = b.maxDate
-             WHERE `c`.`registration_start_date`>NOW() AND `c`.`is_active`=1 AND a.trainer_provider_id = $academiaTestariiTrainerProvider
-             order by `c`.`registration_start_date` asc";
+             WHERE `c`.`registration_start_date`>NOW() AND `c`.`is_active`=1";
+                                        if (isset($academiaTestariiTrainerProvider)) {
+                                            $sql_cursuri .= " AND a.trainer_provider_id = $academiaTestariiTrainerProvider";
+                                        }
+             $sql_cursuri .= " order by `c`.`registration_start_date` asc";
 
                                         $query_cursuri = mysqli_query($link, $sql_cursuri);
                                         while ($row_cursuri = mysqli_fetch_assoc($query_cursuri)) { ?>

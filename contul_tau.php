@@ -233,7 +233,7 @@ $datesRowactiv=mysqli_fetch_assoc($datesSqlactiv);
 </div>
 <div class="col-md-12">
 								<?php if ($row_curs_activ['schedule_pdf']!="") { ?>
-									<a href="documente/<?php echo $row_curs_activ['schedule_pdf'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Programa curs</a>
+									<a href="<?php echo $crmHost; ?>/documents/<?php echo $row_curs_activ['schedule_pdf'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Programa curs</a>
 								<?php } ?>
 
 								<?php if ($row_curs_activ['requirements_description']!="") { ?>
@@ -295,7 +295,7 @@ $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 </div>
 <div class="col-md-12">
 								<?php if ($row_curs_inactiv['pdf_programa']!="") { ?>
-									<a href="documente/<?php echo $row_curs_inactiv['pdf_programa'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Programa curs</a>
+									<a href="<?php echo $crmHost; ?>/documents/<?php echo $row_curs_inactiv['pdf_programa'];?>" target="_blank" class="btn btn-gray btn-transparent btn-xs">Programa curs</a>
 								<?php } ?>
 
 								<?php if ($row_curs_inactiv['schedule_pdf']!="") { ?>
