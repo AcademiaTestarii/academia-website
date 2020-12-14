@@ -1,5 +1,6 @@
 <?php
 session_start();
+$host = $_SERVER['HTTP_HOST'];
 if (isset($_GET['cheie']) AND strlen($_GET['cheie'])==12 AND ctype_alnum($_GET['cheie'])) {
 	require_once("__connect.php");
 	$cod_confirmare=mysqli_real_escape_string($link,$_GET['cheie']);
@@ -24,7 +25,7 @@ if (isset($_GET['cheie']) AND strlen($_GET['cheie'])==12 AND ctype_alnum($_GET['
 
 			$greetings = "Salutare ".$prenume."<br><br>";
 			$message = "Mulţumim pentru confirmare! <br>Am setat o parola temporara pentru tine: <strong></strong>.
-			<p>O poti scimba orican din contul tau sau folosind ntru a intra în contul tău de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Te aşteptăm cu drag,<br>Academia Testării.";
+			<p>O poti scimba orican din contul tau sau folosind ntru a intra în contul tău de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"$host/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Te aşteptăm cu drag,<br>Academia Testării.";
 
 			$body = "$greetings $message";
 
