@@ -12,7 +12,12 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
     $curs = trim(mysqli_real_escape_string($link, $_GET['curs']));
     $sql = "SELECT * FROM `classes`
 LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
-WHERE `classes.id`=" . $curs. " AND main_classes.trainer_provider_id=$academiaTestariiTrainerProvider";
+WHERE `classes.id`=" . $curs . "";
+
+    if (isset($academiaTestariiTrainerProvider)) {
+        $sql .= " AND main_classes.trainer_provider_id=$academiaTestariiTrainerProvider";
+    }
+
     $query = mysqli_query($link, $sql);
     $cursactiv = mysqli_fetch_assoc($query);
     $set = true;
@@ -320,7 +325,7 @@ WHERE `classes.id`=" . $curs. " AND main_classes.trainer_provider_id=$academiaTe
                                                value="<?php echo $row_userlogat['phone']; ?>" readonly>
                                     <?php } else { ?>
                                         <input name="telefon" class="form-control" type="text" placeholder="Telefon"
-                                                required="">
+                                               required="">
                                     <?php } ?>
                                 </div>
                             </div>
@@ -400,7 +405,12 @@ WHERE `classes.id`=" . $curs. " AND main_classes.trainer_provider_id=$academiaTe
                                     <select id="curs" class="form-control" name="curs">
                                         <option value="--">-- alege curs --</option>
                                         <?php
-                                        $sql_cursuri = "SELECT * FROM `main_classes` WHERE `is_active`=1 AND trainer_provider_id = $academiaTestariiTrainerProvider ORDER BY `order` ASC";
+                                        $sql_cursuri = "SELECT * FROM `main_classes` WHERE `is_active`=1";
+
+                                        if(isset($academiaTestariiTrainerProvider)) {
+                                            $sql_cursuri .= "AND trainer_provider_id = $academiaTestariiTrainerProvider ORDER BY `order` ASC";
+                                        }
+
                                         $query_cursuri = mysqli_query($link, $sql_cursuri);
                                         $disabled = "";
                                         while ($row_cursuri = mysqli_fetch_assoc($query_cursuri)) { ?>
