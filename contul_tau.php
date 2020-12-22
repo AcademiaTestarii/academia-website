@@ -186,6 +186,7 @@ $today = date("Y-m-d");
 					<div class="row">
 <?php
 $sql_cursuri=mysqli_query($link,"SELECT * FROM `class_students` LEFT JOIN `classes` ON `class_students`.`class_id`=`classes`.`id` LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` WHERE `class_students`.`student_id`=".$row['id']." ORDER BY `registration_start_date` ASC");
+
 if (mysqli_num_rows($sql_cursuri)>0) {	?>
 
 							<div class="col-md-12 col-xs-12 curs">
@@ -199,7 +200,7 @@ if (mysqli_num_rows($sql_cursuri)>0) {	?>
 $sql_cursuri_active=mysqli_query($link,"SELECT * FROM `class_students` LEFT JOIN `classes` ON `class_students`.`class_id`=`classes`.`id` LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` WHERE `class_students`.`student_id`=".$row['id']." AND `registration_end_date`>= NOW() ORDER BY `registration_start_date` ASC");
 $i=0;
 while ($row_curs_activ=mysqli_fetch_assoc($sql_cursuri_active)) {
-$datesSqlactiv=mysqli_query($link,"SELECT MIN(`date`) AS `start1`, MAX(`date`) AS `end1` FROM `class_dates` WHERE `class_id`=".$row_curs_activ['id']);
+$datesSqlactiv=mysqli_query($link,"SELECT MIN(`date`) AS `start1`, MAX(`date`) AS `end1` FROM `class_dates` WHERE `class_id`=".$row_curs_activ['class_id']);
 $datesRowactiv=mysqli_fetch_assoc($datesSqlactiv);
 ?>
 <div class="row">
@@ -264,7 +265,7 @@ $datesRowactiv=mysqli_fetch_assoc($datesSqlactiv);
 $sql_cursuri_inactive=mysqli_query($link,"SELECT * FROM `class_students` LEFT JOIN `classes` ON `class_students`.`class_id`=`classes`.`id` LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` WHERE `class_students`.`student_id`=".$row['id']." AND `registration_end_date`< NOW() ORDER BY `registration_start_date` ASC");
 $j=0;
 while ($row_curs_inactiv=mysqli_fetch_assoc($sql_cursuri_inactive)) {
-$datesSqlinactiv=mysqli_query($link,"SELECT MIN(`date`) AS `start2`, MAX(`date`) AS `end2` FROM `class_dates` WHERE `class_id`=".$row_curs_inactiv['id']);
+$datesSqlinactiv=mysqli_query($link,"SELECT MIN(`date`) AS `start2`, MAX(`date`) AS `end2` FROM `class_dates` WHERE `class_id`=".$row_curs_inactiv['class_id']);
 $datesRowinactiv=mysqli_fetch_assoc($datesSqlinactiv);
 ?>
 
