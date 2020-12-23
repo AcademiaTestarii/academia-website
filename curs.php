@@ -7,13 +7,16 @@ if (isset($_SESSION['key_admin']) && $_SESSION['key_admin'] == session_id()) {
 } else {
     $membru = false;
 }
+$value=($_GET['id']);
+$temp = explode('/',$value);
+$newId = $temp[0];
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = trim(mysqli_real_escape_string($link, $_GET['id']));
+if (isset($newId) && is_numeric($newId)) {
+    $id = trim(mysqli_real_escape_string($link, $newId));
     $page = "cursuri";
     $sql_curs = "
 	SELECT classes.*, main_classes.title as main_title FROM `classes`
-	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id` 
+	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 	WHERE `classes`.`main_class_id`=" . $id . " ";
     if (isset($academiaTestariiTrainerProvider)) {
         $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
@@ -77,22 +80,22 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta name="keywords" content=""/>
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="https://<?php echo $_SERVER['HTTP_HOST']?>/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Open Graph data -->
@@ -109,38 +112,38 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta property="og:site_name" content="Academia Testării"/>
 
     <!-- Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css">
-    <link href="css/animate.css" rel="stylesheet" type="text/css">
-    <link href="css/css-plugin-collections.css" rel="stylesheet"/>
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/css-plugin-collections.css" rel="stylesheet"/>
 
     <!-- CSS | menuzord megamenu skins -->
-    <link id="menuzord-menu-skins" href="css/menuzord-skins/menu-academia-testarii.css" rel="stylesheet"/>
+    <link id="menuzord-menu-skins" href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/menuzord-skins/menu-academia-testarii.css" rel="stylesheet"/>
     <!-- CSS | Main style file -->
-    <link href="css/style-main.css" rel="stylesheet" type="text/css">
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/style-main.css" rel="stylesheet" type="text/css">
     <!-- CSS | Preloader Styles -->
-    <link href="css/preloader.css" rel="stylesheet" type="text/css">
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/preloader.css" rel="stylesheet" type="text/css">
     <!-- CSS | Custom Margin Padding Collection -->
-    <link href="css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
     <!-- CSS | Responsive media queries -->
-    <link href="css/responsive.css" rel="stylesheet" type="text/css">
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/responsive.css" rel="stylesheet" type="text/css">
     <!-- Academia Testarii CSS | Style css -->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/style.css" rel="stylesheet" type="text/css">
     <!-- Revolution Slider 5.x CSS settings -->
-    <link href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
-    <link href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css"/>
-    <link href="js/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css"/>
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css"/>
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css"/>
     <!-- CSS | Academia Testarii -->
-    <link href="css/colors/academia-testarii.css" rel="stylesheet" type="text/css">
+    <link href="https://<?php echo $_SERVER['HTTP_HOST']?>/css/colors/academia-testarii.css" rel="stylesheet" type="text/css">
     <!-- external javascripts -->
-    <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/jquery-2.2.4.min.js"></script>
+    <script src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/jquery-ui.min.js"></script>
+    <script src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/bootstrap.min.js"></script>
     <!-- JS | jquery plugin collection -->
-    <script src="js/jquery-plugin-collection.js"></script>
+    <script src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/jquery-plugin-collection.js"></script>
     <!-- Revolution Slider 5.x SCRIPTS -->
-    <script src="js/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
-    <script src="js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -398,14 +401,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                                style="display:block;"><i class="fa fa-user-o"></i> Verifică informaţiile
                                                 în contul tău.</a>
                                         <?php } else { ?>
-                                            <a href="inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>#collapseInscriere"
+                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>#collapseInscriere"
                                                class="btn btn-dark btn-theme-colored" width="100%"
                                                style="display:block;"><i
                                                         class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la
                                                 acest curs</a>
                                         <?php } ?>
                                     <?php } else { ?>
-                                        <a href="inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>"
+                                        <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>"
                                            class="btn btn-dark btn-theme-colored" width="100%" style="display:block;"><i
                                                     class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la acest
                                             curs</a>
@@ -425,7 +428,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                     <ul class="list list-border">
                                         <?php
                                         $sql_cursuri = "SELECT  a.*, c.*, a.title as main_title
-FROM main_classes a 
+FROM main_classes a
     INNER JOIN classes c
         ON a.id = c.main_class_id
     INNER JOIN
@@ -450,7 +453,7 @@ FROM main_classes a
                                             <li <?php if ($id == $row_cursuri['main_class_id']) {
                                                 echo "class=\"active\"";
                                             } ?>>
-                                                <a href="curs.php?id=<?php echo $row_cursuri['main_class_id']; ?>"><?php echo ($row_cursuri['is_new'] == 0) ? ($row_cursuri['main_title']) : ("<strong>NOU</strong>: " . $row_cursuri['main_title']); ?></a>
+                                                <a href="curs/<?php echo $row_cursuri['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri['title']))) ?>"><?php echo ($row_cursuri['is_new'] == 0) ? ($row_cursuri['main_title']) : ("<strong>NOU</strong>: " . $row_cursuri['main_title']); ?></a>
                                             </li>
                                         <?php } ?>
                                     </ul>
@@ -505,14 +508,14 @@ FROM main_classes a
                                                    style="display:block;"><i class="fa fa-user-o"></i> Verifică
                                                     informaţiile în contul tău.</a>
                                             <?php } else { ?>
-                                                <a href="inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>#collapseInscriere"
+                                                <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>#collapseInscriere"
                                                    class="btn btn-dark btn-theme-colored" width="100%"
                                                    style="display:block;"><i
                                                             class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te
                                                     la acest curs</a>
                                             <?php } ?>
                                         <?php } else { ?>
-                                            <a href="inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>"
+                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>"
                                                class="btn btn-dark btn-theme-colored" width="100%"
                                                style="display:block;"><i
                                                         class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la
@@ -549,7 +552,7 @@ FROM main_classes a
                             <?php } ?>
 
                             <?php
-                            $sql_trainer = "SELECT * FROM `trainer` LEFT JOIN `class_trainers` ON `trainer`.`id`=`class_trainers`.`trainer_id` 
+                            $sql_trainer = "SELECT * FROM `trainer` LEFT JOIN `class_trainers` ON `trainer`.`id`=`class_trainers`.`trainer_id`
 WHERE `class_trainers`.`class_id`=" . $row_curs['id'] . ' and trainer.deleted_at is null';
                             $query_trainer = mysqli_query($link, $sql_trainer);
                             if (mysqli_num_rows($query_trainer) > 0) {
@@ -601,18 +604,18 @@ WHERE `class_trainers`.`class_id`=" . $row_curs['id'] . ' and trainer.deleted_at
 
 <!-- Footer Scripts -->
 <!-- JS | Custom script for all pages -->
-<script src="js/custom.js"></script>
+<script src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/custom.js"></script>
 
-<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
-<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
-<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script type="text/javascript" src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+<script type="text/javascript" src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+<script type="text/javascript" src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
 <script type="text/javascript"
-        src="js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
-<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
-<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
-<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+        src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
+<script type="text/javascript" src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+<script type="text/javascript" src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+<script type="text/javascript" src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="https://<?php echo $_SERVER['HTTP_HOST']?>/js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
 <?php include("tracking.php"); ?>
 
 </body>

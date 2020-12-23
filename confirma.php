@@ -9,7 +9,7 @@ if (isset($_GET['cheie']) AND strlen($_GET['cheie'])==12 AND ctype_alnum($_GET['
 		// activam
 		$today=date("Y-m-d H:i:s");
 		$row=mysqli_fetch_assoc($query);
-		$sql_update="UPDATE `students` SET `is_active`=1,`confirmation_code`=NULL,`activitate`='".$today."' WHERE id=".$row['id'];
+		$sql_update="UPDATE `students` SET `is_active`=1,`confirmation_code`=NULL,`activity`='".$today."' WHERE id=".$row['id'];
 		$update=mysqli_query($link,$sql_update);
 		$_SESSION['key_admin'] = session_id();
 		$_SESSION['id'] = $row['id'];
@@ -23,4 +23,3 @@ if (isset($_GET['cheie']) AND strlen($_GET['cheie'])==12 AND ctype_alnum($_GET['
 } else {
 	header("Location:index.php");
 }
-?>

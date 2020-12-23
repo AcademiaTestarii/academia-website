@@ -65,7 +65,7 @@ order by c.registration_start_date;";
                     <div class="media-body pl-0">
                       <div class="event-content pull-left flip">
                         <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5">
-                          <a href="curs.php?id=<?php echo $row_cursuri['main_class_id']; ?>"><?php echo $row_cursuri['main_title']; ?></a>
+                          <a href="curs/<?php echo $row_cursuri['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri['main_title']))) ?>"><?php echo $row_cursuri['main_title']; ?></a>
                         </h4>
                         <?php if (strlen($row_cursuri['classes.title']) < 32) {
                           echo "<br />";
@@ -125,8 +125,8 @@ order by c.registration_start_date;";
                                       } else {
                                         echo "In weekend";
                                       } ?></p-->
-                  <a class="btn btn-dark btn-theme-colored2" href="curs.php?id=<?php echo $row_cursuri['main_class_id']; ?>"> Detalii curs</a>
-                  <a href="inscriere-curs.php?curs=<?php echo $row_cursuri['id']; ?>" class="btn btn-dark btn-theme-colored pull-right">Înscrie-te</a>
+                  <a class="btn btn-dark btn-theme-colored2" href="curs/<?php echo $row_cursuri['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri['main_title']))) ?>"> Detalii curs</a>
+                  <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_cursuri['id']; ?>" class="btn btn-dark btn-theme-colored pull-right">Înscrie-te</a>
                 </div>
               </article>
             </div>
@@ -157,7 +157,7 @@ order by c.registration_start_date;";
                     <div class="media-body pl-0">
                       <div class="event-content pull-left flip">
                         <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5">
-                          <a href="curs.php?id=<?php echo $row_cursuri_without_date['main_class_id']; ?>"><?php echo $row_cursuri_without_date['main_title']; ?></a>
+                          <a href="curs/<?php echo $row_cursuri_without_date['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri_without_date['main_title']))) ?>"><?php echo $row_cursuri_without_date['main_title']; ?></a>
                         </h4>
                         <?php if (strlen($row_cursuri_without_date['classes.title']) < 32) {
                           echo "<br />";
@@ -210,7 +210,7 @@ order by c.registration_start_date;";
                                       } ?></p-->
                   <a class="btn btn-dark btn-theme-colored2" href="curs.php?id=<?php echo $row_cursuri_without_date['main_class_id']; ?>">
                     Detalii curs</a>
-                  <a href="inscriere-curs.php?curs=<?php echo $row_cursuri_without_date['id']; ?>" class="btn btn-dark btn-theme-colored pull-right">Înscrie-te</a>
+                  <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_cursuri_without_date['id']; ?>" class="btn btn-dark btn-theme-colored pull-right">Înscrie-te</a>
                 </div>
               </article>
             </div>

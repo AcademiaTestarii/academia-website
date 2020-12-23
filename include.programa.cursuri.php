@@ -67,7 +67,7 @@ order by c.registration_start_date;";
                                                 <div class="media-body pl-0">
                                                     <div class="event-content pull-left flip">
                                                         <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5">
-                                                            <a href="curs.php?id=<?php echo $row_cursuri['main_class_id']; ?>"><?php echo $row_cursuri['main_title']; ?></a>
+                                                            <a href="curs/<?php echo $row_cursuri['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri['main_title']))) ?>"><?php echo $row_cursuri['main_title']; ?></a>
                                                         </h4>
                                                         <?php if (strlen($row_cursuri['classes.title']) < 32) {
                                                             echo "<br />";
@@ -135,9 +135,9 @@ order by c.registration_start_date;";
                                                 echo "In weekend";
                                             } ?></p-->
                                             <a class="btn btn-dark btn-theme-colored2"
-                                               href="curs.php?id=<?php echo $row_cursuri['main_class_id']; ?>"> Detalii
+                                               href="curs/<?php echo $row_cursuri['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri['main_title']))) ?>"> Detalii
                                                 curs</a>
-                                            <a href="inscriere-curs.php?curs=<?php echo $row_cursuri['id']; ?>"
+                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_cursuri['id']; ?>"
                                                class="btn btn-dark btn-theme-colored pull-right">Înscrie-te</a>
                                         </div>
                                     </article>
@@ -169,7 +169,7 @@ order by c.registration_start_date;";
                                                 <div class="media-body pl-0">
                                                     <div class="event-content pull-left flip">
                                                         <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5">
-                                                            <a href="curs.php?id=<?php echo $row_cursuri_without_date['main_class_id']; ?>"><?php echo $row_cursuri_without_date['main_title']; ?></a>
+                                                            <a href="curs/<?php echo $row_cursuri_without_date['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri_without_date['main_title']))) ?>"><?php echo $row_cursuri_without_date['main_title']; ?></a>
                                                         </h4>
                                                         <?php if (strlen($row_cursuri_without_date['classes.title']) < 32) {
                                                             echo "<br />";
@@ -201,7 +201,7 @@ order by c.registration_start_date;";
                                                         <span class="mb-10 text-gray-darkgray mr-10 font-13">Locuri disponibile: <?php echo $row_cursuri_without_date['students'] - $cati; ?></span>
 
                                                         <?php
-                                                        $datesSql2 = mysqli_query($link, "SELECT `id` AS `urmatorul`,`weekend` FROM `classes` WHERE `main_class_id`=" . $row_cursuri_without_date['main_class_id'] . " 
+                                                        $datesSql2 = mysqli_query($link, "SELECT `id` AS `urmatorul`,`weekend` FROM `classes` WHERE `main_class_id`=" . $row_cursuri_without_date['main_class_id'] . "
                                                         AND  `registration_start_date` > NOW() AND `id` != " . $row_cursuri_without_date['id'] . " ORDER BY `registration_start_date` ASC LIMIT 1");
                                                         if (mysqli_num_rows($datesSql2) > 0) {
                                                             $datesRow2 = mysqli_fetch_assoc($datesSql2);
@@ -231,10 +231,10 @@ order by c.registration_start_date;";
                                                 echo "In weekend";
                                             } ?></p-->
                                             <a class="btn btn-dark btn-theme-colored2"
-                                               href="curs.php?id=<?php echo $row_cursuri_without_date['main_class_id']; ?>">
+                                               href="curs/<?php echo $row_cursuri_without_date['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri_without_date['main_title']))) ?>">
                                                 Detalii
                                                 curs</a>
-                                            <a href="inscriere-curs.php?curs=<?php echo $row_cursuri_without_date['id']; ?>"
+                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_cursuri_without_date['id']; ?>"
                                                class="btn btn-dark btn-theme-colored pull-right">Înscrie-te</a>
                                         </div>
                                     </article>
