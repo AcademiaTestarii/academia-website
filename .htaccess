@@ -7,7 +7,7 @@ RewriteCond 	%{HTTPS}s ^on(s)|
 RewriteRule 	^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 ##RewriteRule ^(.*).html$ /curs.php?url_string_short=$1 [L]
-
+RewriteRule ^curs/(.*)$ /curs.php?id=$1 [L]
 Options -Indexes
 
 ErrorDocument 404 /index.php
