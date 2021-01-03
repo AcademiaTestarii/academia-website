@@ -473,6 +473,16 @@ FROM main_classes a
                                                     echo "Data va fi anuntata ulterior";
                                                 } ?></span></li>
                                         <li class="clearfix"><span><?php echo $row_curs['deployment']; ?></span></li>
+                                        <?php
+                                        if(!is_null($row_curs['weekdays_schedule'])) {
+                                            echo " <li class='clearfix'><span>".$row_curs['weekdays_schedule']."</span></li>";
+                                        }
+                                        ?>
+                                        <?php
+                                        if(!is_null($row_curs['weekend_schedule'])) {
+                                            echo " <li class='clearfix'><span>".$row_curs['weekend_schedule']."</span></li>";
+                                        }
+                                        ?>
                                     </ul>
                                 </div>
                             </div>
