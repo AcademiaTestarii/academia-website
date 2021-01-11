@@ -401,14 +401,14 @@ if (isset($newId) && is_numeric($newId)) {
                                                style="display:block;"><i class="fa fa-user-o"></i> Verifică informaţiile
                                                 în contul tău.</a>
                                         <?php } else { ?>
-                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>#collapseInscriere"
+                                            <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_curs['main_class_id']; ?>/class_signup"
                                                class="btn btn-dark btn-theme-colored" width="100%"
                                                style="display:block;"><i
                                                         class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la
                                                 acest curs</a>
                                         <?php } ?>
                                     <?php } else { ?>
-                                        <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>"
+                                        <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_curs['main_class_id']; ?>/class_signup"
                                            class="btn btn-dark btn-theme-colored" width="100%" style="display:block;"><i
                                                     class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la acest
                                             curs</a>
@@ -518,14 +518,14 @@ FROM main_classes a
                                                    style="display:block;"><i class="fa fa-user-o"></i> Verifică
                                                     informaţiile în contul tău.</a>
                                             <?php } else { ?>
-                                                <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>#collapseInscriere"
+                                                <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_curs['main_class_id']; ?>/class_signup"
                                                    class="btn btn-dark btn-theme-colored" width="100%"
                                                    style="display:block;"><i
                                                             class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te
                                                     la acest curs</a>
                                             <?php } ?>
                                         <?php } else { ?>
-                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>"
+                                            <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_curs['main_class_id']; ?>/class_signup"
                                                class="btn btn-dark btn-theme-colored" width="100%"
                                                style="display:block;"><i
                                                         class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la

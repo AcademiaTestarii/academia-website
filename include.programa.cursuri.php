@@ -137,7 +137,7 @@ order by c.registration_start_date;";
                                             <a class="btn btn-dark btn-theme-colored2"
                                                href="curs/<?php echo $row_cursuri['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri['main_title']))) ?>"> Detalii
                                                 curs</a>
-                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_cursuri['id']; ?>"
+                                            <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_cursuri['main_class_id']; ?>/class_signup"
                                                class="btn btn-dark btn-theme-colored pull-right">Înscrie-te</a>
                                         </div>
                                     </article>
@@ -234,7 +234,7 @@ order by c.registration_start_date;";
                                                href="curs/<?php echo $row_cursuri_without_date['main_class_id']. '/'. strtolower(str_replace(" ", "-", iconv('utf-8', 'ascii//TRANSLIT', $row_cursuri_without_date['main_title']))) ?>">
                                                 Detalii
                                                 curs</a>
-                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_cursuri_without_date['id']; ?>"
+                                            <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_cursuri_without_date['main_class_id']; ?>/class_signup"
                                                class="btn btn-dark btn-theme-colored pull-right">Înscrie-te</a>
                                         </div>
                                     </article>

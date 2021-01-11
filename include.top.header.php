@@ -18,7 +18,7 @@
                 <li class="m-0 pl-10"> <a href="/logout.php"><i class="fa fa fa-sign-out mr-5 text-theme-colored2"></i> Logout</a> </li>
 			  <?php } else { ?>
                 <li class="m-0 pl-10"><a href="/ajax-load/login-form.html" class="ajaxload-popup"><i class="fa fa-user-o mr-5 text-theme-colored2"></i> Intră în cont</a></li>
-				<li class="m-0 pl-0 pr-10"><a href="/inscriere-curs.php"><i class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la un curs</a></li>
+				<li class="m-0 pl-0 pr-10"><a href="<?php echo $crmHost; ?>/catalog/1/class_signup"><i class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la un curs</a></li>
 			  <?php } ?>
               </ul>
             </div>

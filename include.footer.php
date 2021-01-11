@@ -25,7 +25,7 @@
 				<?php } else { ?>
 				<li><a href="/ajax-load/register-form.html" class="ajaxload-popup">Înregistrare</a></li>
                 <li><a href="/ajax-load/login-form.html" class="ajaxload-popup">Intră în cont</a></li>
-				<li><a href="/inscriere-curs.php">Înscrie-te la un curs</a></li>
+				<li><a href="<?php echo $crmHost; ?>/catalog/1/class_signup">Înscrie-te la un curs</a></li>
 				<?php } ?>
 				<li><a href="/termeni-si-conditii.php">Termeni si condiţii</a></li>
 				
