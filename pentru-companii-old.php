@@ -7,37 +7,19 @@ if (isset($_SESSION['key_admin']) && $_SESSION['key_admin'] == session_id()) {
 } else {
   $membru = false;
 }
-$page = "multumim";
-
-if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
-  $curs = trim(mysqli_real_escape_string($link, $_GET['curs']));
-  $sql = "SELECT * FROM `classes`
-	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
-	WHERE `main_class_id`=" . $curs . " AND main_classes.trainer_provider_id=$academiaTestariiTrainerProvider";
-  $query = mysqli_query($link, $sql);
-  if (mysqli_num_rows($query) > 0) {
-    $cursactiv = mysqli_fetch_assoc($query);
-    $valoare = $cursactiv['price'];
-    $nume = $cursactiv['main_classes.title'];
-    $data = $cursactiv['registration_start_date'];
-  } else {
-    header("Location:cursuri.php");
-  }
-} else {
-  header("Location:cursuri.php");
-}
+$page = "firme";
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="ro">
 
 <head>
   <!-- Page Title -->
-  <title>Academia Testării:: Mulțumim</title>
+  <title>Academia Testarii:: Pentru companii</title>
   <base href="<?php echo $_SERVER['SERVER_NAME']; ?>>">
   <!-- Meta Tags -->
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <meta name="description" content="Academia Testarii e despre atenţia la detalii. Oferim cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." />
+  <meta name="description" content="Academia Testarii:: Pentru companii" />
   <meta name="keywords" content="" />
 
   <!-- Favicons -->
@@ -60,16 +42,16 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
   <meta name="theme-color" content="#ffffff">
 
   <!-- Open Graph data -->
-  <meta property="og:title" content="Academia Testării:: Mulțumim" />
+  <meta property="og:title" content="Academia Testarii:: Pentru companii" />
   <meta property="og:author" content="@academiatestarii" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/multumim.php" />
+  <meta property="og:url" content="/pentru-companii.php" />
   <meta property="og:image:alt" content="Cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." />
-  <meta property="og:image" content="/images/contact-og.jpg" />
+  <meta property="og:image" content="/images/companii-og.jpg" />
   <meta property="og:image:width" content="1195" />
   <meta property="og:image:height" content="963" />
   <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:description" content="Academia Testarii e despre atenţia la detalii. Oferim cursuri de iniţiere şi specializare în Software Testing, consultanţă şi resourcing." />
+  <meta property="og:description" content="DACĂ VĂ DOARE CEVA, DAR NU ŞTIŢI EXACT CE... vă propunem soluții complete și integrate de testare software care să maximizeze investiția şi să reducă riscurile tehnice." />
   <meta property="og:site_name" content="Academia Testării" />
 
   <!-- Stylesheet -->
@@ -77,7 +59,7 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
   <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css">
   <link href="css/animate.css" rel="stylesheet" type="text/css">
   <link href="css/css-plugin-collections.css" rel="stylesheet" />
-
+  <link href="css/design.css" rel="stylesheet" />
   <!-- CSS | menuzord megamenu skins -->
   <link id="menuzord-menu-skins" href="css/menuzord-skins/menu-academia-testarii.css" rel="stylesheet" />
   <!-- CSS | Main style file -->
@@ -162,7 +144,7 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
           <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
-      <!--    <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>-->
+      <!-- <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>-->
     </div>
 
     <!-- Header -->
@@ -181,42 +163,142 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
           <div class="section-content">
             <div class="row">
               <div class="col-md-12">
-                <h2 class="title text-white">Mulţumim pentru înregistrare!</h2>
+                <h2 class="title text-white">Pentru companii</h2>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Divider: Contact -->
-      <section class="divider bg-lighter">
+      <!-- Section: Cursuri-->
+      <section class="inside">
         <div class="container">
-          <h2 class="mt-0 text-theme-colored">Ti-am rezervat un loc în clasă.</h2>
-          <div class="row">
-            <div class="col-md-12">
-              <p>Pentru a finaliza înscrierea, te rugăm să faci plata, conform modalității de plată aleasă (integral / in rate), in contul <strong>RO42 INGB 0000 9999 0985 9526</strong>. Te rugăm sa mentionezi în detaliile de plata, persoana pentru care se face plata.
-              <p>
-              <p>Pentru a intra în <a href="contul_tau.php#sectiuneaCursuri">contul tău</a> de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul pe care l-am trimis pe adresa de email cu care te-ai înregistrat.</p>
-              <p>Am setat o parola temporară pentru tine pe care o poți schimba dupa ce activezi contul.</p>
-              <p>Daca ai activat deja contul poti intra in <a href="contul_tau.php#sectiuneaCursuri">contul tău</a> unde vei găsi informații si materiale pentru cursurile la care te-ai inregistrat, poți schimba datele personale si poți descărca certificatele de absolivire.</p>
-              <p><strong>Iți mulțumim,<br>Echipa Academia Testării.</strong></p>
+          <div class="section-content">
+            <div class="row features-style1">
+              <div class="col-md-12">
+                <?php $sql = "SELECT * FROM `content` WHERE `id`=4";
+                $query = mysqli_query($link, $sql);
+                $row = mysqli_fetch_assoc($query); ?>
+                <h2 class="mt-0 text-theme-colored"><?php echo $row['title']; ?></h2>
+                <?php echo $row['text']; ?>
+                <br />
+              </div>
+              <div class="col-md-12">
+              </div>
+              <div class="col-md-12">
+                <div class="vertical-tab" role="tabpanel">
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <?php
+                    $sub = mysqli_query($link, "SELECT * FROM `subcontent` WHERE `content_id`=4");
+                    $i = 1;
+                    while ($rowsub = mysqli_fetch_assoc($sub)) {
+                    ?>
+                      <li role="presentation" <?php if ($i == 1) {
+                                                echo 'class="active"';
+                                              } ?>><a href="#Section<?php echo $i; ?>" aria-controls="home" role="tab" data-toggle="tab"><?php echo $rowsub['title']; ?></a></li>
+                    <?php $i++;
+                    } ?>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content tabs">
+                    <?php
+                    $sub = mysqli_query($link, "SELECT * FROM `subcontent` WHERE `content_id`=4");
+                    $i = 1;
+                    while ($rowsub = mysqli_fetch_assoc($sub)) {
+                    ?>
+                      <div role="tabpanel" class="tab-pane fade <?php if ($i == 1) {
+                                                                  echo 'in active';
+                                                                } ?>" id="Section<?php echo $i; ?>">
+                        <h3><?php echo $rowsub['title']; ?></h3>
+                        <?php echo $rowsub['text']; ?>
+                      </div>
+                    <?php $i++;
+                    } ?>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- Divider: Call To Action -->
+      <section class="divider parallax layer-overlay overlay-theme-colored-2" data-bg-img="images/slider3.jpg" data-parallax-ratio="0.7">
+        <div class="container">
+          <div class="row">
+            <div class="call-to-action pt-20 pb-10">
+              <!-- Reservation Form Start-->
+              <form id="reservation_form" name="reservation_form" class="reservation-form mb-0" method="post" action="includes/reservation.php">
+                <div class="col-md-10">
+                  <h2 class="text-white border-bottom mt-0 mb-10">Să discutăm <span class="text-theme-colored2">detaliile</span></h2>
+                  <p class="text-white mt-0">În funcţie de specificul nevoilor fiecărui client, detaliile logistice, programa sau costul sunt stabilite împreună. Spune-ne mai multe la <a href="mailto:contact@academiatestarii.ro">contact@academiatestarii.ro</a>. Noi suntem încântaţi să îți răspundem.</p>
+                  <h4 class="text-white mt-20 mb-10">Sau folosește formularul de mai jos.</h4>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                  <div class="form-group mb-15">
+                    <input name="email" class="form-control email" type="email" minlength="5" pattern=".+@+.+." size="30" required="" placeholder="Adresa email">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <div class="form-group mb-15">
+                    <input placeholder="Mesaj" type="text" id="mesaj" name="mesaj" minlength="10" class="form-control" required="">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-2">
+                  <div class="form-group mb-15 mt-0">
+                    <input name="form_botcheck" class="form-control" type="hidden" value="">
+                    <button type="submit" class="btn text-white btn-lg btn-flat btn-theme-colored2 form-control" data-loading-text="Asteptati putin..." onClick="fbq('track', 'Contact');">Trimite acum</button>
+                  </div>
+                </div>
+              </form>
+              <!-- Reservation Form End-->
+
+              <!-- Reservation Form Validation Start-->
+              <script type="text/javascript">
+                $("#reservation_form").validate({
+                  submitHandler: function(form) {
+                    var form_btn = $(form).find('button[type="submit"]');
+                    var form_result_div = '#form-result';
+                    $(form_result_div).remove();
+                    form_btn.after('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
+                    var form_btn_old_msg = form_btn.html();
+                    form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
+                    $(form).ajaxSubmit({
+                      dataType: 'json',
+                      success: function(data) {
+                        if (data.status == 'true') {
+                          $(form).find('.form-control').val('');
+                        }
+                        form_btn.prop('disabled', false).html(form_btn_old_msg);
+                        $(form_result_div).html(data.message).fadeIn('slow');
+                        setTimeout(function() {
+                          $(form_result_div).fadeOut('slow')
+                        }, 6000);
+                      }
+                    });
+                  }
+                });
+              </script>
+              <!-- Reservation Form Validation Start -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- end main-content -->
     </div>
-    </section>
-    <!-- end main-content -->
-  </div>
 
-  <!-- Footer -->
-  <footer id="footer" class="footer" data-bg-img="images/footer-bg.png" data-bg-color="#020443">
+    <!-- Footer -->
+    <footer id="footer" class="footer" data-bg-img="images/footer-bg.png" data-bg-color="#020443">
 
-    <?php include("include.footer.php"); ?>
+      <?php include("include.footer.php"); ?>
 
-    <?php include("include.subfooter.php"); ?>
+      <?php include("include.subfooter.php"); ?>
 
-  </footer>
-  <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    </footer>
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
   </div>
   <!-- end wrapper -->
 
@@ -233,23 +315,13 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
   <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
   <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
   <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+
+  <script>
+    /* $(function () {
+	$( ".inside li" ).prepend( "<i class=\"fa fa-arrow-right\"></i>" );
+  });*/
+  </script>
   <?php include("tracking.php"); ?>
-  <script>
-    fbq('track', 'Lead', {
-      content_name: '<?php echo $nume; ?>',
-      value: <?php echo $valoare; ?>,
-      currency: 'RON'
-    });
-  </script>
-  <script>
-    gtag('event', 'inscrie-te pagina formular', {
-      'event_category': 'initiate lead',
-      'event_label': '<?php echo $nume; ?>',
-      'event_value': '<?php echo $valoare; ?>',
-      'event_date': '<?php echo $data; ?>',
-      'currency': 'RON'
-    });
-  </script>
 </body>
 
 </html>
