@@ -33,10 +33,10 @@ if (isset($newId) && is_numeric($newId)) {
 	SELECT classes.*, main_classes.title as main_title FROM `classes`
 	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
 	WHERE `classes`.`main_class_id`=" . $id . "" ;
-	   if (isset($academiaTestariiTrainerProvider)) {
-        $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
+        if (isset($academiaTestariiTrainerProvider)) {
+            $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
         }
-	$sql_curs .= " AND `classes`.`registration_start_date` <= NOW()
+        $sql_curs .= " AND `classes`.`registration_start_date` <= NOW()
 	ORDER BY `classes`.`registration_start_date` DESC
 	LIMIT 1";
         $query_curs = mysqli_query($link, $sql_curs);
@@ -52,7 +52,7 @@ if (isset($newId) && is_numeric($newId)) {
     if (isset($academiaTestariiTrainerProvider)) {
         $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
     }
-	$sql_curs .= " AND `classes`.`registration_start_date` > NOW()
+    $sql_curs .= " AND `classes`.`registration_start_date` > NOW()
 	ORDER BY `classes`.`registration_start_date` ASC
 	LIMIT 1
 	";
@@ -401,14 +401,14 @@ if (isset($newId) && is_numeric($newId)) {
                                                style="display:block;"><i class="fa fa-user-o"></i> Verifică informaţiile
                                                 în contul tău.</a>
                                         <?php } else { ?>
-                                            <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_curs['main_class_id']; ?>/class_signup"
+                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>#collapseInscriere"
                                                class="btn btn-dark btn-theme-colored" width="100%"
                                                style="display:block;"><i
                                                         class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la
                                                 acest curs</a>
                                         <?php } ?>
                                     <?php } else { ?>
-                                        <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_curs['main_class_id']; ?>/class_signup"
+                                        <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>"
                                            class="btn btn-dark btn-theme-colored" width="100%" style="display:block;"><i
                                                     class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la acest
                                             curs</a>
@@ -442,7 +442,7 @@ FROM main_classes a
                                         if (isset($academiaTestariiTrainerProvider)) {
                                             $sql_cursuri .= " AND a.trainer_provider_id = $academiaTestariiTrainerProvider";
                                         }
-             $sql_cursuri .= " order by `c`.`registration_start_date` asc";
+                                        $sql_cursuri .= " order by `c`.`registration_start_date` asc";
 
                                         $query_cursuri = mysqli_query($link, $sql_cursuri);
                                         while ($row_cursuri = mysqli_fetch_assoc($query_cursuri)) { ?>
@@ -518,14 +518,14 @@ FROM main_classes a
                                                    style="display:block;"><i class="fa fa-user-o"></i> Verifică
                                                     informaţiile în contul tău.</a>
                                             <?php } else { ?>
-                                                <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_curs['main_class_id']; ?>/class_signup"
+                                                <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>#collapseInscriere"
                                                    class="btn btn-dark btn-theme-colored" width="100%"
                                                    style="display:block;"><i
                                                             class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te
                                                     la acest curs</a>
                                             <?php } ?>
                                         <?php } else { ?>
-                                            <a href="<?php echo $crmHost; ?>/catalog/<?php echo $row_curs['main_class_id']; ?>/class_signup"
+                                            <a href="https://<?php echo $_SERVER['HTTP_HOST'] ?>/inscriere-curs.php?curs=<?php echo $row_curs['id']; ?>"
                                                class="btn btn-dark btn-theme-colored" width="100%"
                                                style="display:block;"><i
                                                         class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la
