@@ -205,7 +205,7 @@ $datesRowactiv=mysqli_fetch_assoc($datesSqlactiv);
 ?>
 <div class="row">
 <div class="col-md-6">
-<h4><?php echo $row_curs_activ['main_classes.title'];?></h4>
+<h4><?php echo $row_curs_activ['title'];?></h4>
 								<p><strong>Data înscriere: </strong> <?php echo strftime("%e %B %Y la %H:%M:%S", strtotime($row_curs_activ['registration_start_date']));?><br />
 								<strong>Cursul începe pe: </strong> <?php echo strftime("%e %B %Y", strtotime($datesRowactiv['start1']));?><br />
 
