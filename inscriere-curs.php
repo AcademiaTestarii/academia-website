@@ -408,7 +408,7 @@ WHERE `classes.id`=" . $curs . "";
                                         $sql_cursuri = "SELECT * FROM `main_classes` WHERE `is_active`=1";
 
                                         if(isset($academiaTestariiTrainerProvider)) {
-                                            $sql_cursuri .= "AND trainer_provider_id = $academiaTestariiTrainerProvider ORDER BY `order` ASC";
+                                            $sql_cursuri .= " AND trainer_provider_id = $academiaTestariiTrainerProvider ORDER BY `order` ASC";
                                         }
 
                                         $query_cursuri = mysqli_query($link, $sql_cursuri);

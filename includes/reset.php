@@ -2,6 +2,7 @@
 session_start();
 require_once("../__connect.php");
 $status = "false";
+$host = $_SERVER['HTTP_HOST'];
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     if ( $_POST['email'] != '') {
 
@@ -29,7 +30,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 						$mail->Subject = "Cerere resetare parolă platforma Academia Testării";
 
 						$greetings = "Salutare ".$prenume."<br><br>";
-						$message = "Ai cerut o resetare a parolei de pe platforma Academia Testării. <br>Poţi schimba parola dupa ce intri în contul tău de pe platforma Academia Testării dând clik pe linkul de mai jos:<br><br><a href=\"/reset.php?cheie=$cod_resetare\">Schimbă parola</a><br><br>ATENTIE: Acest link expira în 15 minute.<br><br><strong>Daca nu ai solicitat tu acest lucru, te rugăm sa ignori acest mesaj!</strong>";
+						$message = "Ai cerut o resetare a parolei de pe platforma Academia Testării. <br>Poţi schimba parola dupa ce intri în contul tău de pe platforma Academia Testării dând clik pe linkul de mai jos:<br><br><a href=\"$host/reset.php?cheie=$cod_resetare\">Schimbă parola</a><br><br>ATENTIE: Acest link expira în 15 minute.<br><br><strong>Daca nu ai solicitat tu acest lucru, te rugăm sa ignori acest mesaj!</strong>";
 
 						$body = "$greetings $message";
 
