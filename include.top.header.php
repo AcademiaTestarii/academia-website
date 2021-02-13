@@ -10,11 +10,12 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-xs-12">
+            <div class="col-md-5 col-xs-12">
                 <div class="widget">
                     <ul class="list-inline pull-right list-bordered styled-icon-info">
                         <?php if (isset($_SESSION['key_admin']) && ($_SESSION['key_admin'] == session_id())) { ?>
                             <li class="m-0 pl-10"> <a href="/contul_tau.php"><i class="fa fa-user-o mr-5 text-theme-colored2"></i> Contul tău</a> </li>
+                            <li class="m-0 pl-0 pr-10"><a href="/inscriere-curs.php"><i class="fa fa-edit mr-5 text-theme-colored2"></i>Înscrie-te la un curs</a></li>
                             <li class="m-0 pl-10"> <a href="/logout.php"><i class="fa fa fa-sign-out mr-5 text-theme-colored2"></i> Logout</a> </li>
                         <?php } else { ?>
                             <li class="m-0 pl-10"><a href="/ajax-load/login-form.html" class="ajaxload-popup"><i class="fa fa-user-o mr-5 text-theme-colored2"></i> Intră în cont</a></li>
@@ -24,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2 mb-10 col-xs-12 hidden-xs">
+            <div class="col-md-1 mb-10 col-xs-12 hidden-xs" style="padding-right: 0px;">
                 <div class="widget pull-right">
                     <ul class="styled-icons icon-sm">
                         <li class="wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay=".1s" data-wow-offset="10"><a href="https://www.facebook.com/academiatestarii/" target="_blank" data-color="#3b5998"><i class="fa fa-facebook"></i></a></li>
