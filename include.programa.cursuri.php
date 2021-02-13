@@ -16,7 +16,7 @@
                         <?php
                         $sql_cursuri = "
 select *, mc.title as main_title from main_classes mc
-left join classes c on mc.id = c.main_class_id
+left join classes c on mc.id = c.main_class_id and c.deleted_at is null
 where c.registration_start_date >= NOW()";
                         if (isset($academiaTestariiTrainerProvider)) {
                             $sql_cursuri .= " AND mc.trainer_provider_id = $academiaTestariiTrainerProvider";
@@ -26,7 +26,7 @@ order by c.registration_start_date;";
 
                         $sql_cursuri_without_date = "
 select *, mc.title as main_title from main_classes mc
-left join classes c on mc.id = c.main_class_id and c.is_active = 1
+left join classes c on mc.id = c.main_class_id and c.is_active = 1 and c.deleted_at is null
 where c.registration_start_date < NOW()";
                         if (isset($academiaTestariiTrainerProvider)) {
                             $sql_cursuri_without_date .= " AND mc.trainer_provider_id = $academiaTestariiTrainerProvider";

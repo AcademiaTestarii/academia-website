@@ -23,7 +23,7 @@
               $sql_cursuri = "SELECT main_classes.* FROM `main_classes`
 JOIN `classes`
 ON `classes`.`main_class_id`=`main_classes`.`id`
-WHERE main_classes.`is_active`=1";
+WHERE main_classes.`is_active`=1 AND classes.deleted_at is null";
 
               if (isset($academiaTestariiTrainerProvider)) {
                 $sql_cursuri .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
