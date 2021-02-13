@@ -197,9 +197,7 @@ WHERE `classes.id`=" . $curs . "";
                     <p>După ce completezi acest formular vei primi un mesaj de confirmare pe email. In acest mesaj vei
                         primi deasemenea și instrucţiuni pentru activarea contului tău de pe platforma Academia Testării
                         unde vei putea consulta materiale pentru curs precum și alte informaţii care privesc relaţia
-                        dintre Academia Testării și tine.</p><p>Dacă ai deja cont pe platforma Academia Testării, te
-                        rugăm să <strong><a href="ajax-load/login-form.html" class="ajaxload-popup text-theme-colored">intri
-                                în contul tău</a></strong> pentru a te înscrie la cursuri.</p>
+                        dintre Academia Testării și tine.</p>
                 <?php } else { ?>
                     <p>Avem nevoie de datele tale personale (Nume, Adresa, Localitate, etc pentru facturare). Te rugăm
                         să completezi datele personale în <strong><a href="contul_tau.php#sectiuneaDate"
