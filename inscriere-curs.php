@@ -518,7 +518,7 @@ WHERE `classes`.deleted_at is null AND `classes.id`=" . $curs . "";
                                 } ?>
                                 <?php if ($inscrisdeja) { ?>
                                     <h4>Ești deja înscris la acest curs.</h4>
-                                    <a href="contul_tau.php#sectiuneaCursuri" class="btn btn-dark btn-theme-colored"><i
+                                    <a href="/contul_tau.php#sectiuneaCursuri" class="btn btn-dark btn-theme-colored"><i
                                                 class="fa fa-user-o"></i> Verifică informaţiile în contul tău.</a>
                                 <?php } else { ?>
                                     <button id="submitBtn" type="submit" class="btn btn-dark btn-theme-colored"

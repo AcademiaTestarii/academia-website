@@ -423,7 +423,7 @@ if ($row_cursuri2['id']==$cursactiv['id']) {$activ="checked=\"checked\"";}
 			}?>
 			<?php if ($inscrisdeja) { ?>
 				<h4>Ești deja înscris la acest curs.</h4>
-				<a href="contul_tau.php#sectiuneaCursuri" class="btn btn-lg text-white text-center btn-theme-colored2 btn-block pt-20 pb-20 btn-flat"><i class="fa fa-user-o"></i> Verifică informaţiile în contul tău.</a>
+				<a href="/contul_tau.php#sectiuneaCursuri" class="btn btn-lg text-white text-center btn-theme-colored2 btn-block pt-20 pb-20 btn-flat"><i class="fa fa-user-o"></i> Verifică informaţiile în contul tău.</a>
 			<?php } else { ?>
 				<button id="submitBtn" type="submit" class="btn btn-lg text-white text-center btn-theme-colored2 btn-block pt-20 pb-20 btn-flat" data-loading-text="Asteapta putin...">Înscrie-te la curs</button>
 			<? } ?>
