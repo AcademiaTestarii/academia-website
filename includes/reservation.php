@@ -29,11 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $mail->setFrom($email, $name);
       $mail->addReplyTo($email, $name);
       $mail->addAddress($toemail, $toname);
-      $mail->addBCC("dmirea@rec.org",  "Daniel Mirea");
+      $mail->addBCC("cst2989@gmail.com",  "Neciu Dan");
       $mail->Subject = $subject;
 
       $email = isset($email) ? "Email: $email<br><br>" : '';
-      $mesaj = isset($mesaj) ? "Mesaj: $mesaj<br><br> Nr Telefon: $telefon <br><br> Companie: $nume_companie" : '';
+      $mesaj = isset($mesaj) ? "Mesaj: $mesaj<br><br> Nr Telefon: $telefon <br><br> Companie: $nume_companie  <br><br> Nume: $name" : '';
 
       $body = "$email $mesaj";
 

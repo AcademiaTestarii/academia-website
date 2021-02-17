@@ -56,9 +56,8 @@ $page = "firme";
   <!-- Stylesheet -->
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css">
-  <link href="css/animate.css" rel="stylesheet" type="text/css">
   <link href="css/css-plugin-collections.css" rel="stylesheet" />
-  <link href="css/design.css" rel="stylesheet" />
+  <link href="css/design.css?ver=3" rel="stylesheet" />
   <!-- CSS | menuzord megamenu skins -->
   <link id="menuzord-menu-skins" href="css/menuzord-skins/menu-academia-testarii.css" rel="stylesheet" />
   <!-- CSS | Main style file -->
@@ -72,9 +71,7 @@ $page = "firme";
   <!-- Academia Testarii CSS | Style css -->
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <!-- Revolution Slider 5.x CSS settings -->
-  <link href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css" />
-  <link href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css" />
-  <link href="js/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css" />
+
   <!-- CSS | Academia Testarii -->
   <link href="css/colors/academia-testarii.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -85,8 +82,7 @@ $page = "firme";
   <!-- JS | jquery plugin collection -->
   <script src="js/jquery-plugin-collection.js"></script>
   <!-- Revolution Slider 5.x SCRIPTS -->
-  <script src="js/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
-  <script src="js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -136,16 +132,13 @@ $page = "firme";
 </head>
 
 <body class="" id="up">
+  <div class="modal-companii-backdrop"></div>
+  <div class="modal-companii">
+    <div class="modal-companii__close"></div>
+    <div class="modal-companii__title" id="modal-title"></div>
+    <div class="modal-companii__content" id="modal-content"></div>
+  </div>
   <div id="wrapper" class="clearfix">
-    <!-- preloader -->
-    <div id="preloader">
-      <div id="spinner">
-        <div class="preloader-orbit-loading">
-          <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
-        </div>
-      </div>
-      <!-- <div id="disable-preloader" class="btn btn-default btn-sm">Treci peste preloader</div>-->
-    </div>
 
     <!-- Header -->
     <header id="header" class="header modern-header modern-header-white">
@@ -167,22 +160,22 @@ $page = "firme";
           </div>
           <div class="companii-section-hero__body">
             <div class="companii-section-hero-box">
-              <h3 class="companii-section-hero-box__title">CONSULTANȚÂ</h3>
+              <h3 class="companii-section-hero-box__title"><a style="color: #2d21b9;" href="#CONSULTANȚĂ">CONSULTANȚĂ</a></h3>
               <p class="companii-section-hero-box__description">Prin expertiza extensivă pe care o avem, ajutăm companiile să iși evalueze și îmbunatățească procesele de testare.</p>
             </div>
             <div class="companii-section-hero-box">
-              <h3 class="companii-section-hero-box__title">CURSURI</h3>
+              <h3 class="companii-section-hero-box__title"><a style="color: #2d21b9;" href="#CURSURI">CURSURI</a></h3>
               <p class="companii-section-hero-box__description">Curicula amplă, gandită pentru a oferi beneficii măsurabile</p>
             </div>
             <div class="companii-section-hero-box">
-              <h3 class="companii-section-hero-box__title">COACHING</h3>
+              <h3 class="companii-section-hero-box__title"><a style="color: #2d21b9;" href="#COACHING">COACHING</a></h3>
               <p class="companii-section-hero-box__description">Accesează programul nostru și îmbunatățește performanțele echipei tale</p>
             </div>
           </div>
         </div>
         <div class="companii-section-consultanta">
           <div class="container">
-            <h1 class="companii-section-consultanta__title">Consultanță</h1>
+            <h1 id="CONSULTANȚĂ" name="CONSULTANȚĂ" class="companii-section-consultanta__title">Consultanță</h1>
             <p class="companii-section-consultanta__description">Propunem fiecărui client un proces simplu și transparent menit să il ajute să ințeleagă mai bine și să dezvolte procesele de testare. Principalele produse oferite (TMA) și (TPI) sunt gândite ca două produse complementare, pentru a maximiza beneficiile obținute de fiecare client.</p>
             <div class="companii-section-consultanta__body">
               <div class="companii-section-consultanta__body__box">
@@ -199,7 +192,7 @@ $page = "firme";
         <div class="companii-section-cursuri">
           <div class="companii-section-cursuri__header">
             <div class="container">
-              <h1 class="companii-section-hero__header__heading">Cursuri</h1>
+              <h1 id="CURSURI" name="CURSURI" class="companii-section-hero__header__heading">Cursuri</h1>
               <p class="companii-section-hero__header__description">Curicula amplă, gandită pentru a oferi beneficii<br>măsurabile clienților</p>
             </div>
           </div>
@@ -212,7 +205,7 @@ $page = "firme";
                   <h3 class="companii-section-cursuri__body__box__content__title">Cui se adresează</h3>
                   <p class="companii-section-cursuri__body__box__content__text">Persoanelor din zona de testare software care doresc să îmbunatățească și standardizeze modul de lucru.
                   </p>
-                  <p class="companii-section-cursuri__body__box__content__text">DE CE?</p>
+                  <p class="companii-section-cursuri__body__box__content__title">DE CE?</p>
                   <p class="companii-section-cursuri__body__box__content__text">O certificare IT recunoscută internațional este un indicator de referință rapid și ușor recunoscut, mapat la un set de abilități specifice bazat pe testări standardizate. O certificare demonstrează dedicarea, motivația și mai ales abilitatile specifice ariei certificate.
                   </p>
                   <h3 class="companii-section-cursuri__body__box__content__title">Cursuri:</h3>
@@ -235,7 +228,7 @@ $page = "firme";
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cui se adresează</h3>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Organizațiilor care doresc să preia noi talente și să le dezvolte intern de la posturi de juniori la membrii de echipă responsabili și independenți.
                       </p>
-                      <p class="companii-section-cursuri__body__column__outcome__content__text">DE CE?</p>
+                      <p class="companii-section-cursuri__body__column__outcome__content__title">DE CE?</p>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Bucurați-vă de un control mai bun al procesului de testare. Abordați problemele înainte ca acestea să poată deveni probleme depline. Adaptați continuu procesul pentru a se potrivi nevoilor și obiectivelor de afaceri în continuă schimbare.</p>
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cursuri:</h3>
                       <ul class="companii-section-cursuri__body__column__outcome__content__list">
@@ -254,7 +247,7 @@ $page = "firme";
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cui se adresează</h3>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Organizațiilor care doresc să își mărească echipa prin angajarea atât a juniorilor proaspăt scoși din școală, cât și a profesioniștilor reorientați în carieră.
                       </p>
-                      <p class="companii-section-cursuri__body__column__outcome__content__text">DE CE?</p>
+                      <p class="companii-section-cursuri__body__column__outcome__content__title">DE CE?</p>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Rezultatul nostru oferă noilor membri ai echipei o bază tehnică puternică și abilități îmbunătățite organizatorice, de comunicare și interpersonale.</p>
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cursuri:</h3>
                       <ul class="companii-section-cursuri__body__column__outcome__content__list">
@@ -274,7 +267,7 @@ $page = "firme";
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Organizațiilor care doresc să eficientizeze procesul de testare din punct de vedere tehnic și să-l alinieze la o abordare adaptată nevoilor și bazată pe interacțiuni.
 
                       </p>
-                      <p class="companii-section-cursuri__body__column__outcome__content__text">DE CE?</p>
+                      <p class="companii-section-cursuri__body__column__outcome__content__title">DE CE?</p>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Accesul oferă un cadru complet integrat pentru a face față provocărilor tehnologice, acordând totodată o atenție deosebită interacțiunilor dintre membrii echipei.</p>
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cursuri:</h3>
                       <div class="list-container">
@@ -312,7 +305,7 @@ $page = "firme";
                     <div class="companii-section-cursuri__body__column__outcome__content">
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cui se adresează</h3>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Organizațiilor care aplică metodologia Agile și care doresc înțelegerea cadrului, principiilor și valorilor.</p>
-                      <p class="companii-section-cursuri__body__column__outcome__content__text">DE CE?</p>
+                      <p class="companii-section-cursuri__body__column__outcome__content__title">DE CE?</p>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Agile permite mai multă independență individuală în abordarea problemelor cu managerii, asigurându-se că există mai multe funcționalități încrucișate între echipe și încurajează un mediu mai dinamic.</p>
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cursuri:</h3>
                       <ul class="companii-section-cursuri__body__column__outcome__content__list">
@@ -329,14 +322,7 @@ $page = "firme";
                   </div>
                 </div>
                 <div class="companii-section-cursuri__body__top__column">
-                  <img class="companii-section-cursuri__body__top__column__image" src="images/image6.png" alt="">
-                </div>
-              </div>
-              <div class="columns-container">
-                <div class="companii-section-cursuri__body__top__column">
-                  <img class="companii-section-cursuri__body__top__column__image companii-section-cursuri__body__top__column__image--left" src="images/image5.png" alt="">
-                </div>
-                <div class="companii-section-cursuri__body__top__column">
+                  <!-- <img class="companii-section-cursuri__body__top__column__image" src="images/image6.png" alt=""> -->
                   <div class="companii-section-cursuri__body__top__column__outcome">
                     <div class="companii-section-cursuri__body__column__outcome__icon"></div>
                     <div class="companii-section-cursuri__body__column__outcome__title">Îmbunătățiți livrarea de produse într-un context Agile</div>
@@ -345,7 +331,7 @@ $page = "firme";
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Organizațiilor care doresc să creeze un flux constant de produse utile, reducând disparitățile dintre dezvoltare și QA.
 
                       </p>
-                      <p class="companii-section-cursuri__body__column__outcome__content__text">DE CE?</p>
+                      <p class="companii-section-cursuri__body__column__outcome__content__title">DE CE?</p>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Metodologia Agile pentru livrarea produselor asigură o sincronizare mai bună între echipe, un timp mai rapid de comercializare și produse de înaltă calitate care îmbunătățesc experiența utilizatorului.</p>
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cursuri:</h3>
                       <div class="list-container">
@@ -378,7 +364,7 @@ $page = "firme";
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Organizațiilor care doresc să creeze un set robust de roluri care să susțină livrarea de produse Agile.
 
                       </p>
-                      <p class="companii-section-cursuri__body__column__outcome__content__text">DE CE?</p>
+                      <p class="companii-section-cursuri__body__column__outcome__content__title">DE CE?</p>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Fiecare organizație trebuie să contureze framework-uri de responsabilitate clare - acest lucru asigură transparența procesului, o mai bună organizare a echipelor și a competențelor lor individuale și un mediu de lucru mai sănătos, în care fiecare persoană primește o voce și este respectată pentru contribuția sa unică.</p>
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cursuri:</h3>
                       <div class="list-container">
@@ -411,7 +397,7 @@ $page = "firme";
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cui se adresează</h3>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Organizațiilor care doresc să echilibreze abordările concentrate pe interactiunea fizica cu un mediu în care cele mai multe comunicări au loc online sau de la distanță.
                       </p>
-                      <p class="companii-section-cursuri__body__column__outcome__content__text">DE CE?</p>
+                      <p class="companii-section-cursuri__body__column__outcome__content__title">DE CE?</p>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Având în vedere contextul actual, nu a fost niciodată mai dificil să se asigure linii clare de comunicare între părțile interesate: tonul corect al vocii, modul în care este furnizat feedback, asigurându-se că toată lumea se simte văzută și apreciată atât ca membru al echipei, cât și ca persoană.</p>
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cursuri:</h3>
                       <div class="list-container">
@@ -440,7 +426,7 @@ $page = "firme";
                     <div class="companii-section-cursuri__body__column__outcome__content">
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cui se adresează</h3>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Organizațiilor orientate spre construirea unei echipe de muncă stabilă, satisfăcute și motivate.</p>
-                      <p class="companii-section-cursuri__body__column__outcome__content__text">DE CE?</p>
+                      <p class="companii-section-cursuri__body__column__outcome__content__title">DE CE?</p>
                       <p class="companii-section-cursuri__body__column__outcome__content__text">Prevenirea riscului de „exod al creierelor” prin punerea în aplicare a unor avansări clare în carieră, de la posturi junior la conducătorii de proiecte și posturi de conducere.</p>
                       <h3 class="companii-section-cursuri__body__column__outcome__content__title">Cursuri:</h3>
                       <ul class="companii-section-cursuri__body__column__outcome__content__list">
@@ -457,7 +443,7 @@ $page = "firme";
         </div>
         <div class="companii-section-coaching">
           <div class="container">
-            <h1 class="companii-section-coaching__title">Coaching</h1>
+            <h1 id="COACHING" name="COACHING" class="companii-section-coaching__title">Coaching</h1>
             <p class="companii-section-coaching__description">Accesează programul nostru și îmbunatatește performanțele echipei tale.</p>
             <div class="companii-section-coaching__body">
               <div class="companii-section-coaching__body__box">
@@ -485,14 +471,15 @@ $page = "firme";
               <input type="email" name="email" class="companii-form__input" placeholder="E-mail">
               <input type="text" name="nume-companie" class="companii-form__input" placeholder="Numele Companiei">
               <input type="text" name="telefon" class="companii-form__input" placeholder="Număr de telefon">
-              <input type="text" name="mesaj" class="companii-form__input__mesaj" placeholder="Mesaj">
-              <div class="companii-form__termeni">
+              <textarea name="mesaj" class="companii-form__input__mesaj" placeholder="Mesaj">
+              </textarea>
+              <div class="companii-form__termeni ">
                 <input id="bifa" name="acord" type="checkbox" class="companii-form__input__bifa">
                 <label for="bifa" class="companii-form__termeni__conditii">Datele personale colectate în acest formular vor fi folosite doar pentru a oferi un răspuns întrebarilor dumneavoastră.<br>Prin trimiterea acestui formular sunteți de acord cu stocarea datelor în vederea soluționării solicitării dumneavoastră
                 </label>
               </div>
               <input name="form_botcheck" class="form-control" type="hidden" value="">
-              <button data-loading-text="Asteptati putin..." onClick="fbq('track', 'Contact');" class="companii-section-hero__header__button">Contactează-ne</button>
+              <button id="form-button" data-loading-text="Asteptati putin..." onClick="fbq('track', 'Contact');" class="companii-section-hero__header__button">Contactează-ne</button>
             </form>
           </div>
         </div>
@@ -503,11 +490,41 @@ $page = "firme";
     <!-- Reservation Form Validation Start-->
     <script type="text/javascript">
       $('.companii-section-cursuri__body__column__outcome__title').on('click', function() {
-        $(this).parent().toggleClass('companii-section-cursuri__body__top__column__outcome--active')
+        $('.modal-companii-backdrop').addClass('active')
+        $('.modal-companii').addClass('active')
+        let title = $(this).html();
+        let content = $(this).parent().find('.companii-section-cursuri__body__column__outcome__content').html();
+        $('.modal-companii .modal-companii__title').html(title)
+        $('.modal-companii .modal-companii__content').html(content)
+        $(".modal-companii .modal-companii__content").scrollTop(0);
       })
+
+
       $('.companii-section-cursuri__body__column__outcome__icon').on('click', function() {
-        $(this).parent().toggleClass('companii-section-cursuri__body__top__column__outcome--active')
+        $('.modal-companii-backdrop').addClass('active')
+        $('.modal-companii').addClass('active')
+        let title = $(this).parent().find('.companii-section-cursuri__body__column__outcome__title').html();
+        let content = $(this).parent().find('.companii-section-cursuri__body__column__outcome__content').html();
+        $('.modal-companii .modal-companii__title').html(title)
+        $('.modal-companii .modal-companii__content').html(content)
+        $(".modal-companii .modal-companii__content").scrollTop(0);
       })
+
+      $('.modal-companii-backdrop').on('click', function() {
+        $('.modal-companii-backdrop').removeClass('active')
+        $('.modal-companii').removeClass('active')
+        $('.modal-companii .modal-companii__title').html('')
+        $('.modal-companii .modal-companii__content').html('')
+      })
+
+      $('.modal-companii__close').on('click', function() {
+        $('.modal-companii-backdrop').removeClass('active')
+        $('.modal-companii').removeClass('active')
+        $('.modal-companii .modal-companii__title').html('')
+        $('.modal-companii .modal-companii__content').html('')
+      })
+
+      // only one
       $('.companii-section-cursuri__body__box__title').on('click', function() {
         $(this).parent().toggleClass('companii-section-cursuri__body__box--active')
       })
@@ -516,29 +533,39 @@ $page = "firme";
       })
       $("#reservation_form").validate({
         submitHandler: function(form) {
-          var form_btn = $(form).find('button[type="submit"]');
+          var form_btn = $(form).find('#form-button');
           var form_result_div = '#form-result';
           $(form_result_div).remove();
-          form_btn.after('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
-          var form_btn_old_msg = form_btn.html();
-          form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
+          $(".companii-form__input").each(function(index) {
+            if (!$(this).val()) {
+              $(this).addClass('error')
+            }
+          });
+          if (!$('.companii-form__input__bifa').is(":checked")) {
+            $('.companii-form__termeni').addClass('error')
+          }
+
           $(form).ajaxSubmit({
             dataType: 'json',
             success: function(data) {
               if (data.status == 'true') {
+                $(".companii-form__input").each(function(index) {
+                  $(this).removeClass('error')
+                });
+                $('.companii-form__termeni').removeClass('error')
                 $(form).find('.companii-form__input').val('');
+                form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none; margin-top: 15px;"></div>');
+              } else {
+                form_btn.before('<div id="form-result" class="alert alert-danger" role="alert" style="display: none; margin-top: 15px;"></div>');
               }
-              form_btn.prop('disabled', false).html(form_btn_old_msg);
               $(form_result_div).html(data.message).fadeIn('slow');
-              setTimeout(function() {
-                $(form_result_div).fadeOut('slow')
-              }, 6000);
             }
           });
         }
       });
     </script>
     <!-- Footer -->
+    <script src="js/custom.js"></script>
     <footer id="footer" class="footer" data-bg-img="images/footer-bg.png" data-bg-color="#020443">
 
       <?php include("include.footer.php"); ?>
@@ -551,18 +578,6 @@ $page = "firme";
   <!-- end wrapper -->
 
   <!-- Footer Scripts -->
-  <!-- JS | Custom script for all pages -->
-  <script src="js/custom.js"></script>
-
-  <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
-  <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
-  <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
-  <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
-  <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
-  <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
-  <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
-  <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
-  <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
 
   <script>
     /* $(function () {

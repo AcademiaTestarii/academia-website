@@ -77,7 +77,7 @@ if (isset($_POST['action'])) {
 					$greetings = "Salut ".$prenume."<br><br>";
 					$message = "<p>Mulţumim pentru înregistrare! Ti-am rezervat un loc in clasă.<br>
 					Pentru a finaliza inscrierea, te rugam sa faci plata, conform modalitatii de plata aleasa (integral, in rate), in contul RO42 INGB 0000 9999 0985 9526. Te rugam sa mentionezi in detaliile de plata, persoana pentru care se face plata.<p>
-					<p>Pentru a intra în contul tău de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"$host/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Am setat o parola temporara pentru tine: <strong>".$parola."</strong>. Poti schimba parola imediat dupa ce activezi contul.</p>
+					<p>Pentru a intra în contul tău de pe pdlatforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul de mai jos:<br><br><a href=\"$host/confirma.php?cheie=$cod_confirmare\">Confirmă înregistrarea</a><br><br>Am setat o parola temporara pentru tine: <strong>".$parola."</strong>. Poti schimba parola imediat dupa ce activezi contul.</p>
 					<p>Iti multumim,<br>Echipa Academia Testarii</p>";
 
 					$body = "$greetings $message";
