@@ -161,7 +161,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 <?php if (!$membru) { ?>
 		<p>După ce completezi acest formular vei primi un mesaj de confirmare pe email. In acest mesaj vei primi deasemenea și instructiuni pentru activarea contului tău de pe platforma Academia Testării unde vei putea consulta materiale pentru curs precum și alte informaţii care privesc relaţia dintre Academia Testării și tine.</p><p>Dacă ai deja cont pe platforma Academia Testării, te rugăm să <strong><a href="ajax-load/login-form.html" class="ajaxload-popup text-theme-colored">intri în contul tău</a></strong> pentru a te înscrie la cursuri.</p>
 <?php } else { ?>
-		<p>Dacă dorești să schimbi datele personale poţi face acest lucru din <strong><a href="contul_tau.php#sectiuneaDate" class="text-theme-colored">contul tău</a></strong>.</p>
+		<p>Dacă dorești să schimbi datele personale poţi face acest lucru din <strong><a href="/contul_tau.php#sectiuneaDate" class="text-theme-colored">contul tău</a></strong>.</p>
 <?php } ?>
 	  <hr />
 
@@ -423,7 +423,7 @@ if ($row_cursuri2['id']==$cursactiv['id']) {$activ="checked=\"checked\"";}
 			}?>
 			<?php if ($inscrisdeja) { ?>
 				<h4>Ești deja înscris la acest curs.</h4>
-				<a href="contul_tau.php#sectiuneaCursuri" class="btn btn-lg text-white text-center btn-theme-colored2 btn-block pt-20 pb-20 btn-flat"><i class="fa fa-user-o"></i> Verifică informaţiile în contul tău.</a>
+				<a href="/contul_tau.php#sectiuneaCursuri" class="btn btn-lg text-white text-center btn-theme-colored2 btn-block pt-20 pb-20 btn-flat"><i class="fa fa-user-o"></i> Verifică informaţiile în contul tău.</a>
 			<?php } else { ?>
 				<button id="submitBtn" type="submit" class="btn btn-lg text-white text-center btn-theme-colored2 btn-block pt-20 pb-20 btn-flat" data-loading-text="Asteapta putin...">Înscrie-te la curs</button>
 			<? } ?>

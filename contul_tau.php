@@ -591,7 +591,7 @@ if (isset($_SESSION['key_admin']) && $_SESSION['key_admin'] == session_id()) {
                                                                     success: function (data) {
                                                                         if (data.status == 'true') {
                                                                             $(form).find('.form-control').val('');
-                                                                            location.href = "contul_tau.php";
+                                                                            location.href = "/contul_tau.php";
                                                                         }
                                                                         form_btn.prop('disabled', false).html(form_btn_old_msg);
                                                                         $(form_result_div).html(data.message).fadeIn('slow');
@@ -667,7 +667,7 @@ if (isset($_SESSION['key_admin']) && $_SESSION['key_admin'] == session_id()) {
                                                                     success: function (data) {
                                                                         if (data.status == 'true') {
                                                                             $(form).find('.form-control').val('');
-                                                                            location.href = "contul_tau.php";
+                                                                            location.href = "/contul_tau.php";
                                                                         }
                                                                         form_btn.prop('disabled', false).html(form_btn_old_msg);
                                                                         $(form_result_div).html(data.message).fadeIn('slow');
@@ -746,7 +746,7 @@ if (isset($_SESSION['key_admin']) && $_SESSION['key_admin'] == session_id()) {
                                                                     success: function (data) {
                                                                         if (data.status == 'true') {
                                                                             $(form).find('.form-control').val('');
-                                                                            location.href = "contul_tau.php";
+                                                                            location.href = "/contul_tau.php";
                                                                         }
                                                                         form_btn.prop('disabled', false).html(form_btn_old_msg);
                                                                         $(form_result_div).html(data.message).fadeIn('slow');

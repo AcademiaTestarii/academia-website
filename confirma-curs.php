@@ -32,7 +32,7 @@ if (isset($_GET['cheie']) AND strlen($_GET['cheie'])==12 AND ctype_alnum($_GET['
 			$mail->MsgHTML( $body );
 			$sendEmail = $mail->Send();
 
-		header("Location:contul_tau.php");
+		header("Location:/contul_tau.php");
 	} else {
 		// deja activat
 		echo "Acest cont a fost deja activat sau codul de activare este invalid.";

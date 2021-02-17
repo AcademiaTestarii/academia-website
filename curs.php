@@ -396,7 +396,7 @@ if (isset($newId) && is_numeric($newId)) {
                                         if (mysqli_num_rows($cursuriSql) > 0) {
                                             ?>
                                             <h4>Ești deja înscris la acest curs.</h4>
-                                            <a href="contul_tau.php#sectiuneaCursuri"
+                                            <a href="/contul_tau.php#sectiuneaCursuri"
                                                class="btn btn-dark btn-theme-colored" width="100%"
                                                style="display:block;"><i class="fa fa-user-o"></i> Verifică informaţiile
                                                 în contul tău.</a>
@@ -513,7 +513,7 @@ FROM main_classes a
                                             if (mysqli_num_rows($cursuriSql) > 0) {
                                                 ?>
                                                 <h4>Ești deja înscris la acest curs.</h4>
-                                                <a href="contul_tau.php#sectiuneaCursuri"
+                                                <a href="/contul_tau.php#sectiuneaCursuri"
                                                    class="btn btn-dark btn-theme-colored" width="100%"
                                                    style="display:block;"><i class="fa fa-user-o"></i> Verifică
                                                     informaţiile în contul tău.</a>

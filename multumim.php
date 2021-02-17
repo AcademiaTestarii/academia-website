@@ -197,9 +197,9 @@ if (isset($_GET['curs']) && is_numeric($_GET['curs'])) {
             <div class="col-md-12">
               <p>Pentru a finaliza înscrierea, te rugăm să faci plata, conform modalității de plată aleasă (integral / in rate), in contul <strong>RO42 INGB 0000 9999 0985 9526</strong>. Te rugăm sa mentionezi în detaliile de plata, persoana pentru care se face plata.
               <p>
-              <p>Pentru a intra în <a href="contul_tau.php#sectiuneaCursuri">contul tău</a> de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul pe care l-am trimis pe adresa de email cu care te-ai înregistrat.</p>
+              <p>Pentru a intra în <a href="/contul_tau.php#sectiuneaCursuri">contul tău</a> de pe platforma Academia Testării trebuie mai întâi să activezi contul dând clik pe linkul pe care l-am trimis pe adresa de email cu care te-ai înregistrat.</p>
               <p>Am setat o parola temporară pentru tine pe care o poți schimba dupa ce activezi contul.</p>
-              <p>Daca ai activat deja contul poti intra in <a href="contul_tau.php#sectiuneaCursuri">contul tău</a> unde vei găsi informații si materiale pentru cursurile la care te-ai inregistrat, poți schimba datele personale si poți descărca certificatele de absolivire.</p>
+              <p>Daca ai activat deja contul poti intra in <a href="/contul_tau.php#sectiuneaCursuri">contul tău</a> unde vei găsi informații si materiale pentru cursurile la care te-ai inregistrat, poți schimba datele personale si poți descărca certificatele de absolivire.</p>
               <p><strong>Iți mulțumim,<br>Echipa Academia Testării.</strong></p>
             </div>
           </div>

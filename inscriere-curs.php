@@ -200,7 +200,7 @@ WHERE `classes`.deleted_at is null AND `classes.id`=" . $curs . "";
                         dintre Academia Testării și tine.</p>
                 <?php } else { ?>
                     <p>Avem nevoie de datele tale personale (Nume, Adresa, Localitate, etc pentru facturare). Te rugăm
-                        să completezi datele personale în <strong><a href="contul_tau.php#sectiuneaDate"
+                        să completezi datele personale în <strong><a href="/contul_tau.php#sectiuneaDate"
                                                                      class="text-theme-colored">contul tău</a></strong>,
                         apoi să revii la formularul de înscriere.</p>
                     <p>Dacă ai toate datele completate, atunci te poţi înscrie la cursuri selectând modulul dorit din
@@ -518,7 +518,7 @@ WHERE `classes`.deleted_at is null AND `classes.id`=" . $curs . "";
                                 } ?>
                                 <?php if ($inscrisdeja) { ?>
                                     <h4>Ești deja înscris la acest curs.</h4>
-                                    <a href="contul_tau.php#sectiuneaCursuri" class="btn btn-dark btn-theme-colored"><i
+                                    <a href="/contul_tau.php#sectiuneaCursuri" class="btn btn-dark btn-theme-colored"><i
                                                 class="fa fa-user-o"></i> Verifică informaţiile în contul tău.</a>
                                 <?php } else { ?>
                                     <button id="submitBtn" type="submit" class="btn btn-dark btn-theme-colored"
