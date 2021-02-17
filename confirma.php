@@ -13,7 +13,7 @@ if (isset($_GET['cheie']) AND strlen($_GET['cheie'])==12 AND ctype_alnum($_GET['
 		$update=mysqli_query($link,$sql_update);
 		$_SESSION['key_admin'] = session_id();
 		$_SESSION['id'] = $row['id'];
-		header("Location:contul_tau.php#sectiuneaCursuri");
+		header("Location:/contul_tau.php#sectiuneaCursuri");
 	} else {
 		// deja activat
 		echo "Acest cont a fost deja activat sau codul de activare este invalid.";

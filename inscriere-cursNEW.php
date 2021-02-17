@@ -161,7 +161,7 @@ src="https://www.facebook.com/tr?id=347879355772596&ev=PageView
 <?php if (!$membru) { ?>
 		<p>După ce completezi acest formular vei primi un mesaj de confirmare pe email. In acest mesaj vei primi deasemenea și instructiuni pentru activarea contului tău de pe platforma Academia Testării unde vei putea consulta materiale pentru curs precum și alte informaţii care privesc relaţia dintre Academia Testării și tine.</p><p>Dacă ai deja cont pe platforma Academia Testării, te rugăm să <strong><a href="ajax-load/login-form.html" class="ajaxload-popup text-theme-colored">intri în contul tău</a></strong> pentru a te înscrie la cursuri.</p>
 <?php } else { ?>
-		<p>Dacă dorești să schimbi datele personale poţi face acest lucru din <strong><a href="contul_tau.php#sectiuneaDate" class="text-theme-colored">contul tău</a></strong>.</p>
+		<p>Dacă dorești să schimbi datele personale poţi face acest lucru din <strong><a href="/contul_tau.php#sectiuneaDate" class="text-theme-colored">contul tău</a></strong>.</p>
 <?php } ?>
 	  <hr />
 

@@ -12,7 +12,7 @@ if (isset($_GET['cheie']) AND strlen($_GET['cheie'])==12 AND ctype_alnum($_GET['
 		$update=mysqli_query($link,$sql_update);
 		$_SESSION['key_admin'] = session_id();
 		$_SESSION['id'] = $row['id'];
-		header("Location:contul_tau.php");
+		header("Location:/contul_tau.php");
 	} else {
 		// deja activat
 		echo "Se pare ca timpul de resetare a parolei a expirat.";
