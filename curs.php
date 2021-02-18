@@ -17,7 +17,7 @@ if (isset($newId) && is_numeric($newId)) {
     $sql_curs = "
 	SELECT classes.*, main_classes.title as main_title FROM `classes`
 	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
-	WHERE `classes`.`main_class_id`=" . $id . " ";
+	WHERE classes.deleted_at is null AND classes.is_active = 1 AND  `classes`.`main_class_id`=" . $id . " ";
     if (isset($academiaTestariiTrainerProvider)) {
         $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
     }
@@ -32,7 +32,7 @@ if (isset($newId) && is_numeric($newId)) {
         $sql_curs = "
 	SELECT classes.*, main_classes.title as main_title FROM `classes`
 	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
-	WHERE `classes`.`main_class_id`=" . $id . "" ;
+	WHERE classes.deleted_at is null AND classes.is_active = 1 AND `classes`.`main_class_id`=" . $id . "" ;
         if (isset($academiaTestariiTrainerProvider)) {
             $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
         }
@@ -48,7 +48,7 @@ if (isset($newId) && is_numeric($newId)) {
     $sql_curs = "
 	SELECT classes.*, main_classes.title as main_title FROM `classes`
 	LEFT JOIN `main_classes` ON `classes`.`main_class_id`=`main_classes`.`id`
-	WHERE `main_classes`.`url_string_short`='" . $url . "' ";
+	WHERE classes.deleted_at is null AND classes.is_active = 1 AND `main_classes`.`url_string_short`='" . $url . "' ";
     if (isset($academiaTestariiTrainerProvider)) {
         $sql_curs .= " AND main_classes.trainer_provider_id = $academiaTestariiTrainerProvider";
     }

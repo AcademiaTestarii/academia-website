@@ -403,7 +403,7 @@ WHERE `classes`.deleted_at is null AND `classes.id`=" . $curs . "";
                                     <select id="curs" class="form-control" name="curs">
                                         <option value="--">-- alege curs --</option>
                                         <?php
-                                        $sql_cursuri = "SELECT * FROM `main_classes` WHERE id IN (SELECT distinct main_class_id from classes where deleted_at is null) AND `is_active`=1";
+                                        $sql_cursuri = "SELECT * FROM `main_classes` WHERE id IN (SELECT distinct main_class_id from classes where deleted_at is null and is_active =1 AND  `registration_start_date`>NOW()) AND `is_active`=1";
 
                                         if(isset($academiaTestariiTrainerProvider)) {
                                             $sql_cursuri .= " AND trainer_provider_id = $academiaTestariiTrainerProvider ORDER BY `order` ASC";
@@ -415,7 +415,7 @@ WHERE `classes`.deleted_at is null AND `classes.id`=" . $curs . "";
                                             <optgroup
                                                     label="<?php echo str_replace("<br />", "", $row_cursuri['title']); ?>">
                                                 <?php
-                                                $sql_cursuri2 = "SELECT * FROM `classes` WHERE `main_class_id`=" . $row_cursuri['id'] . " AND `registration_start_date`>NOW() AND deleted_at is null ORDER BY `registration_start_date` ASC LIMIT 2";
+                                                $sql_cursuri2 = "SELECT * FROM `classes` WHERE `main_class_id`=" . $row_cursuri['id'] . " AND `registration_start_date`>NOW() AND deleted_at is null AND is_active = 1 ORDER BY `registration_start_date` ASC LIMIT 2";
                                                 $query_cursuri2 = mysqli_query($link, $sql_cursuri2);
                                                 while ($row_cursuri2 = mysqli_fetch_assoc($query_cursuri2)) {
                                                     $disabled = "";

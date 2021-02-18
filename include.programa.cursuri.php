@@ -16,7 +16,7 @@
                         <?php
                         $sql_cursuri = "
 select *, mc.title as main_title from main_classes mc
-left join classes c on mc.id = c.main_class_id and c.deleted_at is null
+left join classes c on mc.id = c.main_class_id and c.deleted_at is null and c.is_active = 1
 where c.registration_start_date >= NOW()";
                         if (isset($academiaTestariiTrainerProvider)) {
                             $sql_cursuri .= " AND mc.trainer_provider_id = $academiaTestariiTrainerProvider";
